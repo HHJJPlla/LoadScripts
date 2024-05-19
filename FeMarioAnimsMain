@@ -12,7 +12,7 @@ animator:FindFirstChild("fall").FallAnim.AnimationId = "http://www.roblox.com/as
 
 game.Players.LocalPlayer.CharacterAdded:Connect(function(character) 
 if character then 
-repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") and game.Players.LocalPlayer.Character:FindFirstChild("Animate")
 mariojumpstate = 0
 game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 26
 game.Players.LocalPlayer.Character.Humanoid.JumpPower = 60
