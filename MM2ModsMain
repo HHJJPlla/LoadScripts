@@ -164,8 +164,8 @@ game:GetService("StarterGui"):SetCore("SendNotification",{
 })
 end)
 
-applyfling = 7
-Sprayops:CreateSlider("Fling Strength", 7, 70, 7, false, function(flingstr)
+applyfling = 1
+Sprayops:CreateSlider("Fling Strength", 1, 70, 7, false, function(flingstr)
     applyfling = flingstr
 end)
 
