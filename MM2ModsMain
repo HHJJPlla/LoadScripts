@@ -2335,7 +2335,7 @@ for _, v in pairs(workspace.Normal.CoinContainer:GetDescendants()) do
 	end
 end
 end
-task.wait(3)
+task.wait(1.5)
 end
 else
 Aanticoinlags = false
