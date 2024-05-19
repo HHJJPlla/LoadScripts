@@ -1,0 +1,211 @@
+local mariojumpstate = 0
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 32
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 80
+local animator = game.Players.LocalPlayer.Character:FindFirstChild("Animate")
+animator:FindFirstChild("idle").Animation1.AnimationId = "http://www.roblox.com/asset/?id=10921330408"
+animator:FindFirstChild("idle").Animation2.AnimationId = "http://www.roblox.com/asset/?id=10921333667"
+animator:FindFirstChild("walk").WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921127095"
+animator:FindFirstChild("run").RunAnim.AnimationId = "http://www.roblox.com/asset/?id=10921121197"
+animator:FindFirstChild("jump").JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=10921294559"
+animator:FindFirstChild("climb").ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921154678"
+animator:FindFirstChild("fall").FallAnim.AnimationId = "http://www.roblox.com/asset/?id=507767968"
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function(character) 
+if character then 
+repeat task.wait() until game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+mariojumpstate = 0
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 32
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 80
+local animator = game.Players.LocalPlayer.Character:FindFirstChild("Animate")
+animator:FindFirstChild("idle").Animation1.AnimationId = "http://www.roblox.com/asset/?id=10921330408"
+animator:FindFirstChild("idle").Animation2.AnimationId = "http://www.roblox.com/asset/?id=10921333667"
+animator:FindFirstChild("walk").WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921127095"
+animator:FindFirstChild("run").RunAnim.AnimationId = "http://www.roblox.com/asset/?id=10921121197"
+animator:FindFirstChild("jump").JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=10921294559"
+animator:FindFirstChild("climb").ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921154678"
+animator:FindFirstChild("fall").FallAnim.AnimationId = "http://www.roblox.com/asset/?id=507767968"
+game.Players.LocalPlayer.Character.Humanoid.Jumping:Connect(function(IsJumping)
+if IsJumping and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Humanoid.FloorMaterial ~= Enum.Material.Air then
+mariojumpstate = mariojumpstate + 1
+if mariojumpstate > 2 then
+mariojumpstate = 0
+end
+if mariojumpstate == 1 then
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 80
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 32
+end
+if mariojumpstate == 2 then
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 32
+local jump2 = Instance.new("Animation")
+jump2.AnimationId = "rbxassetid://10714375667"
+jumpplay2 = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(jump2)
+jumpplay2:Play()
+jumpplay2:AdjustSpeed(0)
+jumpplay2:AdjustWeight(25)
+jumpplay2.TimePosition = 0.5
+local smallwalk = Instance.new("Animation")
+smallwalk.AnimationId = "rbxassetid://10921121197"
+smallwalkplay = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(smallwalk)
+smallwalkplay:Play()
+smallwalkplay:AdjustWeight(1)
+task.wait(0.3)
+jumpplay2:Stop(0.4)
+jumpplay2:Destroy()
+smallwalkplay:Stop()
+smallwalkplay:Destroy()
+end
+if mariojumpstate == 0 then
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 120
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 95
+local flip = Instance.new("Animation")
+flip.AnimationId = "rbxassetid://15693621070"
+flipplay = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(flip)
+flipplay:Play()
+flipplay:AdjustSpeed(2)
+flipplay.TimePosition = 0.6
+task.wait(0.65)
+flipplay:Stop(0.3)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 35
+flipplay:Destroy()
+end
+end
+end)
+end
+end)
+
+game.Players.LocalPlayer.Character.Humanoid.Jumping:Connect(function(IsJumping)
+if IsJumping and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Humanoid.FloorMaterial ~= Enum.Material.Air then
+mariojumpstate = mariojumpstate + 1
+if mariojumpstate > 2 then
+mariojumpstate = 0
+end
+if mariojumpstate == 1 then
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 80
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 32
+end
+if mariojumpstate == 2 then
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 100
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 32
+local jump2 = Instance.new("Animation")
+jump2.AnimationId = "rbxassetid://10714375667"
+jumpplay2 = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(jump2)
+jumpplay2:Play()
+jumpplay2:AdjustSpeed(0)
+jumpplay2:AdjustWeight(25)
+jumpplay2.TimePosition = 0.5
+local smallwalk = Instance.new("Animation")
+smallwalk.AnimationId = "rbxassetid://10921121197"
+smallwalkplay = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(smallwalk)
+smallwalkplay:Play()
+smallwalkplay:AdjustWeight(1)
+task.wait(0.3)
+jumpplay2:Stop(0.4)
+jumpplay2:Destroy()
+smallwalkplay:Stop()
+smallwalkplay:Destroy()
+end
+if mariojumpstate == 0 then
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 120
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 95
+local flip = Instance.new("Animation")
+flip.AnimationId = "rbxassetid://15693621070"
+flipplay = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(flip)
+flipplay:Play()
+flipplay:AdjustSpeed(2)
+flipplay.TimePosition = 0.6
+task.wait(0.65)
+flipplay:Stop(0.3)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 35
+flipplay:Destroy()
+end
+end
+end)
+
+playstop = false
+_G.mariostop = game:GetService("RunService").RenderStepped:Connect(function()
+	if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").MoveDirection.Magnitude == 0 and playstop == false and game.Players.LocalPlayer.Character.Humanoid.FloorMaterial ~= Enum.Material.Air then
+game.Players.LocalPlayer.Character:FindFirstChild("Animate").Disabled = true
+for _, v in ipairs(game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):GetPlayingAnimationTracks()) do
+	v:Stop()
+end
+game.Players.LocalPlayer.Character:FindFirstChild("Animate").Disabled = false
+playstop = true
+local stop = Instance.new("Animation")
+stop.AnimationId = "rbxassetid://14352337694"
+stopplay = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(stop)
+stopplay:Play()
+stopplay:AdjustSpeed(2)
+stopplay.TimePosition = 4
+task.wait(0.25)
+stopplay:Stop(0.3)
+stopplay:Destroy()
+		end
+		if game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").MoveDirection.Magnitude ~= 0 and playstop == true then
+	playstop = false
+		end
+	end
+end)
+
+--[[ 
+
+	Fe Mario Anims [Unfinished]
+ 
+local animator = game.Players.LocalPlayer.Character:FindFirstChild("Animate")
+animator:FindFirstChild("idle").Animation1.AnimationId = "http://www.roblox.com/asset/?id=10921330408"
+animator:FindFirstChild("idle").Animation2.AnimationId = "http://www.roblox.com/asset/?id=10921333667"
+animator:FindFirstChild("walk").WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=10921127095"
+animator:FindFirstChild("run").RunAnim.AnimationId = "http://www.roblox.com/asset/?id=10921121197"
+animator:FindFirstChild("jump").JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=10921294559"
+animator:FindFirstChild("climb").ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=10921154678"
+animator:FindFirstChild("fall").FallAnim.AnimationId = "http://www.roblox.com/asset/?id=507767968"
+ 
+game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+
+	Custom Animations [Unfinished]
+
+FE Mario Backflip (Jumping State)
+
+local flip = Instance.new("Animation")
+flip.AnimationId = "rbxassetid://15693621070"
+flipplay = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(flip)
+flipplay:Play()
+flipplay:AdjustSpeed(2)
+flipplay.TimePosition = 0.6
+task.wait(0.65)
+flipplay:Stop(0.3)
+flipplay:Destroy()
+
+FE Mario Jump 2 (Jumping State 2)
+
+local jump2 = Instance.new("Animation")
+jump2.AnimationId = "rbxassetid://10714375667"
+jumpplay2 = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(jump2)
+jumpplay2:Play()
+jumpplay2:AdjustSpeed(0)
+jumpplay2:AdjustWeight(25)
+jumpplay2.TimePosition = 0.5
+local smallwalk = Instance.new("Animation")
+smallwalk.AnimationId = "rbxassetid://10921121197"
+smallwalkplay = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(smallwalk)
+smallwalkplay:Play()
+smallwalkplay:AdjustWeight(1)
+task.wait(0.3)
+jumpplay2:Stop(0.4)
+jumpplay2:Destroy()
+smallwalkplay:Stop()
+smallwalkplay:Destroy()
+
+FE Mario Stop
+
+local stop = Instance.new("Animation")
+stop.AnimationId = "rbxassetid://14352337694"
+stopplay = game.Players.LocalPlayer.Character:FindFirstChildWhichIsA("Humanoid"):LoadAnimation(stop)
+stopplay:Play()
+stopplay:AdjustSpeed(2)
+stopplay.TimePosition = 4
+task.wait(0.25)
+stopplay:Stop(0.3)
+stopplay:Destroy()
+]]
