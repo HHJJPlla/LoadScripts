@@ -1,1 +1,2 @@
+task.wait(2)
 game.Players.LocalPlayer:Kick("Possible exploiting detected. We'll check your game actions before subsequent confirmations. If you think it was an accident then contact us: .gg/RasXnUWxmh")
