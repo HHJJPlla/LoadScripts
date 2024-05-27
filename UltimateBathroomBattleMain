@@ -1,13 +1,13 @@
 PlatformType = "Mobile"
 
 if not game:IsLoaded() then game.Loaded:Wait() end
---if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("SonarGiant"):Destroy()
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantLensMan"):Destroy()
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantSoundMan"):Destroy()
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("ClockGiant"):Destroy()
---end
+if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
+	game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
+	game.ReplicatedStorage.MorphShow:FindFirstChild("SonarGiant"):Destroy()
+	game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantLensMan"):Destroy()
+	game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantSoundMan"):Destroy()
+	game.ReplicatedStorage.MorphShow:FindFirstChild("ClockGiant"):Destroy()
+end
 
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
 local Notify = AkaliNotif.Notify;
