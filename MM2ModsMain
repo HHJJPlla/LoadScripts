@@ -156,14 +156,17 @@ end)
 Sprayops:CreateButton("Super Spray", function()
 if game.Players.LocalPlayer.Character ~= nil then
     if game:GetService("Players").LocalPlayer.Backpack.Toys:FindFirstChild("SprayPaint") then
-	(getsenv(game.Players.LocalPlayer.Character.Toys.SprayPaint.Client)).range = math.huge
-	(getsenv(game.Players.LocalPlayer.Character.Toys.SprayPaint.Client)).cooldown = 0
+	(getsenv(game.Players.LocalPlayer.Backpack.Toys.SprayPaint.Client)).range = math.huge
+	(getsenv(game.Players.LocalPlayer.Backpack.Toys.SprayPaint.Client)).cooldown = 0
+	(getsenv(game.Players.LocalPlayer.Backpack.Toys.SprayPaint.Client)).check = true
     elseif game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("SprayPaint") then
 	(getsenv(game.Players.LocalPlayer.Backpack.SprayPaint.Client)).range = math.huge
 	(getsenv(game.Players.LocalPlayer.Backpack.SprayPaint.Client)).cooldown = 0
+	(getsenv(game.Players.LocalPlayer.Backpack.SprayPaint.Client)).check = true
     elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild("SprayPaint") then
 	(getsenv(game.Players.LocalPlayer.Character.SprayPaint.Client)).range = math.huge
 	(getsenv(game.Players.LocalPlayer.Character.SprayPaint.Client)).cooldown = 0
+	(getsenv(game.Players.LocalPlayer.Character.SprayPaint.Client)).check = true
 	end
 end
 end)
