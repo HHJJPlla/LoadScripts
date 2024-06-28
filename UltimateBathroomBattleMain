@@ -446,6 +446,14 @@ ai:Button("Unglitch", function()
 game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow.LargeLensMan, true)
 end)
 
+ai:Toggle("Show TSM Knifes", false, function(bool)
+if bool then
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("KnifeVisible", true)
+else
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("KnifeVisible", false)
+end
+end)
+
 ai:Button("Give Old Gun", function()
 game.ReplicatedStorage.Remotes.Draw:FireServer(game.Players.LocalPlayer.Character.Humanoid, true)
 end)
