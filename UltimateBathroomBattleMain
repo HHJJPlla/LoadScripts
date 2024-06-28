@@ -178,15 +178,6 @@ damag = false
 end
 end)
 
-mlaser = false
-plr:Toggle("Mega Laser [M]", false, function(laser)
-if laser then
-mlaser = true
-else
-mlaser = false
-end
-end)
-
 thrower = false
 plr:Toggle("Thrower [C]", false, function(thr)
 if thr then
@@ -494,12 +485,6 @@ game:GetService("UserInputService").InputBegan:Connect(function(input, gameProce
 if input.KeyCode == Enum.KeyCode.B then
 if gren == true then
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Granada", Vector3.new(0, 0, 0))
-end
-end
-
-if input.KeyCode == Enum.KeyCode.M then
-if mlaser == true and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.Remotes.MegaLaser:FireServer(game.Players.LocalPlayer.Character, game.Players.LocalPlayer.Character.HumanoidRootPart.Position, game.Players.LocalPlayer:GetMouse().Hit.p)
 end
 end
 
