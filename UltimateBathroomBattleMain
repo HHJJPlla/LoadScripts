@@ -23,6 +23,7 @@ for i, v in pairs(workspace:GetDescendants()) do
     end
 end
 end
+print("[SCRIPT] Highlight Loaded")
 
 local localgod = Instance.new("Highlight", game.ReplicatedFirst)
 localgod.Name = "LocalGod_Highlight"
@@ -49,7 +50,7 @@ local args = {
     [2] = moneyamount,
     [4] = true
 }
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GiantCombat"):FireServer(unpack(args))
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
 Notify({
 Description = "Free Money added";
 Duration = 2;
@@ -57,7 +58,7 @@ Duration = 2;
 end)
 
 plr:Button("Apply Candy", function()
-game:GetService("ReplicatedStorage"):WaitForChild("UIRemotes"):WaitForChild("winterS"):FireServer("ChristmasSuitCase", moneyamount * -1, "ChristmasSuitCase")
+game.ReplicatedStorage.UIRemotes.winterS:FireServer("ChristmasSuitCase", moneyamount * -1, "ChristmasSuitCase")
 Notify({
 Description = "Free Candy added";
 Duration = 2;
@@ -65,11 +66,11 @@ Duration = 2;
 end)
 
 local freecaser = plr:Dropdown("Free Unlock Case", {"ChristmasSuitCase", "BathroomCase"}, function(case)
-game:GetService("ReplicatedStorage"):WaitForChild("Modules"):WaitForChild("SKINMODULE"):WaitForChild("SpinnerContents"):WaitForChild("RemoteFunction"):InvokeServer(case)
+game.ReplicatedStorage.Modules.SKINMODULE.SpinnerContents.RemoteFunction:InvokeServer(case)
 end)
 
 local freecaser = plr:Dropdown("Free Case Giver", {"ChristmasSuitCase", "BathroomCase"}, function(case)
-game:GetService("ReplicatedStorage"):WaitForChild("UIRemotes"):WaitForChild("winterS"):FireServer(case, 0, case)
+game.ReplicatedStorage.UIRemotes.winterS:FireServer(case, 0, case)
 end)
 
 punchdmg = 35
@@ -100,7 +101,7 @@ local args = {
         ["RaygunDamage"] = raydmg
     }
 }
-game:GetService("ReplicatedStorage"):WaitForChild("UIRemotes"):WaitForChild("SaveData"):InvokeServer(unpack(args))
+game.ReplicatedStorage.UIRemotes.SaveData:InvokeServer(unpack(args))
 Notify({
 Description = "Upgraded(PunchDamage: "..punchdmg..", HealthUpgrade: "..healup..", RaygunDamage: "..raydmg.. ").";
 Duration = 5;
@@ -127,7 +128,7 @@ local args = {
         ["Tier5Armor"] = true
     }
 }
-game:GetService("ReplicatedStorage"):WaitForChild("UIRemotes"):WaitForChild("SaveData"):InvokeServer(unpack(args))
+game.ReplicatedStorage.UIRemotes.SaveData:InvokeServer(unpack(args))
 Notify({
 Description = "Enabled All Gadgets";
 Duration = 2;
@@ -151,7 +152,7 @@ local args = {
         ["Tier5Armor"] = false
     }
 }
-game:GetService("ReplicatedStorage"):WaitForChild("UIRemotes"):WaitForChild("SaveData"):InvokeServer(unpack(args))
+game.ReplicatedStorage.UIRemotes.SaveData:InvokeServer(unpack(args))
 Notify({
 Description = "Disabled All Gadgets";
 Duration = 2;
@@ -205,6 +206,7 @@ end)
 else
 thrower = false
 _G.target:Disconnect()
+localgod.Parent = game.ReplicatedFirst
 end
 end)
 
@@ -232,6 +234,7 @@ end)
 else
 cloner = false
 _G.target2:Disconnect()
+localgod.Parent = game.ReplicatedFirst
 end
 end)
 
@@ -270,7 +273,7 @@ Description = "You already own this character";
 Duration = 2;
 });
 else
-game:GetService("ReplicatedStorage"):WaitForChild("UIRemotes"):WaitForChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", 8)
+game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", 8)
 Notify({
 Description = "Buying Scientist Titan...";
 Duration = 2;
@@ -281,9 +284,9 @@ end
 
 plr:Toggle("God Mode", false, function(infhp)
 if infhp then
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("DrillCombat"):FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 1)
+game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 1)
 else
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("DrillCombat"):FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 2)
+game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 2)
 end
 end)
 
@@ -312,7 +315,7 @@ end)
 
 oth:Button("Damage [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("raydamage"):FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, admg, burn)
+game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, admg, burn)
 end
 end)
 
@@ -320,9 +323,9 @@ oth:Button("SuperDamage [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
 for ir = 1, 10 do
 for i = 1, 5 do
-game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, "LaserCannon")
+game.ReplicatedStorage.Remotes.PlaySound:FireServer(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, "LaserCannon")
 end
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("raydamage"):FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, 20, burn)
+game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, 20, burn)
 task.wait(0.125)
 end
 end
@@ -330,40 +333,53 @@ end)
 
 oth:Button("Kill [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("raydamage"):FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health, burn)
+game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health, burn)
 end
 end)
 
 oth:Button("Infect [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 if game.Players.LocalPlayer.Character.Name ~= "Paristic" and game.Players.LocalPlayer.Character.Name ~= "BigParistic" and game.Players.LocalPlayer.Character.Name ~= "HelicopterParistic" then
-game:GetService("ReplicatedStorage").UIRemotes.Morph:InvokeServer(game:GetService("ReplicatedStorage").MorphShow:FindFirstChild("Paristic"), false)
+game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game:GetService("ReplicatedStorage").MorphShow:FindFirstChild("Paristic"), false)
 end
-game:GetService("ReplicatedStorage").CombatRemotes.ParasiteInfect:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
+game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
 oth:Button("Blind [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("BlindKnife"):FireServer(game:GetService("Players"):WaitForChild(targ).Character)
+game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
+end
+end)
+
+oth:Button("Invisible [Username]", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+for i, v in pairs(game.Players:WaitForChild(targ).Character:GetDescendants()) do
+    if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("UnionOperation") then
+        game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", v, 1)
+    end
+end
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 2)
+end
 end
 end)
 
 oth:Button("ClockStun [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GiantCombat"):FireServer("AJANPYSAHYS", game:GetService("Players"):WaitForChild(targ).Character)
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetService("Players"):WaitForChild(targ).Character)
 end
 end)
 
 oth:Button("Freeze [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("StunLock"):FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, true)
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, true)
 end
 end)
 
 oth:Button("Unfreeze [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("StunLock"):FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, false)
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, false)
 end
 end)
 
@@ -384,8 +400,8 @@ game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.Morph
 end)
 
 oth:Button("Clear Clone", function()
-game:GetService("ReplicatedStorage"):WaitForChild("UIRemotes"):WaitForChild("Morph"):InvokeServer(game:GetService("ReplicatedStorage"):WaitForChild("MorphShow"):WaitForChild("Paristic"), false)
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("ParasiteInfect"):FireServer(workspace:FindFirstChild("LargeLensMan"))
+game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game:GetService("ReplicatedStorage"):WaitForChild("MorphShow"):WaitForChild("Paristic"), false)
+game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(workspace:FindFirstChild("LargeLensMan"))
 end)
 
 burn = false
@@ -396,7 +412,7 @@ end)
 oth:Button("Damage All", function()
 for i, v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and v.Character ~= nil and v.Character:FindFirstChild("Humanoid") then
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("raydamage"):FireServer(v.Character.Humanoid, admg, burn)
+game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, admg, burn)
 end
 end
 end)
@@ -404,7 +420,7 @@ end)
 oth:Button("Kill All", function()
 for i, v in pairs(game.Players:GetPlayers()) do
 if v ~= game.Players.LocalPlayer and v.Character ~= nil and v.Character:FindFirstChild("Humanoid") then
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("raydamage"):FireServer(v.Character.Humanoid, v.Character.Humanoid.Health, burn)
+game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, v.Character.Humanoid.Health, burn)
 end
 end
 end)
@@ -412,7 +428,7 @@ end)
 bathroomtospawn = "Bathroom"
 bathroomamount = 1
 ai:Button("Summon Bathroom", function()
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GiantCombat"):FireServer("PARAWAVE", bathroomtospawn, bathroomamount)
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("PARAWAVE", bathroomtospawn, bathroomamount)
 end)
 
 local bathroomtype = ai:Dropdown("Bathroom Type", {"AssassinBathroom", "Bathroom", "BathroomBig", "BathroomBigGlasses", "BathroomGlasses", "BathroomMan", "BathroomMed", "BathroomMedGlasses", "BigParistic", "BrownBathroom", "CamoBathroom", "CatBathroom", "DJBathroom", "FireBreathing", "HelicopterParistic", "HolyBathroom", "MutantBuzzsawBathroom", "Paristic", "PoliceBathroom", "RobberBathroom", "Spider", "TubBathroom", "VacuumBathroom"}, function(type)
@@ -424,15 +440,23 @@ ai:Slider("Bathroom Amount",1,10,1, function(brval)
 end)
 
 ai:Button("Summon Cameraman", function()
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GiantCombat"):FireServer("LensheliSpawnAction", game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame, false)
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("LensheliSpawnAction", game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame, false)
+end
 end)
 
 ai:Button("Unfreeze", function()
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("StunLock"):FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, false)
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, false)
+end
 end)
 
 ai:Button("Unglitch", function()
 game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow.LargeLensMan, true)
+end)
+
+ai:Button("Give Old Gun", function()
+game.ReplicatedStorage.Remotes.Draw:FireServer(game.Players.LocalPlayer.Character.Humanoid, true)
 end)
 
 psvolume = 10
@@ -441,25 +465,27 @@ ai:Slider("Sound Volume",1,100,10, function(value)
 end)
 
 local sfxtoplay = ai:Dropdown("Play Sound", {"Boss Spawn", "Boss Approach", "Boss Phase", "Holy Ray", "Kill SFX"}, function(name)
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 if name == "Boss Spawn" then
 for i = 1, psvolume do
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("sfxname"):FireServer("bossSpawn", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
+game.ReplicatedStorage.Remotes.sfxname:FireServer("bossSpawn", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
 end
 elseif name == "Boss Approach" then
 for i = 1, psvolume do
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("sfxname"):FireServer("bossAbouttospawn", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
+game.ReplicatedStorage.Remotes.sfxname:FireServer("bossAbouttospawn", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
 end
 elseif name == "Boss Phase" then
 for i = 1, psvolume do
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("sfxname"):FireServer("bossPhase", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
+game.ReplicatedStorage.Remotes.sfxname:FireServer("bossPhase", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
 end
 elseif name == "Holy Ray" then
 for i = 1, psvolume do
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("sfxname"):FireServer("HolyRay", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
+game.ReplicatedStorage.Remotes.sfxname:FireServer("HolyRay", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
 end
 elseif name == "Kill SFX" then
 for i = 1, psvolume do
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("sfxname"):FireServer("killsfx", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
+game.ReplicatedStorage.Remotes.sfxname:FireServer("killsfx", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
+end
 end
 end
 end)
@@ -467,28 +493,28 @@ end)
 game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
 if input.KeyCode == Enum.KeyCode.B then
 if gren == true then
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("GiantCombat"):FireServer("Granada", Vector3.new(0, 0, 0))
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Granada", Vector3.new(0, 0, 0))
 end
 end
 
 if input.KeyCode == Enum.KeyCode.M then
-if mlaser == true then
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("MegaLaser"):FireServer(game.Players.LocalPlayer.Character, game.Players.LocalPlayer.Character.HumanoidRootPart.Position, game.Players.LocalPlayer:GetMouse().Hit.p)
+if mlaser == true and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.Remotes.MegaLaser:FireServer(game.Players.LocalPlayer.Character, game.Players.LocalPlayer.Character.HumanoidRootPart.Position, game.Players.LocalPlayer:GetMouse().Hit.p)
 end
 end
 
 if input.KeyCode == Enum.KeyCode.L then
 if partt == true then
 if game.Players.LocalPlayer:GetMouse().Target:IsA("Part") or game.Players.LocalPlayer:GetMouse().Target:IsA("MeshPart") then
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("DrillCombat"):FireServer("DrillTransparent", game.Players.LocalPlayer:GetMouse().Target, applytransa)
+game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game.Players.LocalPlayer:GetMouse().Target, applytransa)
 end
 end
 if partac == true then
 if game.Players.LocalPlayer:GetMouse().Target:IsA("Part") or game.Players.LocalPlayer:GetMouse().Target:IsA("MeshPart") then
 if game.Players.LocalPlayer:GetMouse().Target.Anchored == true then
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("StunLock"):FireServer(game.Players.LocalPlayer:GetMouse().Target, false)
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game.Players.LocalPlayer:GetMouse().Target, false)
 else
-game:GetService("ReplicatedStorage"):WaitForChild("CombatRemotes"):WaitForChild("StunLock"):FireServer(game.Players.LocalPlayer:GetMouse().Target, true)
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game.Players.LocalPlayer:GetMouse().Target, true)
 end
 end
 end
@@ -500,7 +526,7 @@ if thrower == true then
 		if v:FindFirstChild("LocalGod_Highlight") and v:FindFirstChild("HumanoidRootPart") then
 			game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(v.HumanoidRootPart)
 			for i = 1, 5 do
-game:GetService("ReplicatedStorage"):WaitForChild("Remotes"):WaitForChild("sfxname"):FireServer("BathroomExplode", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart)
+game.ReplicatedStorage.Remotes.sfxname:FireServer("BathroomExplode", game.Players.LocalPlayer.Character.HumanoidRootPart)
 			end
 		end
 	end
@@ -523,7 +549,7 @@ end
 if input.KeyCode == Enum.KeyCode.P then
 	if damag == true then
 for i = 1, 5 do
-game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, "LaserCannon")
+game.ReplicatedStorage.Remotes.PlaySound:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, "LaserCannon")
 end
 	end
 end
@@ -545,7 +571,7 @@ library:Keybind("Z")
 print("[SCRIPT] Fully Loaded!")
 print("[SCRIPT] Press Z to Close/Open the script")
 print("[SCRIPT] Report any error to discord: nil")
-print("[SCRIPT] Last update 02/02/2024")
+print("[SCRIPT] Last update 28/05/2024")
 Notify({
 Description = "Press Z to Close/Open the script.";
 Duration = 3;
