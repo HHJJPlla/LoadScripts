@@ -73,7 +73,7 @@ local freecaser = plr:Dropdown("Free Case Giver", {"ChristmasSuitCase", "Bathroo
 game.ReplicatedStorage.UIRemotes.winterS:FireServer(case, 0, case)
 end)
 
---[
+--[[
 punchdmg = 35
 plr:Box("PunchDamage", function(text, focuslost)
    if focuslost then
