@@ -73,6 +73,7 @@ local freecaser = plr:Dropdown("Free Case Giver", {"ChristmasSuitCase", "Bathroo
 game.ReplicatedStorage.UIRemotes.winterS:FireServer(case, 0, case)
 end)
 
+--[
 punchdmg = 35
 plr:Box("PunchDamage", function(text, focuslost)
    if focuslost then
@@ -107,6 +108,7 @@ Description = "Upgraded(PunchDamage: "..punchdmg..", HealthUpgrade: "..healup.."
 Duration = 5;
 });
 end)
+]]
 
 plr:Toggle("Free Enable Gadgets", false, function(gadg)
 if gadg then
