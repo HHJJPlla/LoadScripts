@@ -310,18 +310,6 @@ game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):W
 end
 end)
 
-oth:Button("SuperDamage [Username]", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-for ir = 1, 10 do
-for i = 1, 5 do
-game.ReplicatedStorage.Remotes.PlaySound:FireServer(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, "LaserCannon")
-end
-game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, 20, burn)
-task.wait(0.125)
-end
-end
-end)
-
 oth:Button("Kill [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health, burn)
