@@ -1,4 +1,4 @@
-PlatformType = "Mobile"
+PlatformType = "PC"
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
