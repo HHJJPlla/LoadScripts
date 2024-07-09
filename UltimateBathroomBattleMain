@@ -260,23 +260,6 @@ partac = false
 end
 end)
 
-if not game:GetService("Players").LocalPlayer.SkillTree:FindFirstChild("8") then
-plr:Button("Free Scientist Titan", function()
-if game:GetService("Players").LocalPlayer.SkillTree:FindFirstChild("8") then
-Notify({
-Description = "You already own this character";
-Duration = 2;
-});
-else
-game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", 8)
-Notify({
-Description = "Buying Scientist Titan...";
-Duration = 2;
-});
-end
-end)
-end
-
 plr:Toggle("God Mode", false, function(infhp)
 if infhp then
 game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 1)
@@ -388,15 +371,7 @@ oth:Button("Clone [Username]", function()
 for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players:FindFirstChild(targ).Character.HumanoidRootPart)
 end
-game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart)
-repeat task.wait() until game.Players.LocalPlayer.Character.Humanoid.Health == 0
-task.wait(0.1)
-game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow.LargeLensMan, true)
-end)
-
-oth:Button("Clear Clone", function()
-game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game:GetService("ReplicatedStorage"):WaitForChild("MorphShow"):WaitForChild("Paristic"), false)
-game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(workspace:FindFirstChild("LargeLensMan"))
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab.posGrabAttach)
 end)
 
 burn = false
@@ -510,10 +485,7 @@ if cloner == true then
 for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(v.HumanoidRootPart)
 end
-game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart)
-repeat task.wait() until game.Players.LocalPlayer.Character.Humanoid.Health == 0
-task.wait(0.1)
-game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow.LargeLensMan, true)
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab.posGrabAttach)
 		end
 	end
 end
