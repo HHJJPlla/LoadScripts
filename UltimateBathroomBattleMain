@@ -378,6 +378,12 @@ game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("
 end
 end)
 
+oth:Button("Delete [Username]", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
+end
+end)
+
 oth:Button("Clone [Username]", function()
 for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players:FindFirstChild(targ).Character.HumanoidRootPart)
@@ -396,32 +402,6 @@ end)
 burn = false
 oth:Toggle("Burn on Use", false, function(bool)
     burn = bool
-end)
-
-oth:Button("Damage All", function()
-for i, v in pairs(game.Players:GetPlayers()) do
-if v ~= game.Players.LocalPlayer and v.Character ~= nil and v.Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, admg, burn)
-end
-end
-end)
-
-oth:Button("Kill All", function()
-for i, v in pairs(game.Players:GetPlayers()) do
-if v ~= game.Players.LocalPlayer and v.Character ~= nil and v.Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, v.Character.Humanoid.Health, burn)
-end
-end
-end)
-
-oth:Button("Delete [Username]", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
-end
-end)
-
-oth:Button("Kick [Username]", function()
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ))
 end)
 
 bathroomtospawn = "Bathroom"
