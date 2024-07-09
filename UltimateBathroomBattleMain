@@ -354,6 +354,12 @@ game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetSer
 end
 end)
 
+oth:Button("Bring [Username]", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+end
+end)
+
 oth:Button("Freeze [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, true)
@@ -370,6 +376,16 @@ oth:Button("Throw [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart)
 end
+end)
+
+oth:Button("Delete [Username]", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
+end
+end)
+
+oth:Button("Kick [Username]", function()
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ))
 end)
 
 oth:Button("Clone [Username]", function()
