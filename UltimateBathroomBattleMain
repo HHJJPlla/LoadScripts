@@ -451,6 +451,13 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.L
 task.wait(0.5)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(workspace.GManBathroom2.HumanoidRootPart, true)
+task.wait(1)
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+game.ReplicatedStorage.Remotes.LaserRotate:FireServer(v.Thing0, v.Thing0.CFrame * CFrame.new(50, -100, -500), v.Thing0.Position, v.Thing0.LaserEnd1)
+game.ReplicatedStorage.Remotes.LaserRotate:FireServer(v.Thing1, v.Thing1.CFrame * CFrame.new(50, -100, -500), v.Thing1.Position, v.Thing1.LaserEnd1)
+end
+end
 end)
 
 fakeb:Toggle("Boss Freeze", false, function(bool)
