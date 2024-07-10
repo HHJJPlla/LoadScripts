@@ -458,6 +458,8 @@ game.ReplicatedStorage.Remotes.LaserRotate:FireServer(v.Thing0, v.Thing0.CFrame 
 game.ReplicatedStorage.Remotes.LaserRotate:FireServer(v.Thing1, v.Thing1.CFrame * CFrame.new(50, -100, -500), v.Thing1.Position, v.Thing1.LaserEnd1)
 end
 end
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2:FindFirstChild("Grabbed"))
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2:FindFirstChild("CreatorTag59"))
 end)
 
 fakeb:Toggle("Boss Freeze", false, function(bool)
