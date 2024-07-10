@@ -35,6 +35,7 @@ local plr = library:Window("Player Editor")
 local oth = library:Window("Health Editor")
 local ai = library:Window("Character Editor")
 local gui = library:Window("GUI Editor")
+local fakeb = library:Window("Fake Boss")
 print("[SCRIPT] Windows Loaded")
 
 plr:Box("Edit Money", function(text, focuslost)
@@ -444,6 +445,35 @@ end
 end
 end)
 
+fakeb:Button("Create Boss", function()
+game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("ReplicatedStorage").MorphShow.GManBathroom2.HumanoidRootPart)
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab.posGrabAttach)
+task.wait(0.5)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(workspace.GManBathroom2.HumanoidRootPart, true)
+end)
+
+fakecontrols = false
+fakeb:Toggle("Control [T,Y,U]", false, function(bool)
+    fakecontrols = bool
+end)
+
+fakeb:Toggle("Boss Lasers", false, function(bool)
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+game:GetService("ReplicatedStorage").Remotes.GManLaser:FireServer(v, bool)
+end
+end
+end)
+
+fakeb:Button("Remove Boss", function()
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
+end
+end
+end)
+
 game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
 if input.KeyCode == Enum.KeyCode.B then
 if gren == true then
@@ -497,6 +527,35 @@ for i = 1, 5 do
 game.ReplicatedStorage.Remotes.PlaySound:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, "LaserCannon")
 end
 	end
+end
+---- boss controls
+if input.KeyCode == Enum.KeyCode.T then
+if fakecontrols == true then
+game.ReplicatedStorage.Remotes.PlaySound:FireServer(workspace.GManBathroom2.HumanoidRootPart, "NamelessDeityAdrenalineFail")
+for i = 1, 3 do
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -65))
+task.wait(0.1)
+end
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -40))
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -20))
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -10))
+end
+end
+
+if input.KeyCode == Enum.KeyCode.Y then
+if fakecontrols == true then
+for i = 1, 3 do
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 50, 0))
+task.wait(0.1)
+end
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 30, 0))
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 10, 0))
+end
+end
+if input.KeyCode == Enum.KeyCode.U then
+if fakecontrols == true then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, CFrame.lookAt(workspace.GManBathroom2.HumanoidRootPart.Position, workspace.LargeLensMan.HumanoidRootPart.Position))
+end
 end
 end)
 
