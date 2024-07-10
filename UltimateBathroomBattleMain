@@ -453,6 +453,14 @@ game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GM
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(workspace.GManBathroom2.HumanoidRootPart, true)
 end)
 
+fakeb:Toggle("Boss Freeze", false, function(bool)
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(v.HumanoidRootPart, bool)
+end
+end
+end)
+
 fakecontrols = false
 fakeb:Toggle("Control [T,Y,U]", false, function(bool)
     fakecontrols = bool
@@ -531,25 +539,43 @@ end
 ---- boss controls
 if input.KeyCode == Enum.KeyCode.T then
 if fakecontrols == true then
+local tpto1 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -65)
+local tpto2 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -130)
+local tpto3 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -195)
+local tpto4 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -235)
+local tpto5 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -255)
+local tpto6 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -265)
 game.ReplicatedStorage.Remotes.PlaySound:FireServer(workspace.GManBathroom2.HumanoidRootPart, "NamelessDeityAdrenalineFail")
-for i = 1, 3 do
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -65))
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto1)
 task.wait(0.1)
-end
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -40))
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -20))
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -10))
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto2)
+task.wait(0.1)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto3)
+task.wait(0.1)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto4)
+task.wait(0.05)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto5)
+task.wait(0.05)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto6)
 end
 end
 
 if input.KeyCode == Enum.KeyCode.Y then
 if fakecontrols == true then
-for i = 1, 3 do
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 50, 0))
+local tpto1 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 50, 0)
+local tpto2 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 100, 0)
+local tpto3 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 150, 0)
+local tpto4 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 180, 0)
+local tpto5 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 190, 0)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto1)
 task.wait(0.1)
-end
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 30, 0))
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 10, 0))
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto2)
+task.wait(0.1)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto3)
+task.wait(0.1)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto4)
+task.wait(0.05)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto5)
 end
 end
 if input.KeyCode == Enum.KeyCode.U then
