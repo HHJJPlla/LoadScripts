@@ -554,7 +554,7 @@ end
 end
 if input.KeyCode == Enum.KeyCode.U then
 if fakecontrols == true then
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, CFrame.lookAt(workspace.GManBathroom2.HumanoidRootPart.Position, workspace.LargeLensMan.HumanoidRootPart.Position))
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, CFrame.lookAt(workspace.GManBathroom2.HumanoidRootPart.Position, game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart.Position))
 end
 end
 end)
