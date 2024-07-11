@@ -484,19 +484,6 @@ end
 end
 end)
 
-spamlock = false
-fakeb:Toggle("Boss Lock On", false, function(bool)
-if bool and bosscd == false then
-spamlock = true
-while spamlock == true do
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, CFrame.lookAt(workspace.GManBathroom2.HumanoidRootPart.Position, game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart.Position))
-task.wait(0.2)
-end
-else
-spamlock = false
-end
-end)
-
 fakeb:Button("Remove Boss", function()
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
