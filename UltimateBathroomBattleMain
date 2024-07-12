@@ -34,7 +34,7 @@ localgod.FillTransparency = 0
 local plr = library:Window("Player Editor")
 local oth = library:Window("Health Editor")
 local ai = library:Window("Character Editor")
-local gui = library:Window("GUI Editor")
+local gui = library:Window("Other Stuff")
 local fakeb = library:Window("Fake Boss")
 print("[SCRIPT] Windows Loaded")
 
@@ -647,6 +647,7 @@ Description = "Just Cleaned "..trashc.." Trash";
 Duration = 3;
 });
 end)
+
 library:Keybind("Z")
 
 print("[SCRIPT] Fully Loaded!")
