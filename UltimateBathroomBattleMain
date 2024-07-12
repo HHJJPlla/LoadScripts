@@ -372,7 +372,7 @@ oth:Button("Clone [Username]", function()
 for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players:FindFirstChild(targ).Character.HumanoidRootPart)
 end
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab.posGrabAttach)
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
 end)
 
 burn = false
@@ -447,7 +447,7 @@ end)
 
 fakeb:Button("Create Boss", function()
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("ReplicatedStorage").MorphShow.GManBathroom2.HumanoidRootPart)
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab.posGrabAttach)
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
 task.wait(0.5)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(workspace.GManBathroom2.HumanoidRootPart, true)
@@ -548,7 +548,7 @@ if cloner == true then
 for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(v.HumanoidRootPart)
 end
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab.posGrabAttach)
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
 		end
 	end
 end
