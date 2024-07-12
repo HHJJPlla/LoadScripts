@@ -627,6 +627,25 @@ end)
 gui:Button("Infinite Yield", function()
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
 end)
+
+gui:Button("Clean Trash", function()
+local trashc = 0
+for i,v in pairs(workspace.Debris:GetChildren()) do
+if v:IsA("Part") or v:IsA("MeshPart") or v:IsA("Model") then
+trashc = trashc + 1
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
+end
+end
+for i,v in pairs(workspace:GetChildren()) do
+if v:IsA("Part") and v.CanCollide == false and v.Position == Vector3.new(0,0,0) then
+trashc = trashc + 1
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
+end
+end
+Description = "Just Cleaned "..trashc.." Trash";
+Duration = 3;
+});
+end)
 library:Keybind("Z")
 
 print("[SCRIPT] Fully Loaded!")
