@@ -641,6 +641,8 @@ if v:IsA("Part") and v.CanCollide == false and v.Position == Vector3.new(0,0,0) 
 trash = trash + 1
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
 end
+end
+for i,v in pairs(workspace:GetChildren()) do
 if v:IsA("Model") and v:FindFirstChild("Grabbed") then
 trash = trash + 1
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
