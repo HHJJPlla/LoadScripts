@@ -25,6 +25,24 @@ end
 end
 print("[SCRIPT] Highlight Loaded")
 
+function GetNearestPlayer()
+    local nearestPlayer = nil
+    local shortestDistance = math.huge
+    for _, v in pairs(game.Players:GetPlayers()) do
+        if v ~= game.Players.LocalPlayer and v.Team.Name == "The Union" then
+            if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+                local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
+                if distance < shortestDistance then
+                    nearestPlayer = v
+                end
+            end
+        end
+    end
+    return nearestPlayer
+end
+
+print("[SCRIPT] Functions Loaded")
+
 local localgod = Instance.new("Highlight", game.ReplicatedFirst)
 localgod.Name = "LocalGod_Highlight"
 localgod.FillColor = Color3.fromRGB(255, 0, 0)
@@ -663,7 +681,10 @@ if input.KeyCode == Enum.KeyCode.U then
 if fakecontrols == true and bosscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, CFrame.lookAt(v.HumanoidRootPart.Position, game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart.Position))
+local nearestPlayer = GetNearestPlayer()
+if nearestPlayer then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, CFrame.lookAt(v.HumanoidRootPart.Position, nearestPlayer.Character.HumanoidRootPart.Position))
+end
 end
 end
 end
