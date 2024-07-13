@@ -685,7 +685,7 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
 end
 end
 for i,v in pairs(workspace:GetChildren()) do
-if v:IsA("Model") and v:FindFirstChild("Grabbed") then
+if v.Name ~= "GManBathroom2" and v:IsA("Model") and v:FindFirstChild("Grabbed") then
 trash = trash + 1
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
 end
