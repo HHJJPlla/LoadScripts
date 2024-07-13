@@ -26,9 +26,9 @@ end
 
 local localgod = Instance.new("Highlight", game.ReplicatedFirst)
 localgod.Name = "LocalGod_Highlight"
-localgod.FillColor = Color3.fromRGB(255, 0, 0)
-localgod.OutlineTransparency = 0.5
-localgod.FillTransparency = 1
+localgod.FillColor = Color3.fromRGB(255, 255, 255)
+localgod.OutlineTransparency = 1
+localgod.FillTransparency = 0
 
 print("[SCRIPT] Highlight Loaded")
 
