@@ -446,41 +446,70 @@ end
 end)
 
 fakeb:Button("Create Boss", function()
+local bosswait = true
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("ReplicatedStorage").MorphShow.GManBathroom2.HumanoidRootPart)
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
 task.wait(0.5)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
-game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(workspace.GManBathroom2.HumanoidRootPart, true)
-task.wait(1)
+while bosswait == true do
+for i, v in pairs(workspace:GetChildren()) do
+if v:IsA("Model") and v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+bosswait = false
+break
+end
+end
+task.wait(0.1)
+end
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
-game.ReplicatedStorage.Remotes.LaserRotate:FireServer(v.Thing0, v.Thing0.CFrame * CFrame.new(50, -100, -500), v.Thing0.Position, v.Thing0.LaserEnd1)
-game.ReplicatedStorage.Remotes.LaserRotate:FireServer(v.Thing1, v.Thing1.CFrame * CFrame.new(50, -100, -500), v.Thing1.Position, v.Thing1.LaserEnd1)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(v.HumanoidRootPart, true)
+break
 end
 end
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2:FindFirstChild("Grabbed"))
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2:FindFirstChild("CreatorTag59"))
+for i, v in pairs(game.ReplicatedStorage.MorphShow.GManBathroom2:GetChildren()) do
+if v.Name == "Grabbed" then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v:FindFirstChild("Grabbed"))
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v:FindFirstChild("CreatorTag59"))
+end
+end
 end)
 
 fakeb:Button("Edit Boss", function()
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
-game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(workspace.GManBathroom2.HumanoidRootPart, true)
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(v.HumanoidRootPart, true)
+break
+end
+end
+for i, v in pairs(game.ReplicatedStorage.MorphShow.GManBathroom2:GetChildren()) do
+if v.Name == "Grabbed" then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2:FindFirstChild("Grabbed"))
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2:FindFirstChild("CreatorTag59"))
+end
+end
+end)
+
+fakeb:Button("Edit Lasers", function()
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 game.ReplicatedStorage.Remotes.LaserRotate:FireServer(v.Thing0, v.Thing0.CFrame * CFrame.new(50, -100, -500), v.Thing0.Position, v.Thing0.LaserEnd1)
 game.ReplicatedStorage.Remotes.LaserRotate:FireServer(v.Thing1, v.Thing1.CFrame * CFrame.new(50, -100, -500), v.Thing1.Position, v.Thing1.LaserEnd1)
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2:FindFirstChild("Grabbed"))
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2:FindFirstChild("CreatorTag59"))
 break
 end
 end
 end)
 
-fakeb:Toggle("Boss Freeze", false, function(bool)
+fakeb:Toggle("View Boss", false, function(bool)
+if bool then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
-game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(v.HumanoidRootPart, bool)
+workspace.CurrentCamera.CameraSubject = v
+break
 end
+end
+else
+workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
 end
 end)
 
@@ -494,6 +523,16 @@ fakeb:Toggle("Boss Lasers", false, function(bool)
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 game:GetService("ReplicatedStorage").Remotes.GManLaser:FireServer(v, bool)
+break
+end
+end
+end)
+
+fakeb:Toggle("Boss Freeze", false, function(bool)
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(v.HumanoidRootPart, bool)
+break
 end
 end
 end)
@@ -503,6 +542,8 @@ for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
 game.ReplicatedStorage.Remotes.sfxname:FireServer("bossDefeated", game:GetService("Players").LocalPlayer.Character)
+workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+break
 end
 end
 end)
@@ -561,71 +602,72 @@ game.ReplicatedStorage.Remotes.PlaySound:FireServer(game.Players.LocalPlayer.Cha
 end
 	end
 end
----- boss controls
+
 if input.KeyCode == Enum.KeyCode.T then
 if fakecontrols == true and bosscd == false then
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 bosscd = true
-local tpto1 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -65)
-local tpto2 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -130)
-local tpto3 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -195)
-local tpto4 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -235)
-local tpto5 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -255)
-local tpto6 = workspace.GManBathroom2.HumanoidRootPart.CFrame * CFrame.new(0, 0, -265)
-game.ReplicatedStorage.Remotes.PlaySound:FireServer(workspace.GManBathroom2.HumanoidRootPart, "NamelessDeityAdrenalineFail")
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto1)
+local tpto1 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -65)
+local tpto2 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -130)
+local tpto3 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -195)
+local tpto4 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -235)
+local tpto5 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -255)
+local tpto6 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -265)
+game.ReplicatedStorage.Remotes.PlaySound:FireServer(v.HumanoidRootPart, "NamelessDeityAdrenalineFail")
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto1)
 task.wait(0.1)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto2)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto2)
 task.wait(0.1)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto3)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto3)
 task.wait(0.1)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto4)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto4)
 task.wait(0.05)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto5)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto5)
 task.wait(0.05)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto6)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto6)
 task.wait(0.05)
 bosscd = false
+end
+end
 end
 end
 
 if input.KeyCode == Enum.KeyCode.Y then
 if fakecontrols == true and bosscd == false then
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 bosscd = true
-local tpto1 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 50, 0)
-local tpto2 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 100, 0)
-local tpto3 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 150, 0)
-local tpto4 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 180, 0)
-local tpto5 = workspace.GManBathroom2.HumanoidRootPart.CFrame + Vector3.new(0, 190, 0)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto1)
+local tpto1 = v.HumanoidRootPart.CFrame + Vector3.new(0, 50, 0)
+local tpto2 = v.HumanoidRootPart.CFrame + Vector3.new(0, 100, 0)
+local tpto3 = v.HumanoidRootPart.CFrame + Vector3.new(0, 150, 0)
+local tpto4 = v.HumanoidRootPart.CFrame + Vector3.new(0, 180, 0)
+local tpto5 = v.HumanoidRootPart.CFrame + Vector3.new(0, 190, 0)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto1)
 task.wait(0.1)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto2)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto2)
 task.wait(0.1)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto3)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto3)
 task.wait(0.1)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto4)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto4)
 task.wait(0.05)
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, tpto5)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto5)
 task.wait(0.05)
 bosscd = false
 end
 end
+end
+end
+
 if input.KeyCode == Enum.KeyCode.U then
 if fakecontrols == true and bosscd == false then
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", workspace.GManBathroom2.HumanoidRootPart, CFrame.lookAt(workspace.GManBathroom2.HumanoidRootPart.Position, game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart.Position))
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, CFrame.lookAt(v.HumanoidRootPart.Position, game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart.Position))
 end
 end
-end)
-
-gui:Button("Lobby Show", function()
-if game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Lobby.Visible == false then
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Lobby.Visible = true
-else
-game:GetService("Players").LocalPlayer.PlayerGui.MainUI.Lobby.Visible = false
 end
-end)
-
-gui:Button("Infinite Yield", function()
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+end
 end)
 
 gui:Button("Clean Trash", function()
@@ -654,12 +696,16 @@ Duration = 3;
 });
 end)
 
+gui:Button("Infinite Yield", function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+end)
+
 library:Keybind("Z")
 
 print("[SCRIPT] Fully Loaded!")
 print("[SCRIPT] Press Z to Close/Open the script")
 print("[SCRIPT] Report any error to discord: nil")
-print("[SCRIPT] Last update 12.07.2024")
+print("[SCRIPT] Last update 13.07.2024")
 Notify({
 Description = "Press Z to Close/Open the script.";
 Duration = 3;
