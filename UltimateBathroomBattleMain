@@ -29,7 +29,7 @@ function GetNearestPlayer()
     local nearestPlayer = nil
     local shortestDistance = math.huge
     for _, v in pairs(game.Players:GetPlayers()) do
-        if v ~= game.Players.LocalPlayer and v.Team.Name == "The Union" then
+        if v ~= game.Players.LocalPlayer and v.Team.Name == "The Union" or v ~= game.Players.LocalPlayer and v.Team.Name == "Astro Bathrooms" then
             if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
                 local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
                 if distance < shortestDistance then
