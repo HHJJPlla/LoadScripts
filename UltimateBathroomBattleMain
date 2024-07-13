@@ -1,13 +1,14 @@
+
 PlatformType = "PC"
 
 if not game:IsLoaded() then game.Loaded:Wait() end
---if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("SonarGiant"):Destroy()
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantLensMan"):Destroy()
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantSoundMan"):Destroy()
-	--game.ReplicatedStorage.MorphShow:FindFirstChild("ClockGiant"):Destroy()
---end
+if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
+	game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
+	game.ReplicatedStorage.MorphShow:FindFirstChild("SonarGiant"):Destroy()
+	game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantLensMan"):Destroy()
+	game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantSoundMan"):Destroy()
+	game.ReplicatedStorage.MorphShow:FindFirstChild("ClockGiant"):Destroy()
+end
 
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
 local Notify = AkaliNotif.Notify;
@@ -31,7 +32,7 @@ function GetNearestPlayer()
     for _, v in pairs(game.Players:GetPlayers()) do
         if v ~= game.Players.LocalPlayer and v.Team.Name == "The Union" or v ~= game.Players.LocalPlayer and v.Team.Name == "Astro Bathrooms" then
             if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
-                local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
+                local distance = (workspace.GManBathroom2.HumanoidRootPart.Position - v.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
                 if distance < shortestDistance then
                     nearestPlayer = v
                 end
