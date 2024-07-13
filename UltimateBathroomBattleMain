@@ -541,7 +541,7 @@ fakeb:Button("Remove Boss", function()
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
-game.ReplicatedStorage.Remotes.sfxname:FireServer("bossDefeated", game:GetService("Players").LocalPlayer.Character)
+game.ReplicatedStorage.Remotes.sfxname:FireServer("bossDefeated", workspace)
 workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
 break
 end
