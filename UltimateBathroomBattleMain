@@ -191,6 +191,11 @@ plr:Toggle("Grenade [B]", false, function(bool)
 gren = bool
 end)
 
+mechab = false
+plr:Toggle("Mecha Balls [P]", false, function(bool)
+mechab = bool
+end)
+
 thrower = false
 plr:Toggle("Thrower [C]", false, function(bool)
 if bool then
@@ -600,6 +605,16 @@ if cloner == true then
 end
 end
 
+if input.KeyCode == Enum.KeyCode.P then
+if mechab == true then
+local args = {
+    [1] = "MechaBalls",
+    [2] = game.Players.LocalPlayer:GetMouse().Hit.p,
+    [4] = "plasmaLauncher"
+}
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
+end
+end
 
 if input.KeyCode == Enum.KeyCode.T then
 if fakecontrols == true and bosscd == false then
