@@ -1,13 +1,12 @@
-
 PlatformType = "PC"
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
-	game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
-	game.ReplicatedStorage.MorphShow:FindFirstChild("SonarGiant"):Destroy()
-	game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantLensMan"):Destroy()
-	game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantSoundMan"):Destroy()
-	game.ReplicatedStorage.MorphShow:FindFirstChild("ClockGiant"):Destroy()
+game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
+game.ReplicatedStorage.MorphShow:FindFirstChild("SonarGiant"):Destroy()
+game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantLensMan"):Destroy()
+game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantSoundMan"):Destroy()
+game.ReplicatedStorage.MorphShow:FindFirstChild("ClockGiant"):Destroy()
 end
 
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
@@ -24,6 +23,13 @@ for i, v in pairs(workspace:GetDescendants()) do
     end
 end
 end
+
+local localgod = Instance.new("Highlight", game.ReplicatedFirst)
+localgod.Name = "LocalGod_Highlight"
+localgod.FillColor = Color3.fromRGB(255, 0, 0)
+localgod.OutlineTransparency = 0.5
+localgod.FillTransparency = 1
+
 print("[SCRIPT] Highlight Loaded")
 
 function GetNearestPlayer()
@@ -42,14 +48,6 @@ function GetNearestPlayer()
     return nearestPlayer
 end
 
-print("[SCRIPT] Functions Loaded")
-
-local localgod = Instance.new("Highlight", game.ReplicatedFirst)
-localgod.Name = "LocalGod_Highlight"
-localgod.FillColor = Color3.fromRGB(255, 0, 0)
-localgod.OutlineTransparency = 0.5
-localgod.FillTransparency = 0
-
 local plr = library:Window("Player Editor")
 local oth = library:Window("Health Editor")
 local ai = library:Window("Character Editor")
@@ -58,9 +56,9 @@ local fakeb = library:Window("Fake Boss")
 print("[SCRIPT] Windows Loaded")
 
 plr:Box("Edit Money", function(text, focuslost)
-   if focuslost then
-   moneyamount = text
-   end
+if focuslost then
+moneyamount = text
+end
 end)
 
 moneyamount = 0
@@ -132,8 +130,8 @@ end)
 
 ]]
 
-plr:Toggle("Free Enable Gadgets", false, function(gadg)
-if gadg then
+plr:Toggle("Free Enable Gadgets", false, function(bool)
+if bool then
 local args = {
     [1] = "Gadgets",
     [2] = {
@@ -185,32 +183,24 @@ end
 end)
 
 gren = false
-plr:Toggle("Grenade [B]", false, function(grenade)
-if grenade then
-gren = true
-else
-gren = false
-end
+plr:Toggle("Grenade [B]", false, function(bool)
+gren = bool
 end)
 
 damag = false
-plr:Toggle("Shoot Sound [P]", false, function(damager)
-if damager then
-damag = true
-else
-damag = false
-end
+plr:Toggle("Shoot Sound [P]", false, function(bool)
+damag = bool
 end)
 
 thrower = false
-plr:Toggle("Thrower [C]", false, function(thr)
-if thr then
+plr:Toggle("Thrower [C]", false, function(bool)
+if bool then
 thrower = true
 _G.target = game:GetService("RunService").RenderStepped:Connect(function()
 if game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") then
 if game.Players.LocalPlayer:GetMouse().Target then
     local model = game.Players.LocalPlayer:GetMouse().Target:FindFirstAncestorOfClass("Model")
-    if model and model:FindFirstChild("Humanoid") then
+    if model and model:FindFirstChild("Humanoid") and not model:FindFirstChild("Grabbed") then
         localgod.Parent = model
     else
         localgod.Parent = game.ReplicatedFirst
@@ -226,19 +216,19 @@ end
 end)
 
 clonevalue = 1
-plr:Slider("Clone Amount",1,25,1, function(clval)
-   clonevalue = clval
+plr:Slider("Clone Amount",1,25,1, function(bool)
+clonevalue = bool
 end)
 
 cloner = false
-plr:Toggle("Cloner [C]", false, function(cln)
-if cln then
+plr:Toggle("Cloner [C]", false, function(bool)
+if bool then
 cloner = true
 _G.target2 = game:GetService("RunService").RenderStepped:Connect(function()
 if game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") then
 if game.Players.LocalPlayer:GetMouse().Target then
     local model = game.Players.LocalPlayer:GetMouse().Target:FindFirstAncestorOfClass("Model")
-    if model and model:FindFirstChild("Humanoid") then
+    if model and model:FindFirstChild("Humanoid") and not model:FindFirstChild("Grabbed") then
         localgod.Parent = model
     else
         localgod.Parent = game.ReplicatedFirst
@@ -254,34 +244,26 @@ end
 end)
 
 applytransa = 2
-plr:Slider("Transparency",0,1,1, function(trval)
-if trval == 1 then
-	applytransa = 2
+plr:Slider("Transparency",0,1,1, function(value)
+if value == 1 then
+applytransa = 2
 else
-   applytransa = trval
+applytransa = value
 end
 end)
 
 partt = false
-plr:Toggle("Part Transparent [L]", false, function(transpa)
-if transpa then
-partt = true
-else
-partt = false
-end
+plr:Toggle("Part Transparent [L]", false, function(bool)
+partt = bool
 end)
 
 partac = false
-plr:Toggle("Part Anchor [L]", false, function(anchror)
-if anchror then
-partac = true
-else
-partac = false
-end
+plr:Toggle("Part Anchor [L]", false, function(bool)
+partac = bool
 end)
 
 plr:Toggle("God Mode", false, function(infhp)
-if infhp then
+if infhp and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 1)
 else
 game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 2)
@@ -291,24 +273,25 @@ end)
 ------
 
 function UserFromBox(String)
-	for i,v in pairs(game:GetService("Players"):GetPlayers()) do
-		if (string.sub(string.lower(v.Name),1,string.len(String))) == string.lower(String) then
-			return v
-        end
-	end
+   for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+      if (string.sub(string.lower(v.Name),1,string.len(String))) == string.lower(String) then
+         return v
+      end
+   end
 end
+print("[SCRIPT] Functions Loaded")
 
 targ = nil
 oth:Box("Username", function(text, focuslost)
-   if focuslost then
-   game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = tostring(UserFromBox(text))
-   targ = tostring(UserFromBox(text))
-   end
+if focuslost then
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = tostring(UserFromBox(text))
+targ = tostring(UserFromBox(text))
+end
 end)
 
 admg = 20
 oth:Slider("Damage Amount",1,1000,20, function(value)
-   admg = value
+admg = value
 end)
 
 oth:Button("Damage [Username]", function()
@@ -358,25 +341,25 @@ end
 end)
 
 oth:Button("Bring [Username]", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 end
 end)
 
 oth:Button("Freeze [Username]", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, true)
 end
 end)
 
 oth:Button("Unfreeze [Username]", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, false)
 end
 end)
 
 oth:Button("Throw [Username]", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") and game.Players:FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart)
 end
 end)
@@ -388,15 +371,17 @@ end
 end)
 
 oth:Button("Clone [Username]", function()
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") and game.Players:FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players:FindFirstChild(targ).Character.HumanoidRootPart)
 end
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
+end
 end)
 
 burn = false
 oth:Toggle("Burn on Use", false, function(bool)
-    burn = bool
+burn = bool
 end)
 
 bathroomtospawn = "Bathroom"
@@ -405,12 +390,12 @@ ai:Button("Summon Bathroom", function()
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("PARAWAVE", bathroomtospawn, bathroomamount)
 end)
 
-local bathroomtype = ai:Dropdown("Bathroom Type", {"AssassinBathroom", "Bathroom", "BathroomBig", "BathroomBigGlasses", "BathroomGlasses", "BathroomMan", "BathroomMed", "BathroomMedGlasses", "BigParistic", "BrownBathroom", "CamoBathroom", "CatBathroom", "DJBathroom", "FireBreathing", "HelicopterParistic", "HolyBathroom", "MutantBuzzsawBathroom", "Paristic", "PoliceBathroom", "RobberBathroom", "Spider", "TubBathroom", "VacuumBathroom"}, function(type)
-bathroomtospawn = type
+local bathroomtype = ai:Dropdown("Bathroom Type", {"AssassinBathroom", "Bathroom", "BathroomBig", "BathroomBigGlasses", "BathroomGlasses", "BathroomMan", "BathroomMed", "BathroomMedGlasses", "BigParistic", "BrownBathroom", "CamoBathroom", "CatBathroom", "DJBathroom", "FireBreathing", "HelicopterParistic", "HolyBathroom", "MutantBuzzsawBathroom", "Paristic", "PoliceBathroom", "RobberBathroom", "Spider", "TubBathroom", "VacuumBathroom"}, function(bool)
+bathroomtospawn = bool
 end)
 
-ai:Slider("Bathroom Amount",1,10,1, function(brval)
-   bathroomamount = brval
+ai:Slider("Bathroom Amount",1,10,1, function(value)
+   bathroomamount = value
 end)
 
 ai:Button("Summon Cameraman", function()
@@ -430,7 +415,9 @@ game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.Morph
 end)
 
 ai:Button("Give Old Gun", function()
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.Remotes.Draw:FireServer(game.Players.LocalPlayer.Character.Humanoid, true)
+end
 end)
 
 psvolume = 10
@@ -593,33 +580,33 @@ end
 
 if input.KeyCode == Enum.KeyCode.C then
 if thrower == true then
-	for i,v in pairs(workspace:GetDescendants()) do
-		if v:FindFirstChild("LocalGod_Highlight") and v:FindFirstChild("HumanoidRootPart") then
-			game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(v.HumanoidRootPart)
-			for i = 1, 5 do
-game.ReplicatedStorage.Remotes.sfxname:FireServer("BathroomExplode", game.Players.LocalPlayer.Character.HumanoidRootPart)
-			end
-		end
-	end
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v:FindFirstChild("LocalGod_Highlight") and v:FindFirstChild("HumanoidRootPart") then
+            game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(v.HumanoidRootPart)
+            for i = 1, 5 do
+                game.ReplicatedStorage.Remotes.sfxname:FireServer("BathroomExplode", game.Players.LocalPlayer.Character.HumanoidRootPart)
+            end
+        end
+    end
 end
 if cloner == true then
-	for i,v in pairs(workspace:GetDescendants()) do
-		if v:FindFirstChild("LocalGod_Highlight") and v:FindFirstChild("HumanoidRootPart") then
-for i = 1, clonevalue do
-game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(v.HumanoidRootPart)
-end
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
-		end
-	end
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v:FindFirstChild("LocalGod_Highlight") and v:FindFirstChild("HumanoidRootPart") then
+            for i = 1, clonevalue do
+                game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(v.HumanoidRootPart)
+            end
+            game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
+        end
+    end
 end
 end
 
 if input.KeyCode == Enum.KeyCode.P then
-	if damag == true then
-for i = 1, 5 do
-game.ReplicatedStorage.Remotes.PlaySound:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, "LaserCannon")
-end
-	end
+    if damag == true then
+        for i = 1, 5 do
+        game.ReplicatedStorage.Remotes.PlaySound:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, "LaserCannon")
+        end
+    end
 end
 
 if input.KeyCode == Enum.KeyCode.T then
@@ -726,8 +713,6 @@ library:Keybind("Z")
 
 print("[SCRIPT] Fully Loaded!")
 print("[SCRIPT] Press Z to Close/Open the script")
-print("[SCRIPT] Report any error to discord: nil")
-print("[SCRIPT] Last update 13.07.2024")
 Notify({
 Description = "Press Z to Close/Open the script.";
 Duration = 3;
