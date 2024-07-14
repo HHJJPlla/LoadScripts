@@ -191,8 +191,17 @@ plr:Toggle("Grenade [B]", false, function(bool)
 gren = bool
 end)
 
+applyball = "MechaBalls"
+local plballs = plr:Dropdown("Old PBall Type", {"Lens", "Bathroom"}, function(balltype)
+if balltype == "Lens" then
+applyball = "MechaBalls"
+elseif balltype == "Bathroom" then
+applyball = "FlyingGuyShoot"
+end
+end)
+
 mechab = false
-plr:Toggle("Mecha Balls [P]", false, function(bool)
+plr:Toggle("Old PBalls (UTCM) [P]", false, function(bool)
 mechab = bool
 end)
 
@@ -608,7 +617,7 @@ end
 if input.KeyCode == Enum.KeyCode.P then
 if mechab == true then
 local args = {
-    [1] = "MechaBalls",
+    [1] = applyball,
     [2] = game.Players.LocalPlayer:GetMouse().Hit.p,
     [4] = "plasmaLauncher"
 }
