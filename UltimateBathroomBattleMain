@@ -38,13 +38,9 @@ function GetNearestPlayer()
     for _, v in pairs(game.Players:GetPlayers()) do
         if v ~= game.Players.LocalPlayer and v.Team.Name == "The Union" or v ~= game.Players.LocalPlayer and v.Team.Name == "Astro Bathrooms" then
             if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
-                for i, gman in pairs(workspace:GetDescendants()) do
-                    if gman.Name == "GManBathroom2" and gman:FindFirstChild("Grabbed") and gman:FindFirstChild("HumanoidRootPart") then
-                        local distance = (gman.HumanoidRootPart.Position - v.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
-                        if distance < shortestDistance then
-                            nearestPlayer = v
-                        end
-                    end
+                local distance = (workspace.GManBathroom2.HumanoidRootPart.Position - v.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
+                if distance < shortestDistance then
+                    nearestPlayer = v
                 end
             end
         end
