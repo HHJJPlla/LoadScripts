@@ -2,6 +2,7 @@ PlatformType = "PC"
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
+print("[SCRIPT] Your Platform Type is Mobile, Optimizing...")
 game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
 game.ReplicatedStorage.MorphShow:FindFirstChild("SonarGiant"):Destroy()
 game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantLensMan"):Destroy()
@@ -612,12 +613,14 @@ end
 
 if input.KeyCode == Enum.KeyCode.P then
 if mechab == true then
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("plasmaLauncher") then
 local args = {
     [1] = applyball,
     [2] = game.Players.LocalPlayer:GetMouse().Hit.p,
     [4] = "plasmaLauncher"
 }
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
+end
 end
 end
 
