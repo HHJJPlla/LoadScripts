@@ -565,13 +565,13 @@ end
 end)
 
 game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
-if input.KeyCode == Enum.KeyCode.B then
+if input.KeyCode == Enum.KeyCode.B and not gameProcessed then
 if gren == true then
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Granada", Vector3.new(0, 0, 0))
 end
 end
 
-if input.KeyCode == Enum.KeyCode.L then
+if input.KeyCode == Enum.KeyCode.L and not gameProcessed then
 if partt == true then
 if game.Players.LocalPlayer:GetMouse().Target:IsA("Part") or game.Players.LocalPlayer:GetMouse().Target:IsA("MeshPart") then
 game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game.Players.LocalPlayer:GetMouse().Target, applytransa)
@@ -588,7 +588,7 @@ end
 end
 end
 
-if input.KeyCode == Enum.KeyCode.C then
+if input.KeyCode == Enum.KeyCode.C and not gameProcessed then
 if thrower == true then
     for i,v in pairs(workspace:GetDescendants()) do
         if v:FindFirstChild("LocalGod_Highlight") and v:FindFirstChild("HumanoidRootPart") then
@@ -611,7 +611,7 @@ if cloner == true then
 end
 end
 
-if input.KeyCode == Enum.KeyCode.P then
+if input.KeyCode == Enum.KeyCode.P and not gameProcessed then
 if mechab == true then
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("plasmaLauncher") then
 local args = {
@@ -624,7 +624,7 @@ end
 end
 end
 
-if input.KeyCode == Enum.KeyCode.T then
+if input.KeyCode == Enum.KeyCode.T and not gameProcessed then
 if fakecontrols == true and bosscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
@@ -654,7 +654,7 @@ end
 end
 end
 
-if input.KeyCode == Enum.KeyCode.Y then
+if input.KeyCode == Enum.KeyCode.Y and not gameProcessed then
 if fakecontrols == true and bosscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
@@ -680,7 +680,7 @@ end
 end
 end
 
-if input.KeyCode == Enum.KeyCode.U then
+if input.KeyCode == Enum.KeyCode.U and not gameProcessed then
 if fakecontrols == true and bosscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
