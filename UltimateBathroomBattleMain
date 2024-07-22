@@ -136,7 +136,7 @@ if bool then
 local args = {
     [1] = "Gadgets",
     [2] = {
-        ["BathroomFlashlight"] = true,
+        ["BathroomFlashlight"] = false,
         ["glassesss"] = true,
         ["Tier3Armor"] = true,
         ["Tier2Armor"] = true,
@@ -144,9 +144,9 @@ local args = {
         ["SpiderMinigun"] = true,
         ["Shocks"] = true,
         ["JetPack"] = true,
-        ["BathroomHeadphones"] = true,
+        ["BathroomHeadphones"] = false,
         ["Tier4Armor"] = true,
-        ["BathroomCar"] = true,
+        ["BathroomCar"] = false,
         ["MetalPlate"] = true,
         ["Tier5Armor"] = true
     }
