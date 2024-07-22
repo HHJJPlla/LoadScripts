@@ -720,6 +720,18 @@ Duration = 3;
 });
 end)
 
+gui:Button("Anti Giant Limit", function()
+game.ReplicatedStorage.GiantsUnion.Value = 0
+game.ReplicatedStorage.GiantsBathrooms.Value = 0
+game.ReplicatedStorage.MegaGiants.Value = 0
+end)
+
+if game.PlaceId == 15069813667 then
+gui:Button("Anti Giantless Mode", function()
+game.ReplicatedStorage.GiantlessActive.Value = false
+end)
+end
+
 gui:Button("Infinite Yield", function()
 loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
 end)
