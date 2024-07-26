@@ -274,6 +274,29 @@ end
 end
 end)
 
+--[[
+plr:Button("Redeem All Codes", function()
+print("[SCRIPT] WIP")
+end)
+
+plr:Button("Finish All Skill Trees", function()
+print("[SCRIPT] WIP")
+end)
+
+plr:Button("Get Fragment Characters", function()
+print("[SCRIPT] WIP")
+end)
+
+plr:Button("Get Shard Characters", function()
+print("[SCRIPT] WIP")
+end)
+
+plr:Button("Get Some Paid Characters", function()
+print("[SCRIPT] WIP")
+end)
+
+]]
+
 ------
 
 function UserFromBox(String)
