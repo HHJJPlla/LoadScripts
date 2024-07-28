@@ -374,7 +374,7 @@ end)
 
 oth:Button("Invisible [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):WaitForChild(targ).Character, 0)
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):WaitForChild(targ).Character, 1)
 end
 end)
 
