@@ -374,14 +374,7 @@ end)
 
 oth:Button("Invisible [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-for i, v in pairs(game.Players:WaitForChild(targ).Character:GetDescendants()) do
-    if v:IsA("MeshPart") or v:IsA("Part") or v:IsA("UnionOperation") then
-        game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", v, 1)
-    end
-end
-if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 2)
-end
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):WaitForChild(targ).Character, 0)
 end
 end)
 
