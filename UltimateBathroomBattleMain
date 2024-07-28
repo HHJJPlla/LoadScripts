@@ -516,6 +516,12 @@ end
 end
 end)
 
+ai:Toggle("Laser Sound", false, function(bool)
+if game.Players.LocalPlayer.Character ~= nil then
+game.ReplicatedStorage.CombatRemotes:FindFirstChild("MiscWhatever"):FireServer(game.Players.LocalPlayer.Character, "LaserSound", bool)
+end
+end)
+
 applytransa = 2
 bindas:Slider("Transparency",0,1,1, function(value)
 if value == 1 then
