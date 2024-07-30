@@ -6,65 +6,141 @@ local localplr = wind:Tab("Local Player", "http://www.roblox.com/asset/?id=60234
 local plreditor = wind:Tab("Players Editor", "http://www.roblox.com/asset/?id=6023426915")
 local world = wind:Tab("World", "http://www.roblox.com/asset/?id=4830959450")
 
-localplr:Textbox("Amount to Add", "Enter a Number to Edit Your Money or Candy", true, function(t)
-print(t)
+function UserFromBox(String)
+   for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+      if (string.sub(string.lower(v.Name),1,string.len(String))) == string.lower(String) then
+         return v
+      end
+   end
+end
+
+amttoadd = 0
+localplr:Textbox("Amount to Add", "Enter a Number to Edit Your Money or Candy", true, function(number)
+amttoadd = number
 end)
 
 localplr:Button("Add Money", "Gives You Money From Amount to Add Textbox", function()
-Flux:Notification("Added Money Successfully!", "SCRIPT")
+local args = {
+    [1] = "LensheliSpawnAction",
+    [2] = amttoadd,
+    [4] = true
+}
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
 end)
 
 localplr:Button("Add Candy", "Gives You Candy From Amount to Add Textbox", function()
-Flux:Notification("Added Candy Successfully!", "SCRIPT")
+game.ReplicatedStorage.UIRemotes.winterS:FireServer("ChristmasSuitCase", amttoadd * -1, "ChristmasSuitCase")
 end)
 
-localplr:Dropdown("Receive Free Case", {"ChristmasSuitCase", "BathroomCase"}, function(t)
-print(t)
+localplr:Dropdown("Receive Free Case", {"ChristmasSuitCase", "BathroomCase"}, function(case)
+game.ReplicatedStorage.UIRemotes.winterS:FireServer(case, 0, case)
 end)
 
 localplr:Dropdown("Unbox Free Case", {"ChristmasSuitCase", "BathroomCase"}, function(t)
-print(t)
+game.ReplicatedStorage.Modules.SKINMODULE.SpinnerContents.RemoteFunction:InvokeServer(case)
 end)
 
 localplr:Line()
 
-localplr:Toggle("Enable All Gadgets for Free", "Enables All Game Gadgets For Free", function(t)
-print(t)
+localplr:Toggle("Enable All Gadgets for Free", "Enables All Game Gadgets For Free", function(gadgets)
+if gadgets then
+local args = {
+    [1] = "Gadgets",
+    [2] = {
+        ["BathroomFlashlight"] = true,
+        ["glassesss"] = true,
+        ["Tier3Armor"] = true,
+        ["Tier2Armor"] = true,
+        ["Tier1Armor"] = true,
+        ["SpiderMinigun"] = true,
+        ["Shocks"] = true,
+        ["JetPack"] = true,
+        ["BathroomHeadphones"] = true,
+        ["Tier4Armor"] = true,
+        ["BathroomCar"] = true,
+        ["MetalPlate"] = true,
+        ["Tier5Armor"] = true
+    }
+}
+game.ReplicatedStorage.UIRemotes.SaveData:InvokeServer(unpack(args))
+else
+local args = {
+    [1] = "Gadgets",
+    [2] = {
+        ["BathroomFlashlight"] = false,
+        ["glassesss"] = false,
+        ["Tier3Armor"] = false,
+        ["Tier2Armor"] = false,
+        ["Tier1Armor"] = false,
+        ["SpiderMinigun"] = false,
+        ["Shocks"] = false,
+        ["JetPack"] = false,
+        ["BathroomHeadphones"] = false,
+        ["Tier4Armor"] = false,
+        ["BathroomCar"] = false,
+        ["MetalPlate"] = false,
+        ["Tier5Armor"] = false
+    }
+}
+game.ReplicatedStorage.UIRemotes.SaveData:InvokeServer(unpack(args))
+end
 end)
 
 localplr:Line()
 
-localplr:Toggle("God Mode (DRILL)", "Gives you 9999999 Health", function(t)
-print(t)
+localplr:Toggle("God Mode (DRILL)", "Gives you 9999999 Health", function(infhp)
+if infhp and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 1)
+else
+game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 2)
+end
 end)
 
 localplr:Button("God Mode (TEAM REMOVE)", "Makes You Immune to 90% of Attacks", function()
-
+if game.Players.LocalPlayer.Character ~= nil then
+if game.Players.LocalPlayer.Character:FindFirstChild("LensmenTeam") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.LensmenTeam)
+elseif game.Players.LocalPlayer.Character:FindFirstChild("BathroomTeam") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.BathroomTeam)
+elseif game.Players.LocalPlayer.Character:FindFirstChild("AstroTeam") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.AstroTeam)
+end
+end
 end)
 
 localplr:Line()
 
-localplr:Button("UnAnchor Character", "UnAnchors You on Server Side", function()
+localplr:Toggle("Throw Grenade Bind [B]", "Press B to Throw Grenade", function(infhp)
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Granada", Vector3.new(0, 0, 0))
+end)
 
+localplr:Button("UnAnchor Character", "UnAnchors You on Server Side", function()
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, false)
+end
 end)
 
 localplr:Button("UnGlitch Character", "Spawns You as Large Lens Man to UnGlitch If You Got Stuck", function()
-
+game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow.LargeLensMan, true)
 end)
 
 localplr:Button("Give Old Gun", "Gives You The Gun From UBB 1.0", function()
-
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.Remotes.Draw:FireServer(game.Players.LocalPlayer.Character.Humanoid, true)
+end
 end)
 
 localplr:Line()
 
 localplr:Button("Anti Giant Limit", "Sets Giants and Mega Giants Amount to 0 on Client so You Can Spawn as Giant", function()
-
+game.ReplicatedStorage.GiantsUnion.Value = 0
+game.ReplicatedStorage.GiantsBathrooms.Value = 0
+game.ReplicatedStorage.MegaGiants.Value = 0
 end)
 
 if game.PlaceId == 15069813667 then
 plreditor:Button("Disable Giantless Mode", "Disables Giantless Mode on Client so You Can Use All Characters", function()
-
+game.ReplicatedStorage.GiantlessActive.Value = false
 end)
 end
 ----------------------------------
