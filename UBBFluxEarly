@@ -1,0 +1,81 @@
+local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/UI-Libs/main/fluxlib.txt")()
+
+local wind = Flux:Window("UBB 2.0", "Juggernaut Update", Color3.fromRGB(255, 110, 48), Enum.KeyCode.Z)
+
+local localplr = wind:Tab("Local Player", "http://www.roblox.com/asset/?id=6023426915")
+local world = wind:Tab("World", "http://www.roblox.com/asset/?id=4830959450")
+
+localplr:Textbox("Amount to Add", "Enter a Number to Edit Your Money or Candy", true, function(t)
+print(t)
+end)
+
+localplr:Button("Add Money", "Gives You Money From Amount to Add Textbox", function()
+Flux:Notification("Added Money Successfully!", "SCRIPT")
+end)
+
+localplr:Button("Add Candy", "Gives You Candy From Amount to Add Textbox", function()
+Flux:Notification("Added Candy Successfully!", "SCRIPT")
+end)
+
+localplr:Dropdown("Receive Free Case", {"ChristmasSuitCase", "BathroomCase"}, function(t)
+print(t)
+end)
+
+localplr:Dropdown("Unbox Free Case", {"ChristmasSuitCase", "BathroomCase"}, function(t)
+print(t)
+end)
+
+localplr:Line()
+
+localplr:Toggle("Enable All Gadgets for Free", "Enables All Game Gadgets For Free", function(t)
+print(t)
+end)
+
+localplr:Line()
+
+localplr:Toggle("God Mode (DRILL)", "Gives you 9999999 Health", function(t)
+print(t)
+end)
+
+localplr:Button("God Mode (TEAM REMOVE)", "Disables 90% of Damage", function()
+
+end)
+
+localplr:Line()
+
+localplr:Button("UnAnchor Character", "UnAnchors You on Server Side", function()
+
+end)
+
+localplr:Button("UnGlitch Character", "Spawns You as Large Lens Man to UnGlitch If You Got Stuck", function()
+
+end)
+
+localplr:Button("Give Old Gun", "Gives You The Gun From UBB 1.0", function()
+
+end)
+----------------------------------
+
+world:Dropdown("Bathroom Type", {"AssassinBathroom", "Bathroom", "BathroomBig", "BathroomBigGlasses", "BathroomGlasses", "BathroomMan", "BathroomMed", "BathroomMedGlasses", "BigParistic", "BrownBathroom", "CamoBathroom", "CatBathroom", "DJBathroom", "FireBreathing", "HelicopterParistic", "HolyBathroom", "MutantBuzzsawBathroom", "Paristic", "PoliceBathroom", "RobberBathroom", "Spider", "TubBathroom", "VacuumBathroom"}, function(t)
+print(t)
+end)
+
+world:Slider("Bathroom Amount", "The Amount of Bathroom to Summon", 1, 10, 1,function(t)
+print(t)
+end)
+
+world:Button("Spawn Bathroom AI", "Spawns Bathroom AI: Bathroom Amount + Bathroom Type", function()
+
+end)
+
+world:Button("Spawn Lensman AI", "Spawns Lensman AI", function()
+
+end)
+
+world:Dropdown("Play Sound", {"Boss Spawn", "Boss Approach", "Boss Phase", "Holy Ray", "Kill SFX"}, function(t)
+print(t)
+end)
+
+world:Toggle("Laser Loop Sound", "Plays Laser Sound", function(t)
+print(t)
+end)
