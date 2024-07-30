@@ -547,6 +547,7 @@ partds = bool
 end)
 
 fakeb:Button("Create Boss", function()
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") then
 local bosswait = true
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("ReplicatedStorage").MorphShow.GManBathroom2.HumanoidRootPart)
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
@@ -571,6 +572,7 @@ for i, v in pairs(game.ReplicatedStorage.MorphShow.GManBathroom2:GetChildren()) 
 if v.Name == "Grabbed" then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v:FindFirstChild("Grabbed"))
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v:FindFirstChild("CreatorTag59"))
+end
 end
 end
 end)
