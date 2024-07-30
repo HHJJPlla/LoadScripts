@@ -50,13 +50,12 @@ end
 local plr = library:Window("Local Player")
 local oth = library:Window("Players Editor")
 local ai = library:Window("World")
-local bindas = library:Window("World Binds")
-local gui = library:Window("Other Stuff")
+local bindas = library:Window("Binds")
 local fakeb = library:Window("Fake Boss")
 print("[SCRIPT] Windows Loaded")
 
 moneyamount = 0
-plr:Box("Currency Amount", function(text, focuslost)
+plr:Box("Add Currency", function(text, focuslost)
 if focuslost then
 moneyamount = text
 end
@@ -182,25 +181,6 @@ Duration = 2;
 end
 end)
 
-gren = false
-plr:Toggle("Grenade [B]", false, function(bool)
-gren = bool
-end)
-
-applyball = "MechaBalls"
-local plballs = plr:Dropdown("Old PBall Type", {"Lens", "Bathroom"}, function(balltype)
-if balltype == "Lens" then
-applyball = "MechaBalls"
-elseif balltype == "Bathroom" then
-applyball = "FlyingGuyShoot"
-end
-end)
-
-mechab = false
-plr:Toggle("Old PBalls (UTCM) [P]", false, function(bool)
-mechab = bool
-end)
-
 plr:Button("UnFreeze", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, false)
@@ -217,7 +197,7 @@ game.ReplicatedStorage.Remotes.Draw:FireServer(game.Players.LocalPlayer.Characte
 end
 end)
 
-plr:Toggle("God Mode", false, function(infhp)
+plr:Toggle("God Mode (DRILL)", false, function(infhp)
 if infhp and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, 1)
 else
@@ -225,7 +205,7 @@ game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", 
 end
 end)
 
-plr:Button("God Mode 2", function()
+plr:Button("God Mode (TEAM REMOVE)", function()
 if game.Players.LocalPlayer.Character ~= nil then
 if game.Players.LocalPlayer.Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.LensmenTeam)
@@ -236,6 +216,18 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.L
 end
 end
 end)
+
+plr:Button("Anti Giant Limit", function()
+game.ReplicatedStorage.GiantsUnion.Value = 0
+game.ReplicatedStorage.GiantsBathrooms.Value = 0
+game.ReplicatedStorage.MegaGiants.Value = 0
+end)
+
+if game.PlaceId == 15069813667 then
+plr:Button("Anti Giantless Mode", function()
+game.ReplicatedStorage.GiantlessActive.Value = false
+end)
+end
 
 ------
 
@@ -249,7 +241,7 @@ end
 print("[SCRIPT] Functions Loaded")
 
 targ = nil
-oth:Box("Player's Username", function(text, focuslost)
+oth:Box("Username", function(text, focuslost)
 if focuslost then
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = tostring(UserFromBox(text))
 targ = tostring(UserFromBox(text))
@@ -285,7 +277,7 @@ game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game
 end
 end)
 
-oth:Button("God 2 Player", function()
+oth:Button("God Mode Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 if game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character.LensmenTeam)
@@ -405,25 +397,15 @@ end)
 local sfxtoplay = ai:Dropdown("Play Sound", {"Boss Spawn", "Boss Approach", "Boss Phase", "Holy Ray", "Kill SFX"}, function(name)
 if game.Players.LocalPlayer.Character ~= nil then
 if name == "Boss Spawn" then
-for i = 1, psvolume do
 game.ReplicatedStorage.Remotes.sfxname:FireServer("bossSpawn", game:GetService("Players").LocalPlayer.Character)
-end
 elseif name == "Boss Approach" then
-for i = 1, psvolume do
 game.ReplicatedStorage.Remotes.sfxname:FireServer("bossAbouttospawn", game:GetService("Players").LocalPlayer.Character)
-end
 elseif name == "Boss Phase" then
-for i = 1, psvolume do
 game.ReplicatedStorage.Remotes.sfxname:FireServer("bossPhase", game:GetService("Players").LocalPlayer.Character)
-end
 elseif name == "Holy Ray" then
-for i = 1, psvolume do
 game.ReplicatedStorage.Remotes.sfxname:FireServer("HolyRay", game:GetService("Players").LocalPlayer.Character)
-end
 elseif name == "Kill SFX" then
-for i = 1, psvolume do
 game.ReplicatedStorage.Remotes.sfxname:FireServer("killsfx", game:GetService("Players").LocalPlayer.Character)
-end
 end
 end
 end)
@@ -432,6 +414,51 @@ ai:Toggle("Laser Sound", false, function(bool)
 if game.Players.LocalPlayer.Character ~= nil then
 game.ReplicatedStorage.CombatRemotes:FindFirstChild("MiscWhatever"):FireServer(game.Players.LocalPlayer.Character, "LaserSound", bool)
 end
+end)
+
+ai:Button("Clean Trash", function()
+local trash = 0
+for i,v in pairs(workspace.Debris:GetChildren()) do
+if v:IsA("Part") or v:IsA("MeshPart") or v:IsA("Model") then
+trash = trash + 1
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
+end
+end
+for i,v in pairs(workspace:GetChildren()) do
+if v:IsA("Part") and v.CanCollide == false and v.Position == Vector3.new(0,0,0) then
+trash = trash + 1
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
+end
+end
+for i,v in pairs(workspace:GetChildren()) do
+if v.Name ~= "GManBathroom2" and v:IsA("Model") and v:FindFirstChild("Grabbed") then
+trash = trash + 1
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
+end
+end
+Notify({
+Description = "Just Cleaned "..trash.." Trash";
+Duration = 3;
+});
+end)
+
+gren = false
+bindas:Toggle("Grenade [B]", false, function(bool)
+gren = bool
+end)
+
+applyball = "MechaBalls"
+local plballs = bindas:Dropdown("Old PBall Type", {"Lens", "Bathroom"}, function(balltype)
+if balltype == "Lens" then
+applyball = "MechaBalls"
+elseif balltype == "Bathroom" then
+applyball = "FlyingGuyShoot"
+end
+end)
+
+mechab = false
+bindas:Toggle("Old PBalls (UTCM) [P]", false, function(bool)
+mechab = bool
 end)
 
 thrower = false
@@ -767,27 +794,10 @@ end
 end
 end)
 
-gui:Button("Anti Giant Limit", function()
-game.ReplicatedStorage.GiantsUnion.Value = 0
-game.ReplicatedStorage.GiantsBathrooms.Value = 0
-game.ReplicatedStorage.MegaGiants.Value = 0
-end)
-
-if game.PlaceId == 15069813667 then
-gui:Button("Anti Giantless Mode", function()
-game.ReplicatedStorage.GiantlessActive.Value = false
-end)
-end
-
-gui:Button("Infinite Yield", function()
-loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
-end)
-
 library:Keybind("Z")
 
 print("[SCRIPT] Fully Loaded!")
-print("[SCRIPT] Press Z to Close/Open the script")
 Notify({
-Description = "Press Z to Close/Open the script.";
+Description = "Press Z to Hide The Script.";
 Duration = 3;
 });
