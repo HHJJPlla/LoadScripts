@@ -3,6 +3,7 @@ local Flux = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scr
 local wind = Flux:Window("UBB 2.0", "Juggernaut Update", Color3.fromRGB(255, 110, 48), Enum.KeyCode.Z)
 
 local localplr = wind:Tab("Local Player", "http://www.roblox.com/asset/?id=6023426915")
+local plreditor = wind:Tab("Players Editor", "http://www.roblox.com/asset/?id=6023426915")
 local world = wind:Tab("World", "http://www.roblox.com/asset/?id=4830959450")
 
 localplr:Textbox("Amount to Add", "Enter a Number to Edit Your Money or Candy", true, function(t)
@@ -37,7 +38,7 @@ localplr:Toggle("God Mode (DRILL)", "Gives you 9999999 Health", function(t)
 print(t)
 end)
 
-localplr:Button("God Mode (TEAM REMOVE)", "Disables 90% of Damage", function()
+localplr:Button("God Mode (TEAM REMOVE)", "Makes You Immune to 90% of Attacks", function()
 
 end)
 
@@ -54,8 +55,106 @@ end)
 localplr:Button("Give Old Gun", "Gives You The Gun From UBB 1.0", function()
 
 end)
-----------------------------------
 
+localplr:Line()
+
+localplr:Button("Anti Giant Limit", "Sets Giants and Mega Giants Amount to 0 on Client so You Can Spawn as Giant", function()
+
+end)
+
+if game.PlaceId == 15069813667 then
+plreditor:Button("Disable Giantless Mode", "Disables Giantless Mode on Client so You Can Use All Characters", function()
+
+end)
+end
+----------------------------------
+plreditor:Textbox("Player Username", "Enter a Username of Player to Change His Stuff", true, function(t)
+print(t)
+end)
+
+plreditor:Line()
+
+plreditor:Slider("Health Change Amount", "Enter a Number to Damage or Heal Players", 1, 1000, 1,function(t)
+print(t)
+end)
+
+plreditor:Button("Damage Player", "Deals Seleted Damage to Selected Player", function()
+
+end)
+
+plreditor:Button("Kill Player", "Kills Selected Player", function()
+
+end)
+
+plreditor:Button("Heal Player", "Gives Selected Amount of Health to Selected Player", function()
+
+end)
+
+plreditor:Button("Max Health Player", "Gives Max Health to Selected Player", function()
+
+end)
+
+plreditor:Button("God Mode (TEAM REMOVE) Player", "Makes Player Immune to 90% of Attacks", function()
+
+end)
+
+plreditor:Toggle("Burn on Damage", "Burns Selected Player When Dealing Damage", function(t)
+print(t)
+end)
+
+plreditor:Line()
+
+plreditor:Button("Freeze Player", "Freezes Selected Player", function()
+
+end)
+
+plreditor:Button("Thaw Player", "UnFreezes Selected Player", function()
+
+end)
+
+plreditor:Button("Bring Player", "Teleports Selected Player to You", function()
+
+end)
+
+plreditor:Button("Delete Player", "Deletes Selected Player", function()
+
+end)
+
+plreditor:Line()
+
+plreditor:Button("Blind Player", "Makes Selected Player Blind and Deals 300 Damage", function()
+
+end)
+
+plreditor:Button("Clock Stop Player", "Uses Clock Stop Ability on Selected Player", function()
+
+end)
+
+plreditor:Button("Infect Player", "Makes You Infect Selected Player", function()
+
+end)
+
+plreditor:Button("Throw Player", "Throws Selected Player (You Should Play as Character That Can Throw)", function()
+
+end)
+
+plreditor:Button("Clone Player", "Clones Selected Player (You Should Play as Character That Can Throw)", function()
+
+end)
+
+plreditor:Line()
+
+plreditor:Label("World Damage (Game Won't Register You Damaging Seleted Player)")
+
+plreditor:Button("Damage Player", "Same Damage but Stealth", function()
+
+end)
+
+plreditor:Button("Kill Player", "Same Kill but Stealth", function()
+
+end)
+
+----------------------------------
 world:Dropdown("Bathroom Type", {"AssassinBathroom", "Bathroom", "BathroomBig", "BathroomBigGlasses", "BathroomGlasses", "BathroomMan", "BathroomMed", "BathroomMedGlasses", "BigParistic", "BrownBathroom", "CamoBathroom", "CatBathroom", "DJBathroom", "FireBreathing", "HelicopterParistic", "HolyBathroom", "MutantBuzzsawBathroom", "Paristic", "PoliceBathroom", "RobberBathroom", "Spider", "TubBathroom", "VacuumBathroom"}, function(t)
 print(t)
 end)
@@ -81,5 +180,9 @@ print(t)
 end)
 
 world:Button("Building Tools", "Gives You Building Tools That Run on Server Side", function()
+
+end)
+
+world:Button("Remove Trash Objects", "Cleans The Game to Make it Run Smoother", function()
 
 end)
