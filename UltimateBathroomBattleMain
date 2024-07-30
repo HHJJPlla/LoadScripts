@@ -438,7 +438,7 @@ end)
 
 oth:Button("Kill [Username]", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health - game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health)
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, 0)
 end
 end)
 
