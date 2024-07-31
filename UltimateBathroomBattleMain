@@ -240,13 +240,14 @@ function UserFromBox(String)
 end
 print("[SCRIPT] Functions Loaded")
 
-targ = nil
 oth:Box("Username", function(text, focuslost)
 if focuslost then
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = tostring(UserFromBox(text))
 targ = tostring(UserFromBox(text))
 end
 end)
+targ = game.Players.LocalPlayer.Name
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = game.Players.LocalPlayer.Name
 
 admg = 20
 oth:Slider("Damage Amount",1,1000,20, function(value)
@@ -322,7 +323,7 @@ game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Player
 end
 end)
 
-oth:Button("ClockStun Player", function()
+oth:Button("Clock Stop Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetService("Players"):WaitForChild(targ).Character)
 end
