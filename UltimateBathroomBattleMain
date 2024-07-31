@@ -54,12 +54,18 @@ local bindas = library:Window("Binds")
 local fakeb = library:Window("Fake Boss")
 print("[SCRIPT] Windows Loaded")
 
-moneyamount = 0
+moneyamount = 100
 plr:Box("Add Currency", function(text, focuslost)
 if focuslost then
+if tonumber(game:GetService("CoreGui").TurtleUiLib:GetChildren()[1].Header.Window.TextBox.Text) ~= nil then
 moneyamount = text
+else
+moneyamount = 100
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[1].Header.Window.TextBox.Text = 100
+end
 end
 end)
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[1].Header.Window.TextBox.Text = 100
 
 plr:Button("Add Money", function()
 local args = {
