@@ -197,6 +197,12 @@ plr:Button("UnGlitch", function()
 game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow.LargeLensMan, true)
 end)
 
+plr:Button("Heal", function()
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game.Players.LocalPlayer.Character.Humanoid, game.Players.LocalPlayer.Character.Humanoid.MaxHealth)
+end
+end)
+
 plr:Button("Give Old Gun", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.Remotes.Draw:FireServer(game.Players.LocalPlayer.Character.Humanoid, true)
