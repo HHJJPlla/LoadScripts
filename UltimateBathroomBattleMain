@@ -215,9 +215,11 @@ plr:Button("God Mode (TEAM REMOVE)", function()
 if game.Players.LocalPlayer.Character ~= nil then
 if game.Players.LocalPlayer.Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.LensmenTeam)
-elseif game.Players.LocalPlayer.Character:FindFirstChild("BathroomTeam") then
+end
+if game.Players.LocalPlayer.Character:FindFirstChild("BathroomTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.BathroomTeam)
-elseif game.Players.LocalPlayer.Character:FindFirstChild("AstroTeam") then
+end
+if game.Players.LocalPlayer.Character:FindFirstChild("AstroTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.AstroTeam)
 end
 end
@@ -288,9 +290,11 @@ oth:Button("God Mode Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 if game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character.LensmenTeam)
-elseif game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("BathroomTeam") then
+end
+if game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("BathroomTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character.BathroomTeam)
-elseif game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("AstroTeam") then
+end
+if game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("AstroTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character.AstroTeam)
 end
 end
