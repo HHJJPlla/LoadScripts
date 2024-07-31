@@ -738,7 +738,7 @@ local tpto3 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -195)
 local tpto4 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -235)
 local tpto5 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -255)
 local tpto6 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -265)
-game.ReplicatedStorage.Remotes.PlaySound:FireServer(v.HumanoidRootPart, "NamelessDeityAdrenalineFail")
+game.ReplicatedStorage.Remotes.sfxname:FireServer("chain", v.HumanoidRootPart)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto1)
 task.wait(0.1)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto2)
@@ -751,6 +751,11 @@ game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRo
 task.wait(0.05)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto6)
 task.wait(0.05)
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") and v.HumanoidRootPart:FindFirstChild("chain") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v.HumanoidRootPart.chain)
+end
+end
 bosscd = false
 end
 end
