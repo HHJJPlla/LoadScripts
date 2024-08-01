@@ -345,6 +345,12 @@ game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetSer
 end
 end)
 
+oth:Button("Lens Heal Player", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Heal", nil, nil, nil, game:GetService("Players"):WaitForChild(targ).Character)
+end
+end)
+
 oth:Button("Bring Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
