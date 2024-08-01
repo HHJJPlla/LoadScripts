@@ -466,7 +466,7 @@ Duration = 3;
 end)
 
 if game.PlaceId == 15069813667 then
-plr:Button("Anti Giantless Everyone", function()
+ai:Button("Anti Giantless Everyone", function()
 if game.ReplicatedStorage:FindFirstChild("GiantlessActive") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.ReplicatedStorage.GiantlessActive)
 end
