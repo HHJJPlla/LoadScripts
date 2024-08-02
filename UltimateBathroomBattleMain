@@ -372,7 +372,7 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.L
 end
 end)
 
-oth:Button("Delete Player", function()
+oth:Button("Punish Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
 end
