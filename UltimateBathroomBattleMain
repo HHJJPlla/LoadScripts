@@ -872,7 +872,7 @@ end
 end
 end)
 
-library:Keybind("Comma")
+library:Keybind("LeftAlt")
 
 print("[SCRIPT] Fully Loaded!")
 Notify({
