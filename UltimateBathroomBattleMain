@@ -187,6 +187,46 @@ Duration = 2;
 end
 end)
 
+plr:Toggle("Free 2x Health Pass", false, function(bool)
+if bool then
+if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Health!") then
+game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Health!")
+end
+else
+if game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Health!") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.SkillTree["2x Health!"])
+end
+end
+end)
+
+plr:Toggle("Free 2x Coins Pass", false, function(bool)
+if bool then
+if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Coins!") then
+game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Coins!")
+end
+else
+if game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Coins!") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.SkillTree["2x Coins!"])
+end
+end
+end)
+
+plr:Toggle("Free 2x Speed Pass", false, function(bool)
+if bool then
+if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Speed!") then
+game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Speed!")
+end
+else
+if game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Speed!") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.SkillTree["2x Speed!"])
+end
+end
+end)
+
+plr:Toggle("Free Gamepass Characters", false, function(bool)
+print("WIP")
+end)
+
 plr:Button("UnFreeze", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, false)
