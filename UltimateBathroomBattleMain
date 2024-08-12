@@ -142,17 +142,17 @@ local args = {
     [2] = {
         ["BathroomFlashlight"] = false,
         ["glassesss"] = true,
-        ["Tier3Armor"] = true,
-        ["Tier2Armor"] = true,
-        ["Tier1Armor"] = true,
+        ["Tier3Armor"] = false,
+        ["Tier2Armor"] = false,
+        ["Tier1Armor"] = false,
         ["SpiderMinigun"] = true,
         ["Shocks"] = true,
         ["JetPack"] = true,
         ["BathroomHeadphones"] = false,
-        ["Tier4Armor"] = true,
+        ["Tier4Armor"] = false,
         ["BathroomCar"] = false,
         ["MetalPlate"] = true,
-        ["Tier5Armor"] = true
+        ["Tier5Armor"] = false
     }
 }
 game.ReplicatedStorage.UIRemotes.SaveData:InvokeServer(unpack(args))
