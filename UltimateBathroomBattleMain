@@ -875,6 +875,6 @@ library:Keybind("LeftAlt")
 
 print("[SCRIPT] Fully Loaded!")
 Notify({
-Description = "Press Z to Hide The Script.";
+Description = "Press Alt to Hide The Script.";
 Duration = 3;
 });
