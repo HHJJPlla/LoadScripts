@@ -675,7 +675,7 @@ end
 end)
 
 endbosswithsound = false
-fakeb:Toggle("View Boss", false, function(bool)
+fakeb:Toggle("Boss Defeat Sound", false, function(bool)
 endbosswithsound = bool
 end)
 
