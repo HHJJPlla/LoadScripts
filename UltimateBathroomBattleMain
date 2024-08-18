@@ -801,12 +801,12 @@ if fakecontrols == true and bosscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 bosscd = true
-local tpto1 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -65)
-local tpto2 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -130)
-local tpto3 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -195)
-local tpto4 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -235)
-local tpto5 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -255)
-local tpto6 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -265)
+local tpto1 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -50)
+local tpto2 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -100)
+local tpto3 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -150)
+local tpto4 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -180)
+local tpto5 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -190)
+local tpto6 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -195)
 game.ReplicatedStorage.Remotes.sfxname:FireServer("chain", v.HumanoidRootPart)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto1)
 task.wait(0.1)
@@ -836,11 +836,11 @@ if fakecontrols == true and bosscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 bosscd = true
-local tpto1 = v.HumanoidRootPart.CFrame + Vector3.new(0, 50, 0)
-local tpto2 = v.HumanoidRootPart.CFrame + Vector3.new(0, 100, 0)
-local tpto3 = v.HumanoidRootPart.CFrame + Vector3.new(0, 150, 0)
-local tpto4 = v.HumanoidRootPart.CFrame + Vector3.new(0, 180, 0)
-local tpto5 = v.HumanoidRootPart.CFrame + Vector3.new(0, 190, 0)
+local tpto1 = v.HumanoidRootPart.CFrame + Vector3.new(0, 40, 0)
+local tpto2 = v.HumanoidRootPart.CFrame + Vector3.new(0, 80, 0)
+local tpto3 = v.HumanoidRootPart.CFrame + Vector3.new(0, 120, 0)
+local tpto4 = v.HumanoidRootPart.CFrame + Vector3.new(0, 135, 0)
+local tpto5 = v.HumanoidRootPart.CFrame + Vector3.new(0, 140, 0)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto1)
 task.wait(0.1)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto2)
