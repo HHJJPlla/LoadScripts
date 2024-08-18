@@ -187,7 +187,7 @@ Duration = 2;
 end
 end)
 
-plr:Toggle("Free 2x Health Pass", false, function(bool)
+plr:Toggle("Free 2x Health", false, function(bool)
 if bool then
 if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Health!") then
 game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Health!")
@@ -199,7 +199,7 @@ end
 end
 end)
 
-plr:Toggle("Free 2x Coins Pass", false, function(bool)
+plr:Toggle("Free 2x Coins", false, function(bool)
 if bool then
 if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Coins!") then
 game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Coins!")
@@ -211,7 +211,7 @@ end
 end
 end)
 
-plr:Toggle("Free 2x Speed Pass", false, function(bool)
+plr:Toggle("Free 2x Speed", false, function(bool)
 if bool then
 if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Speed!") then
 game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Speed!")
@@ -223,7 +223,7 @@ end
 end
 end)
 
-plr:Toggle("Free Gamepass Characters", false, function(bool)
+plr:Toggle("Free Paid Morphs", false, function(bool)
 print("WIP")
 end)
 
