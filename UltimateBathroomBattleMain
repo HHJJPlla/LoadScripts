@@ -57,7 +57,7 @@ print("[SCRIPT] Windows Loaded")
 moneyamount = 100
 plr:Box("Add Currency", function(text, focuslost)
 if focuslost then
-if tonumber(game:GetService("CoreGui").TurtleUiLib:GetChildren()[1].Header.Window.TextBox.Text) ~= nil then
+if tonumber(text) ~= nil then
 moneyamount = text
 else
 moneyamount = 100
@@ -304,9 +304,9 @@ targ = game.Players.LocalPlayer.Name
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = game.Players.LocalPlayer.Name
 
 admg = 20
-oth:Box("Damage", function(text, focuslost)
+oth:Box("Health", function(text, focuslost)
 if focuslost then
-if tonumber(game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text) ~= nil then
+if tonumber(text) ~= nil then
 admg = text
 else
 admg = 20
@@ -318,7 +318,7 @@ game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildre
 
 oth:Button("Damage Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, admg, burn)
+game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, tonumber(admg), burn)
 end
 end)
 
