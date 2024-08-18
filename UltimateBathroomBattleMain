@@ -294,7 +294,7 @@ function UserFromBox(String)
 end
 print("[SCRIPT] Functions Loaded")
 
-oth:Box("Username", function(text, focuslost)
+oth:Box("Target", function(text, focuslost)
 if focuslost then
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = tostring(UserFromBox(text))
 targ = tostring(UserFromBox(text))
@@ -304,9 +304,17 @@ targ = game.Players.LocalPlayer.Name
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = game.Players.LocalPlayer.Name
 
 admg = 20
-oth:Slider("Damage Amount",1,1000,20, function(value)
-admg = value
+oth:Box("Damage", function(text, focuslost)
+if focuslost then
+if tonumber(game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text) ~= nil then
+admg = text
+else
+admg = 20
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text = 20
+end
+end
 end)
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text = 20
 
 oth:Button("Damage Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
@@ -451,9 +459,18 @@ ai:Slider("Bathroom Amount",1,10,1, function(value)
    bathroomamount = value
 end)
 
+ai:Box("Lens Spawn", function(text, focuslost)
+if focuslost then
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[3].Header.Window.TextBox.Text = tostring(UserFromBox(text))
+spawnattarg = tostring(UserFromBox(text))
+end
+end)
+spawnattarg = game.Players.LocalPlayer.Name
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[3].Header.Window.TextBox.Text = game.Players.LocalPlayer.Name
+
 ai:Button("Summon Lensman AI", function()
-if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.Remotes.GiantCombat:FireServer("LensheliSpawnAction", game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame, false)
+if game:GetService("Players"):WaitForChild(spawnattarg).Character ~= nil and game:GetService("Players"):WaitForChild(spawnattarg).Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("LensheliSpawnAction", game:GetService("Players"):WaitForChild(spawnattarg).Character.HumanoidRootPart.CFrame, game:GetService("Players"):WaitForChild(spawnattarg).Character.HumanoidRootPart.CFrame, false)
 end
 end)
 
