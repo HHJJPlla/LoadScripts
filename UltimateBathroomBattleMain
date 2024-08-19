@@ -303,6 +303,15 @@ end)
 targ = game.Players.LocalPlayer.Name
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = game.Players.LocalPlayer.Name
 
+oth:Box("Affector", function(text, focuslost)
+if focuslost then
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text = tostring(UserFromBox(text))
+affecttarg = tostring(UserFromBox(text))
+end
+end)
+affecttarg = game.Players.LocalPlayer.Name
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text = game.Players.LocalPlayer.Name
+
 admg = 20
 oth:Box("Health", function(text, focuslost)
 if focuslost then
@@ -310,11 +319,11 @@ if tonumber(text) ~= nil then
 admg = text
 else
 admg = 20
-game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text = 20
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[3].Text = 20
 end
 end
 end)
-game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text = 20
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[3].Text = 20
 
 oth:Button("Damage Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
@@ -405,9 +414,9 @@ game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Heal", nil, nil, nil, gam
 end
 end)
 
-oth:Button("Bring Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+oth:Button("TP Player > Affector", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game:GetService("Players"):WaitForChild(affecttarg).Character ~= nil and game.Players:FindFirstChild(affecttarg).Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, game:GetService("Players"):WaitForChild(affecttarg).Character.HumanoidRootPart.CFrame)
 end
 end)
 
