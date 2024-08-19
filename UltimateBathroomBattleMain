@@ -387,6 +387,12 @@ game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Player
 end
 end)
 
+oth:Button("Push Player", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
+game:GetService("ReplicatedStorage").CombatRemotes.UTTMCombat:FireServer("HELLAKNOCKBAGF", game.Players:FindFirstChild(targ).Character)
+end
+end)
+
 oth:Button("Clock Stop Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetService("Players"):WaitForChild(targ).Character)
