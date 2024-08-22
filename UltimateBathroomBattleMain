@@ -243,7 +243,7 @@ game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game
 end
 end)
 
-oth:Button("Kill", function()
+plr:Button("Kill", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game.Players.LocalPlayer.Character.Humanoid, 0)
 end
