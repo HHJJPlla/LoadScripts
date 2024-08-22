@@ -243,6 +243,12 @@ game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game
 end
 end)
 
+oth:Button("Kill", function()
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game.Players.LocalPlayer.Character.Humanoid, 0)
+end
+end)
+
 plr:Button("Give Old Gun", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.Remotes.Draw:FireServer(game.Players.LocalPlayer.Character.Humanoid, true)
@@ -337,18 +343,6 @@ game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game
 end
 end)
 
-oth:Button("Kill Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health, burn)
-end
-end)
-
-oth:Button("Max Health Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.MaxHealth)
-end
-end)
-
 oth:Button("God Mode Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 if game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("LensmenTeam") then
@@ -363,24 +357,15 @@ end
 end
 end)
 
-oth:Button("Infect Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-if game.Players.LocalPlayer.Character.Name ~= "Paristic" and game.Players.LocalPlayer.Character.Name ~= "BigParistic" and game.Players.LocalPlayer.Character.Name ~= "HelicopterParistic" then
-game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game:GetService("ReplicatedStorage").MorphShow:FindFirstChild("Paristic"), false)
-end
-game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
-end
-end)
-
-oth:Button("Blind Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
-end
-end)
-
 oth:Button("Invisible Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):WaitForChild(targ).Character, 1)
+end
+end)
+
+oth:Button("TP Player (to Affector)", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game:GetService("Players"):WaitForChild(affecttarg).Character ~= nil and game.Players:FindFirstChild(affecttarg).Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, game:GetService("Players"):WaitForChild(affecttarg).Character.HumanoidRootPart.CFrame)
 end
 end)
 
@@ -402,6 +387,39 @@ game:GetService("ReplicatedStorage").CombatRemotes.UTTMCombat:FireServer("HELLAK
 end
 end)
 
+oth:Button("Punish Player", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
+end
+end)
+
+burn = false
+oth:Toggle("Burning Damage", false, function(bool)
+burn = bool
+end)
+
+oth:Label("Stealth Commands", Color3.fromRGB(255, 255, 255))
+
+oth:Button("Damage Player", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health - admg)
+end
+end)
+
+oth:Button("Kill Player", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, 0)
+end
+end)
+
+oth:Label("Game Specials", Color3.fromRGB(255, 255, 255))
+
+oth:Button("Blind Player", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
+end
+end)
+
 oth:Button("Clock Stop Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetService("Players"):WaitForChild(targ).Character)
@@ -414,9 +432,12 @@ game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Heal", nil, nil, nil, gam
 end
 end)
 
-oth:Button("TP Player > Affector", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game:GetService("Players"):WaitForChild(affecttarg).Character ~= nil and game.Players:FindFirstChild(affecttarg).Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, game:GetService("Players"):WaitForChild(affecttarg).Character.HumanoidRootPart.CFrame)
+oth:Button("Infect Player", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+if game.Players.LocalPlayer.Character.Name ~= "Paristic" and game.Players.LocalPlayer.Character.Name ~= "BigParistic" and game.Players.LocalPlayer.Character.Name ~= "HelicopterParistic" then
+game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game:GetService("ReplicatedStorage").MorphShow:FindFirstChild("Paristic"), false)
+end
+game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
@@ -432,31 +453,6 @@ for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players:FindFirstChild(targ).Character.HumanoidRootPart)
 end
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
-end
-end)
-
-oth:Button("Punish Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
-end
-end)
-
-burn = false
-oth:Toggle("Burning Damage", false, function(bool)
-burn = bool
-end)
-
-oth:Label("Stealth Health Changer", Color3.fromRGB(255, 255, 255))
-
-oth:Button("Damage Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health - admg)
-end
-end)
-
-oth:Button("Kill Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, 0)
 end
 end)
 
