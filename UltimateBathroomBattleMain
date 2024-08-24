@@ -884,7 +884,7 @@ for i, v in pairs(game.Players:GetChildren()) do
     end
 end
 for i, v in pairs(workspace.AIs:GetChildren()) do
-    if v.Character ~= nil and v.Character:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") then
+    if v:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") then
         v:Destroy()
     end
 end
