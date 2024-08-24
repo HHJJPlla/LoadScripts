@@ -872,7 +872,7 @@ game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(gam
 end
 workspace["SCRIPT_Core_TCM_Area"]:Destroy()
 for i, v in pairs(game.Players:GetChildren()) do
-    if v.Characters:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") then
+    if v.Character:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") then
         v:Destroy()
     end
 end
