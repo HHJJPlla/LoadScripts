@@ -837,7 +837,7 @@ game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
 end
 end
 if tcmemit == true then
-if tcmcooldown == false game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
+if tcmcooldown == false and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
 tcmcooldown = true
 game:GetService("ReplicatedStorage").Remotes.GiantCombat:FireServer("UTCMCoreFire", nil, true)
 game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, true)
