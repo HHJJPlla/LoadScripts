@@ -836,6 +836,9 @@ local args = {
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
 end
 end
+end
+
+if input.KeyCode == Enum.KeyCode.F then
 if tcmemit == true then
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
 fakecoreenabled = not fakecoreenabled
