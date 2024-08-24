@@ -560,7 +560,7 @@ bindas:Toggle("Old PBalls (UTCM) [P]", false, function(bool)
 mechab = bool
 end)
 
-fakecoreenabled = false
+tcmcooldown = false
 tcmemit = false
 bindas:Toggle("TCM Core Emit [P]", false, function(bool)
 tcmemit = bool
@@ -836,13 +836,15 @@ local args = {
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
 end
 end
-end
-
-if input.KeyCode == Enum.KeyCode.F then
 if tcmemit == true then
-if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
-fakecoreenabled = not fakecoreenabled
-game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, fakecoreenabled)
+if tcmcooldown == false game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
+tcmcooldown = true
+game:GetService("ReplicatedStorage").Remotes.GiantCombat:FireServer("UTCMCoreFire", nil, true)
+game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, true)
+task.wait(5)
+game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, false)
+task.wait(5)
+tcmcooldown = false
 end
 end
 end
