@@ -856,10 +856,10 @@ task.wait(0.5)
 for g = 1, 3 do
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
 tcmcorearea.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -10, -40)
-for i, v in pairs(workspace.AIs:GetChildren()) do
-    if v.Name ~= game.Players.LocalPlayer.Name and not v:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") and v:FindFirstChild("Humanoid") and (workspace["SCRIPT_Core_TCM_Area"].Position-v.HumanoidRootPart.Position).Magnitude <= 50 then
-        game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Humanoid, 1000, true)
-        local alreadyaffected = Instance.new("BoolValue", v)
+for i, v in pairs(game.Players:GetChildren()) do
+    if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and not v.Character:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("BathroomTeam") and (workspace["SCRIPT_Core_TCM_Area"].Position-v.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+        game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Characters.Humanoid, 1000, true)
+        local alreadyaffected = Instance.new("BoolValue", v.Characters)
         alreadyaffected.Name = "SCRIPT_Already_AffectedBy_CoreFire"
     end 
 end
@@ -871,8 +871,8 @@ if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Charac
 game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, false)
 end
 workspace["SCRIPT_Core_TCM_Area"]:Destroy()
-for i, v in pairs(workspace.AIs:GetChildren()) do
-    if v:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") then
+for i, v in pairs(game.Players:GetChildren()) do
+    if v.Characters:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") then
         v:Destroy()
     end
 end
