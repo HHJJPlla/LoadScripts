@@ -228,12 +228,10 @@ print("WIP")
 end)
 
 plr:Button("Fix Punch Damage", function()
-if game.Players.LocalPlayer.PlayerGui:FindFirstChild("MainUI") and game.Players.LocalPlayer.Character ~= nil and not game.Players.LocalPlayer.Character:FindFirstChild("PunchDamage") then
-local string = game.Players.LocalPlayer.PlayerGui.MainUI.UpgradesFrame.upgradesMenu.upgradeButtonTemplate.upgName.Text
-local dmgvalue = string:match("%d+")
+if game.Players.LocalPlayer.Character ~= nil and not game.Players.LocalPlayer.Character:FindFirstChild("PunchDamage") then
 local punchie = Instance.new("NumberValue", game.Players.LocalPlayer.Character)
 punchie.Name = "PunchDamage"
-punchie.Value = dmgvalue
+punchie.Value = 70
 end
 end)
 
