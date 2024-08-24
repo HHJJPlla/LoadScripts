@@ -560,6 +560,12 @@ bindas:Toggle("Old PBalls (UTCM) [P]", false, function(bool)
 mechab = bool
 end)
 
+fakecoreenabled = false
+tcmemit = false
+bindas:Toggle("TCM Core Emit [P]", false, function(bool)
+tcmemit = bool
+end)
+
 thrower = false
 bindas:Toggle("Thrower [C]", false, function(bool)
 if bool then
@@ -828,6 +834,12 @@ local args = {
     [4] = "plasmaLauncher"
 }
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
+end
+end
+if tcmemit == true then
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
+fakecoreenabled = not fakecoreenabled
+game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, fakecoreenabled)
 end
 end
 end
