@@ -858,8 +858,8 @@ if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Charac
 tcmcorearea.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -10, -40)
 for i, v in pairs(game.Players:GetChildren()) do
     if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and not v.Character:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") and v.Character:FindFirstChild("Humanoid") and v.Character:FindFirstChild("BathroomTeam") and (workspace["SCRIPT_Core_TCM_Area"].Position-v.Character.HumanoidRootPart.Position).Magnitude <= 50 then
-        game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Characters.Humanoid, 1000, true)
-        local alreadyaffected = Instance.new("BoolValue", v.Characters)
+        game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 1000, true)
+        local alreadyaffected = Instance.new("BoolValue", v.Character)
         alreadyaffected.Name = "SCRIPT_Already_AffectedBy_CoreFire"
     end 
 end
