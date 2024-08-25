@@ -868,7 +868,7 @@ for g = 1, 30 do
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
 tcmcorearea.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -10, -40)
 for i, v in pairs(game.Players:GetPlayers()) do
-    if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and not v.Character:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") and v.Character:FindFirstChild("Humanoid") and (workspace["SCRIPT_Core_TCM_Area"].Position-v.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+    if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and not v.Character:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and (workspace["SCRIPT_Core_TCM_Area"].Position-v.Character.HumanoidRootPart.Position).Magnitude <= 50 then
         if v.Character:FindFirstChild("BathroomTeam") or v.Character:FindFirstChild("AstroTeam") then
             game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 800, true)
             local alreadyaffected = Instance.new("BoolValue", v.Character)
@@ -877,7 +877,7 @@ for i, v in pairs(game.Players:GetPlayers()) do
     end 
 end
 for i, v in pairs(workspace.AIs:GetChildren()) do
-    if v.Name ~= game.Players.LocalPlayer.Name and not v:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") and v:FindFirstChild("Humanoid") and not v:FindFirstChild("LensmenTeam") and v:FindFirstChild("HumanoidRootPart") and (workspace["SCRIPT_Core_TCM_Area"].Position-v.HumanoidRootPart.Position).Magnitude <= 50 then
+    if v.Name ~= game.Players.LocalPlayer.Name and not v:FindFirstChild("SCRIPT_Already_AffectedBy_CoreFire") and v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Humanoid") and v:FindFirstChild("BathroomTeam") and (workspace["SCRIPT_Core_TCM_Area"].Position-v.HumanoidRootPart.Position).Magnitude <= 50 then
         game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Humanoid, 800, true)
         local alreadyaffected = Instance.new("BoolValue", v)
         alreadyaffected.Name = "SCRIPT_Already_AffectedBy_CoreFire"
