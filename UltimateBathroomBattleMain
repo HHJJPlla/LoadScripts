@@ -389,6 +389,12 @@ end
 end
 end)
 
+oth:Button("Add Lens Team Player", function()
+if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("LensmenTeam") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game:GetService("Players"):WaitForChild(targ).Character)
+end
+end)
+
 oth:Button("Invisible Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):WaitForChild(targ).Character, 1)
