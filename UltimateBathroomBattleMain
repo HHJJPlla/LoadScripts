@@ -299,6 +299,16 @@ end
 end
 end)
 
+plr:Button("Add Team (Lens)", function()
+if game.Players.LocalPlayer.Character ~= nil and not game.Players.LocalPlayer.Character:FindFirstChild("LensmenTeam") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game.Players.LocalPlayer.Character)
+Notify({
+Description = "Added Lens Team to You";
+Duration = 2;
+});
+end
+end)
+
 plr:Button("Anti Giant Limit", function()
 game.ReplicatedStorage.GiantsUnion.Value = 0
 game.ReplicatedStorage.GiantsBathrooms.Value = 0
