@@ -372,6 +372,7 @@ end)
 oth:Button("Invisible Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):WaitForChild(targ).Character, 1)
+game.ReplicatedStorage.CombatRemotes.EnableParticle:FireServer(game:GetService("Players"):WaitForChild(targ).Character, false)
 end
 end)
 
@@ -395,7 +396,7 @@ end)
 
 oth:Button("Push Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
-game:GetService("ReplicatedStorage").CombatRemotes.UTTMCombat:FireServer("HELLAKNOCKBAGF", game.Players:FindFirstChild(targ).Character)
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("HELLAKNOCKBAGF", game.Players:FindFirstChild(targ).Character)
 end
 end)
 
@@ -447,7 +448,7 @@ end)
 oth:Button("Infect Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
 if game.Players.LocalPlayer.Character.Name ~= "Paristic" and game.Players.LocalPlayer.Character.Name ~= "BigParistic" and game.Players.LocalPlayer.Character.Name ~= "HelicopterParistic" then
-game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game:GetService("ReplicatedStorage").MorphShow:FindFirstChild("Paristic"), false)
+game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow:FindFirstChild("Paristic"), false)
 end
 game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
 end
@@ -658,7 +659,7 @@ end)
 fakeb:Button("Create Boss", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") then
 local bosswait = true
-game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("ReplicatedStorage").MorphShow.GManBathroom2.HumanoidRootPart)
+game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.ReplicatedStorage.MorphShow.GManBathroom2.HumanoidRootPart)
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
 task.wait(0.5)
 while bosswait == true do
@@ -739,7 +740,7 @@ end)
 fakeb:Toggle("Boss Lasers", false, function(bool)
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
-game:GetService("ReplicatedStorage").Remotes.GManLaser:FireServer(v, bool)
+game.ReplicatedStorage.Remotes.GManLaser:FireServer(v, bool)
 break
 end
 end
@@ -850,8 +851,8 @@ tcmcorearea.CanCollide = false
 tcmcorearea.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, -10, -40)
 tcmcorearea.Size = Vector3.new(1, 1, 1)
 tcmcorearea.Transparency = 1
-game:GetService("ReplicatedStorage").Remotes.GiantCombat:FireServer("UTCMCoreFire", nil, true)
-game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, true)
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("UTCMCoreFire", nil, true)
+game.ReplicatedStorage.CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, true)
 task.wait(0.5)
 for g = 1, 30 do
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" and game.Players.LocalPlayer.Character.Humanoid.Health > 0 then
@@ -876,7 +877,7 @@ end
 task.wait(0.15)
 end
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
-game:GetService("ReplicatedStorage").CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, false)
+game.ReplicatedStorage.CombatRemotes.EnableParticle:FireServer(game.Players.LocalPlayer.Character.Core.Core.Attachment, false)
 end
 workspace["SCRIPT_Core_TCM_Area"]:Destroy()
 for i, v in pairs(game.Players:GetPlayers()) do
