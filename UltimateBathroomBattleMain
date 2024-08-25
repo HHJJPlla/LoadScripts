@@ -227,6 +227,16 @@ plr:Toggle("Free Paid Morphs", false, function(bool)
 print("WIP")
 end)
 
+plr:Button("Add Team (LENS)", function()
+if game.Players.LocalPlayer.Character ~= nil and not game.Players.LocalPlayer.Character:FindFirstChild("LensmenTeam") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game.Players.LocalPlayer.Character)
+Notify({
+Description = "Added Lens Team to You";
+Duration = 2;
+});
+end
+end)
+
 plr:Button("Remove Last Damage", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("CreatorTag59") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.CreatorTag59)
@@ -296,16 +306,6 @@ end
 if game.Players.LocalPlayer.Character:FindFirstChild("AstroTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.AstroTeam)
 end
-end
-end)
-
-plr:Button("Add Team (Lens)", function()
-if game.Players.LocalPlayer.Character ~= nil and not game.Players.LocalPlayer.Character:FindFirstChild("LensmenTeam") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game.Players.LocalPlayer.Character)
-Notify({
-Description = "Added Lens Team to You";
-Duration = 2;
-});
 end
 end)
 
