@@ -227,6 +227,16 @@ plr:Toggle("Free Paid Morphs", false, function(bool)
 print("WIP")
 end)
 
+plr:Button("Remove Last Damage", function()
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("CreatorTag59") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.CreatorTag59)
+Notify({
+Description = "Last Damage Removed: "..game.Players.LocalPlayer.Character.CreatorTag59.Value;
+Duration = 2;
+});
+end
+end)
+
 plr:Button("Fix Punch Damage", function()
 if game.Players.LocalPlayer.Character ~= nil and not game.Players.LocalPlayer.Character:FindFirstChild("PunchDamage") then
 local punchie = Instance.new("NumberValue", game.Players.LocalPlayer.Character)
