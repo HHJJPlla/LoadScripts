@@ -55,6 +55,8 @@ local bindas = library:Window("Binds")
 local fakeb = library:Window("Fake Boss")
 print("[SCRIPT] Windows Loaded")
 
+plr:Label("Freebies", Color3.fromRGB(135, 206, 235))
+
 moneyamount = 100
 plr:Box("Add Currency", function(text, focuslost)
 if focuslost then
@@ -241,6 +243,8 @@ plr:Toggle("Free Paid Morphs", false, function(bool)
 print("WIP")
 end)
 
+plr:Label("Character", Color3.fromRGB(135, 206, 235))
+
 plr:Button("Add Team (LENS)", function()
 if game.Players.LocalPlayer.Character ~= nil and not game.Players.LocalPlayer.Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game.Players.LocalPlayer.Character)
@@ -322,6 +326,8 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.L
 end
 end
 end)
+
+plr:Label("Local Limits", Color3.fromRGB(135, 206, 235))
 
 plr:Button("Anti Giant Limit", function()
 game.ReplicatedStorage.GiantsUnion.Value = 0
@@ -451,7 +457,7 @@ oth:Toggle("Burning Damage", false, function(bool)
 burn = bool
 end)
 
-oth:Label("Stealth Commands", Color3.fromRGB(255, 255, 255))
+oth:Label("Stealth Commands", Color3.fromRGB(135, 206, 235))
 
 oth:Button("Damage Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
@@ -465,7 +471,7 @@ game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game
 end
 end)
 
-oth:Label("Game Specials", Color3.fromRGB(255, 255, 255))
+oth:Label("Game Specials", Color3.fromRGB(135, 206, 235))
 
 oth:Button("Blind Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
@@ -508,6 +514,8 @@ end
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.Character.rigidgrab)
 end
 end)
+
+ai:Label("Spawning", Color3.fromRGB(135, 206, 235))
 
 bathroomtospawn = "Bathroom"
 bathroomamount = 1
@@ -552,6 +560,8 @@ end
 end
 end)
 
+ai:Label("Play Sound", Color3.fromRGB(135, 206, 235))
+
 local sfxtoplay = ai:Dropdown("Play Sound", {"Boss Spawn", "Boss Approach", "Boss Phase", "Holy Ray", "Kill SFX"}, function(name)
 if game.Players.LocalPlayer.Character ~= nil then
 if name == "Boss Spawn" then
@@ -573,6 +583,8 @@ if game.Players.LocalPlayer.Character ~= nil then
 game.ReplicatedStorage.CombatRemotes:FindFirstChild("MiscWhatever"):FireServer(game.Players.LocalPlayer.Character, "LaserSound", bool)
 end
 end)
+
+ai:Label("Optimizing", Color3.fromRGB(135, 206, 235))
 
 ai:Button("Clean Trash", function()
 local trash = 0
@@ -600,29 +612,11 @@ Duration = 3;
 });
 end)
 
+bindas:Label("Local Player Character", Color3.fromRGB(135, 206, 235))
+
 gren = false
 bindas:Toggle("Grenade [B]", false, function(bool)
 gren = bool
-end)
-
-applyball = "MechaBalls"
-local plballs = bindas:Dropdown("Old PBall Type", {"Lens", "Bathroom"}, function(balltype)
-if balltype == "Lens" then
-applyball = "MechaBalls"
-elseif balltype == "Bathroom" then
-applyball = "FlyingGuyShoot"
-end
-end)
-
-mechab = false
-bindas:Toggle("Old PBalls (UTCM) [P]", false, function(bool)
-mechab = bool
-end)
-
-tcmcooldown = false
-tcmemit = false
-bindas:Toggle("TCM Core Emit [P]", false, function(bool)
-tcmemit = bool
 end)
 
 thrower = false
@@ -675,6 +669,28 @@ _G.target2:Disconnect()
 localgod.Parent = game.ReplicatedFirst
 end
 end)
+
+applyball = "MechaBalls"
+local plballs = bindas:Dropdown("Old PBall Type", {"Lens", "Bathroom"}, function(balltype)
+if balltype == "Lens" then
+applyball = "MechaBalls"
+elseif balltype == "Bathroom" then
+applyball = "FlyingGuyShoot"
+end
+end)
+
+mechab = false
+bindas:Toggle("Old PBalls (UTCM) [P]", false, function(bool)
+mechab = bool
+end)
+
+tcmcooldown = false
+tcmemit = false
+bindas:Toggle("TCM Core Emit [P]", false, function(bool)
+tcmemit = bool
+end)
+
+bindas:Label("Building", Color3.fromRGB(135, 206, 235))
 
 applytransa = 2
 bindas:Slider("Transparency",0,1,1, function(value)
