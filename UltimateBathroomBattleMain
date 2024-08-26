@@ -356,8 +356,10 @@ oth:Label("Player Changer", Color3.fromRGB(135, 206, 235))
 
 oth:Box("Target", function(text, focuslost)
 if focuslost then
+if UserFromBox(text) ~= nil then
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Text = tostring(UserFromBox(text))
 targ = tostring(UserFromBox(text))
+end
 end
 end)
 targ = game.Players.LocalPlayer.Name
@@ -365,8 +367,10 @@ game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Te
 
 oth:Box("Affector", function(text, focuslost)
 if focuslost then
+if UserFromBox(text) ~= nil then
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[3].Text = tostring(UserFromBox(text))
 affecttarg = tostring(UserFromBox(text))
+end
 end
 end)
 affecttarg = game.Players.LocalPlayer.Name
@@ -542,8 +546,10 @@ end)
 
 ai:Box("Lens Spawn", function(text, focuslost)
 if focuslost then
+if UserFromBox(text) ~= nil then
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[3].Header.Window.TextBox.Text = tostring(UserFromBox(text))
 spawnattarg = tostring(UserFromBox(text))
+end
 end
 end)
 spawnattarg = game.Players.LocalPlayer.Name
