@@ -343,8 +343,6 @@ end
 
 ------
 
-oth:Label("Player Changer", Color3.fromRGB(135, 206, 235))
-
 function UserFromBox(String)
    for i,v in pairs(game:GetService("Players"):GetPlayers()) do
       if (string.sub(string.lower(v.Name),1,string.len(String))) == string.lower(String) then
@@ -353,6 +351,8 @@ function UserFromBox(String)
    end
 end
 print("[SCRIPT] Functions Loaded")
+
+oth:Label("Player Changer", Color3.fromRGB(135, 206, 235))
 
 oth:Box("Target", function(text, focuslost)
 if focuslost then
