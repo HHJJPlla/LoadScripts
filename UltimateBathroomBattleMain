@@ -1,4 +1,5 @@
 if not game:IsLoaded() then game.Loaded:Wait() end
+repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("SkillTree")
 if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
 print("[SCRIPT] Your Platform Type is Mobile, Optimizing...")
 game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
@@ -187,7 +188,20 @@ Duration = 2;
 end
 end)
 
-plr:Toggle("Free 2x Health", false, function(bool)
+doublehealthison = false
+doublecoinsison = false
+doublespeedison = false
+if game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Health!") then
+doublehealthison = true
+end
+if game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Coins!") then
+doublecoinsison = true
+end
+if game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Speed!") then
+doublespeedison = true
+end
+
+plr:Toggle("Free 2x Health", doublehealthison, function(bool)
 if bool then
 if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Health!") then
 game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Health!")
@@ -199,7 +213,7 @@ end
 end
 end)
 
-plr:Toggle("Free 2x Coins", false, function(bool)
+plr:Toggle("Free 2x Coins", doublecoinsison, function(bool)
 if bool then
 if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Coins!") then
 game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Coins!")
@@ -211,7 +225,7 @@ end
 end
 end)
 
-plr:Toggle("Free 2x Speed", false, function(bool)
+plr:Toggle("Free 2x Speed", doublespeedison, function(bool)
 if bool then
 if not game.Players.LocalPlayer.SkillTree:FindFirstChild("2x Speed!") then
 game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", "2x Speed!")
