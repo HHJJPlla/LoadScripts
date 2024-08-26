@@ -365,12 +365,12 @@ game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window.TextBox.Te
 
 oth:Box("Affector", function(text, focuslost)
 if focuslost then
-game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text = tostring(UserFromBox(text))
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[3].Text = tostring(UserFromBox(text))
 affecttarg = tostring(UserFromBox(text))
 end
 end)
 affecttarg = game.Players.LocalPlayer.Name
-game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[2].Text = game.Players.LocalPlayer.Name
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[3].Text = game.Players.LocalPlayer.Name
 
 admg = 20
 oth:Box("Health", function(text, focuslost)
@@ -379,11 +379,11 @@ if tonumber(text) ~= nil then
 admg = text
 else
 admg = 20
-game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[3].Text = 20
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[4].Text = 20
 end
 end
 end)
-game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[3].Text = 20
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[4].Text = 20
 
 oth:Button("Damage Player", function()
 if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
