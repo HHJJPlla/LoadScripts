@@ -511,16 +511,21 @@ end)
 
 bathroomtospawn = "Bathroom"
 bathroomamount = 1
-ai:Button("Summon Bathroom AI", function()
-game.ReplicatedStorage.Remotes.GiantCombat:FireServer("PARAWAVE", bathroomtospawn, bathroomamount)
+ai:Slider("Bathroom Amount",1,10,1, function(value)
+   bathroomamount = value
 end)
 
 local bathroomtype = ai:Dropdown("Bathroom Type", {"AssassinBathroom", "Bathroom", "BathroomBig", "BathroomBigGlasses", "BathroomGlasses", "BathroomMan", "BathroomMed", "BathroomMedGlasses", "BigParistic", "BrownBathroom", "CamoBathroom", "CatBathroom", "DJBathroom", "FireBreathing", "HelicopterParistic", "HolyBathroom", "MutantBuzzsawBathroom", "Paristic", "PoliceBathroom", "RobberBathroom", "Spider", "TubBathroom", "VacuumBathroom"}, function(bool)
 bathroomtospawn = bool
 end)
 
-ai:Slider("Bathroom Amount",1,10,1, function(value)
-   bathroomamount = value
+ai:Button("Summon Bathroom", function()
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("PARAWAVE", bathroomtospawn, bathroomamount)
+end)
+
+ai:Button("Summon Random Bathroom", function()
+local randombathroom = {"AssassinBathroom", "Bathroom", "BathroomBig", "BathroomBigGlasses", "BathroomGlasses", "BathroomMan", "BathroomMed", "BathroomMedGlasses", "BigParistic", "BrownBathroom", "CamoBathroom", "CatBathroom", "DJBathroom", "FireBreathing", "HelicopterParistic", "HolyBathroom", "MutantBuzzsawBathroom", "Paristic", "PoliceBathroom", "RobberBathroom", "Spider", "TubBathroom", "VacuumBathroom"}
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("PARAWAVE", randombathroom[math.random(1,23)], bathroomamount)
 end)
 
 ai:Box("Lens Spawn", function(text, focuslost)
@@ -532,9 +537,16 @@ end)
 spawnattarg = game.Players.LocalPlayer.Name
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[3].Header.Window.TextBox.Text = game.Players.LocalPlayer.Name
 
-ai:Button("Summon Lensman AI", function()
+lensamount = 1
+ai:Slider("Lens Amount",1,10,1, function(value)
+lensamount = value
+end)
+
+ai:Button("Summon Lensman", function()
 if game:GetService("Players"):WaitForChild(spawnattarg).Character ~= nil and game:GetService("Players"):WaitForChild(spawnattarg).Character:FindFirstChild("HumanoidRootPart") then
+for i = 1, lensamount do
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("LensheliSpawnAction", game:GetService("Players"):WaitForChild(spawnattarg).Character.HumanoidRootPart.CFrame, game:GetService("Players"):WaitForChild(spawnattarg).Character.HumanoidRootPart.CFrame, false)
+end
 end
 end)
 
