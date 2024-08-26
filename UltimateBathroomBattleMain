@@ -390,71 +390,71 @@ end)
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[4].Text = 20
 
 oth:Button("Damage Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):WaitForChild(targ).Character.Humanoid, tonumber(admg), burn)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.Humanoid, tonumber(admg), burn)
 end
 end)
 
 oth:Button("Heal Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health + admg)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):FindFirstChild(targ).Character.Humanoid, game:GetService("Players"):FindFirstChild(targ).Character.Humanoid.Health + admg)
 end
 end)
 
 oth:Button("God Mode Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-if game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("LensmenTeam") then
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character.LensmenTeam)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
+if game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("LensmenTeam") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.LensmenTeam)
 end
-if game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("BathroomTeam") then
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character.BathroomTeam)
+if game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("BathroomTeam") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.BathroomTeam)
 end
-if game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("AstroTeam") then
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character.AstroTeam)
+if game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("AstroTeam") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.AstroTeam)
 end
 end
 end)
 
 oth:Button("Add Lens Team Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("LensmenTeam") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game:GetService("Players"):WaitForChild(targ).Character)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("LensmenTeam") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
 oth:Button("Invisible Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):WaitForChild(targ).Character, 1)
-game.ReplicatedStorage.CombatRemotes.EnableParticle:FireServer(game:GetService("Players"):WaitForChild(targ).Character, false)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):FindFirstChild(targ).Character, 1)
+game.ReplicatedStorage.CombatRemotes.EnableParticle:FireServer(game:GetService("Players"):FindFirstChild(targ).Character, false)
 end
 end)
 
 oth:Button("TP Player (to Affector)", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game:GetService("Players"):WaitForChild(affecttarg).Character ~= nil and game.Players:FindFirstChild(affecttarg).Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, game:GetService("Players"):WaitForChild(affecttarg).Character.HumanoidRootPart.CFrame)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(affecttarg) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game:GetService("Players"):FindFirstChild(affecttarg).Character ~= nil and game.Players:FindFirstChild(affecttarg).Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):FindFirstChild(targ).Character.HumanoidRootPart, game:GetService("Players"):FindFirstChild(affecttarg).Character.HumanoidRootPart.CFrame)
 end
 end)
 
 oth:Button("Freeze Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, true)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.HumanoidRootPart, true)
 end
 end)
 
 oth:Button("UnFreeze Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart, false)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.HumanoidRootPart, false)
 end
 end)
 
 oth:Button("Push Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("HELLAKNOCKBAGF", game.Players:FindFirstChild(targ).Character)
 end
 end)
 
 oth:Button("Punish Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
@@ -466,39 +466,39 @@ end)
 oth:Label("Stealth Commands", Color3.fromRGB(135, 206, 235))
 
 oth:Button("Damage Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, game:GetService("Players"):WaitForChild(targ).Character.Humanoid.Health - admg)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):FindFirstChild(targ).Character.Humanoid, game:GetService("Players"):FindFirstChild(targ).Character.Humanoid.Health - admg)
 end
 end)
 
 oth:Button("Kill Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil and game:GetService("Players"):WaitForChild(targ).Character:FindFirstChild("Humanoid") then
-game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):WaitForChild(targ).Character.Humanoid, 0)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Humanoid") then
+game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):FindFirstChild(targ).Character.Humanoid, 0)
 end
 end)
 
 oth:Label("Game Specials", Color3.fromRGB(135, 206, 235))
 
 oth:Button("Blind Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(game:GetService("Players"):WaitForChild(targ).Character)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
 oth:Button("Clock Stop Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetService("Players"):WaitForChild(targ).Character)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
 oth:Button("Lens Heal Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
-game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Heal", nil, nil, nil, game:GetService("Players"):WaitForChild(targ).Character)
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Heal", nil, nil, nil, game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
 oth:Button("Infect Player", function()
-if game:GetService("Players"):WaitForChild(targ).Character ~= nil then
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 if game.Players.LocalPlayer.Character.Name ~= "Paristic" and game.Players.LocalPlayer.Character.Name ~= "BigParistic" and game.Players.LocalPlayer.Character.Name ~= "HelicopterParistic" then
 game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow:FindFirstChild("Paristic"), false)
 end
@@ -507,13 +507,13 @@ end
 end)
 
 oth:Button("Throw Player", function()
-if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") and game.Players:FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
-game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("Players"):WaitForChild(targ).Character.HumanoidRootPart)
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") and game:GetService("Players"):FindFirstChild(targ) and game.Players:FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
+game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.HumanoidRootPart)
 end
 end)
 
 oth:Button("Clone Player", function()
-if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") and game.Players:FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") and game:GetService("Players"):FindFirstChild(targ) and game.Players:FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players:FindFirstChild(targ).Character.HumanoidRootPart)
 end
@@ -561,9 +561,9 @@ lensamount = value
 end)
 
 ai:Button("Summon Lensman", function()
-if game:GetService("Players"):WaitForChild(spawnattarg).Character ~= nil and game:GetService("Players"):WaitForChild(spawnattarg).Character:FindFirstChild("HumanoidRootPart") then
+if game:GetService("Players"):FindFirstChild(spawnattarg) and game:GetService("Players"):FindFirstChild(spawnattarg).Character ~= nil and game:GetService("Players"):FindFirstChild(spawnattarg).Character:FindFirstChild("HumanoidRootPart") then
 for i = 1, lensamount do
-game.ReplicatedStorage.Remotes.GiantCombat:FireServer("LensheliSpawnAction", game:GetService("Players"):WaitForChild(spawnattarg).Character.HumanoidRootPart.CFrame, game:GetService("Players"):WaitForChild(spawnattarg).Character.HumanoidRootPart.CFrame, false)
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("LensheliSpawnAction", game:GetService("Players"):FindFirstChild(spawnattarg).Character.HumanoidRootPart.CFrame, game:GetService("Players"):FindFirstChild(spawnattarg).Character.HumanoidRootPart.CFrame, false)
 end
 end
 end)
