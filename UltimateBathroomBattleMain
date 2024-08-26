@@ -525,7 +525,9 @@ end)
 
 ai:Button("Summon Random Bathroom", function()
 local randombathroom = {"AssassinBathroom", "Bathroom", "BathroomBig", "BathroomBigGlasses", "BathroomGlasses", "BathroomMan", "BathroomMed", "BathroomMedGlasses", "BigParistic", "BrownBathroom", "CamoBathroom", "CatBathroom", "DJBathroom", "FireBreathing", "HelicopterParistic", "HolyBathroom", "MutantBuzzsawBathroom", "Paristic", "PoliceBathroom", "RobberBathroom", "Spider", "TubBathroom", "VacuumBathroom"}
-game.ReplicatedStorage.Remotes.GiantCombat:FireServer("PARAWAVE", randombathroom[math.random(1,23)], bathroomamount)
+for i = 1, bathroomamount do
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("PARAWAVE", randombathroom[math.random(1,23)], 1)
+end
 end)
 
 ai:Box("Lens Spawn", function(text, focuslost)
