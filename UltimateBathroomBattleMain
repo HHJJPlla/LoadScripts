@@ -971,6 +971,9 @@ for i, v in pairs(workspace.AIs:GetChildren()) do
     end
 end
 task.wait(5)
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
+game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(game.Players.LocalPlayer.Character, "Move")
+end
 tcmcooldown = false
 end
 end
