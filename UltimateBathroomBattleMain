@@ -70,7 +70,7 @@ end
 end)
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[1].Header.Window.TextBox.Text = 100
 
-plr:Button("Add Money", function()
+plr:Button("Add Coins", function()
 local args = {
     [1] = "LensheliSpawnAction",
     [2] = moneyamount,
@@ -78,24 +78,24 @@ local args = {
 }
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer(unpack(args))
 Notify({
-Description = "Free Money added";
+Description = "Free Coins added!";
 Duration = 2;
 });
 end)
 
-plr:Button("Add Candy", function()
+plr:Button("Add Candy Canes", function()
 game.ReplicatedStorage.UIRemotes.winterS:FireServer("ChristmasSuitCase", moneyamount * -1, "ChristmasSuitCase")
 Notify({
-Description = "Free Candy added";
+Description = "Free Candy Canes added!";
 Duration = 2;
 });
 end)
 
-local freecaser = plr:Dropdown("Free Unlock Case", {"ChristmasSuitCase", "BathroomCase"}, function(case)
+local freecaser = plr:Dropdown("Unlock Case", {"ChristmasSuitCase", "BathroomCase"}, function(case)
 game.ReplicatedStorage.Modules.SKINMODULE.SpinnerContents.RemoteFunction:InvokeServer(case)
 end)
 
-local freecaser = plr:Dropdown("Give Free Case", {"ChristmasSuitCase", "BathroomCase"}, function(case)
+local freecaser = plr:Dropdown("Give Case", {"ChristmasSuitCase", "BathroomCase"}, function(case)
 game.ReplicatedStorage.UIRemotes.winterS:FireServer(case, 0, case)
 end)
 
@@ -327,13 +327,15 @@ end
 end
 end)
 
-plr:Label("Local Limits", Color3.fromRGB(135, 206, 235))
+plr:Label("Client Limits", Color3.fromRGB(135, 206, 235))
 
+if game.PlaceId == 14710864077 then
 plr:Button("Anti Giant Limit", function()
 game.ReplicatedStorage.GiantsUnion.Value = 0
 game.ReplicatedStorage.GiantsBathrooms.Value = 0
 game.ReplicatedStorage.MegaGiants.Value = 0
 end)
+end
 
 if game.PlaceId == 15069813667 then
 plr:Button("Anti Giantless Mode", function()
@@ -352,7 +354,7 @@ function UserFromBox(String)
 end
 print("[SCRIPT] Functions Loaded")
 
-oth:Label("Player Changer", Color3.fromRGB(135, 206, 235))
+oth:Label("Player Editing", Color3.fromRGB(135, 206, 235))
 
 oth:Box("Target", function(text, focuslost)
 if focuslost then
@@ -389,19 +391,19 @@ end
 end)
 game:GetService("CoreGui").TurtleUiLib:GetChildren()[2].Header.Window:GetChildren()[4].Text = 20
 
-oth:Button("Damage Player", function()
+oth:Button("Damage Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.Remotes.raydamage:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.Humanoid, tonumber(admg), burn)
 end
 end)
 
-oth:Button("Heal Player", function()
+oth:Button("Heal Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):FindFirstChild(targ).Character.Humanoid, game:GetService("Players"):FindFirstChild(targ).Character.Humanoid.Health + admg)
 end
 end)
 
-oth:Button("God Mode Player", function()
+oth:Button("God Mode Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 if game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.LensmenTeam)
@@ -415,44 +417,44 @@ end
 end
 end)
 
-oth:Button("Add Lens Team Player", function()
+oth:Button("Add Lens Team Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
-oth:Button("Invisible Player", function()
+oth:Button("Invisible Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):FindFirstChild(targ).Character, 1)
 game.ReplicatedStorage.CombatRemotes.EnableParticle:FireServer(game:GetService("Players"):FindFirstChild(targ).Character, false)
 end
 end)
 
-oth:Button("TP Player (to Affector)", function()
+oth:Button("TP Target (to Affector)", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(affecttarg) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") and game:GetService("Players"):FindFirstChild(affecttarg).Character ~= nil and game.Players:FindFirstChild(affecttarg).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", game:GetService("Players"):FindFirstChild(targ).Character.HumanoidRootPart, game:GetService("Players"):FindFirstChild(affecttarg).Character.HumanoidRootPart.CFrame)
 end
 end)
 
-oth:Button("Freeze Player", function()
+oth:Button("Freeze Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.HumanoidRootPart, true)
 end
 end)
 
-oth:Button("UnFreeze Player", function()
+oth:Button("UnFreeze Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.HumanoidRootPart, false)
 end
 end)
 
-oth:Button("Push Player", function()
+oth:Button("Push Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("HELLAKNOCKBAGF", game.Players:FindFirstChild(targ).Character)
 end
 end)
 
-oth:Button("Punish Player", function()
+oth:Button("Punish Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
 end
@@ -463,41 +465,41 @@ oth:Toggle("Burning Damage", false, function(bool)
 burn = bool
 end)
 
-oth:Label("Stealth Commands", Color3.fromRGB(135, 206, 235))
+oth:Label("Stealth Player Editing", Color3.fromRGB(135, 206, 235))
 
-oth:Button("Damage Player", function()
+oth:Button("Damage Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):FindFirstChild(targ).Character.Humanoid, game:GetService("Players"):FindFirstChild(targ).Character.Humanoid.Health - admg)
 end
 end)
 
-oth:Button("Kill Player", function()
+oth:Button("Kill Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Humanoid") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", game:GetService("Players"):FindFirstChild(targ).Character.Humanoid, 0)
 end
 end)
 
-oth:Label("Game Specials", Color3.fromRGB(135, 206, 235))
+oth:Label("Game Special", Color3.fromRGB(135, 206, 235))
 
-oth:Button("Blind Player", function()
+oth:Button("Blind Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
-oth:Button("Clock Stop Player", function()
+oth:Button("Clock Stop Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("AJANPYSAHYS", game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
-oth:Button("Lens Heal Player", function()
+oth:Button("Lens Heal Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Heal", nil, nil, nil, game:GetService("Players"):FindFirstChild(targ).Character)
 end
 end)
 
-oth:Button("Infect Player", function()
+oth:Button("Infect Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 if game.Players.LocalPlayer.Character.Name ~= "Paristic" and game.Players.LocalPlayer.Character.Name ~= "BigParistic" and game.Players.LocalPlayer.Character.Name ~= "HelicopterParistic" then
 game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow:FindFirstChild("Paristic"), false)
@@ -506,13 +508,13 @@ game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(game:GetService("
 end
 end)
 
-oth:Button("Throw Player", function()
+oth:Button("Throw Target", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") and game:GetService("Players"):FindFirstChild(targ) and game.Players:FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.HumanoidRootPart)
 end
 end)
 
-oth:Button("Clone Player", function()
+oth:Button("Clone Target", function()
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") and game:GetService("Players"):FindFirstChild(targ) and game.Players:FindFirstChild(targ).Character ~= nil and game.Players:FindFirstChild(targ).Character:FindFirstChild("HumanoidRootPart") then
 for i = 1, clonevalue do
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(game.Players:FindFirstChild(targ).Character.HumanoidRootPart)
@@ -521,7 +523,31 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.L
 end
 end)
 
-ai:Label("Spawning", Color3.fromRGB(135, 206, 235))
+ai:Label("NPC Spawning", Color3.fromRGB(135, 206, 235))
+
+ai:Box("Lens Spawn", function(text, focuslost)
+if focuslost then
+if UserFromBox(text) ~= nil then
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[3].Header.Window.TextBox.Text = tostring(UserFromBox(text))
+spawnattarg = tostring(UserFromBox(text))
+end
+end
+end)
+spawnattarg = game.Players.LocalPlayer.Name
+game:GetService("CoreGui").TurtleUiLib:GetChildren()[3].Header.Window.TextBox.Text = game.Players.LocalPlayer.Name
+
+lensamount = 1
+ai:Slider("Lens Amount",1,10,1, function(value)
+lensamount = value
+end)
+
+ai:Button("Summon Lens", function()
+if game:GetService("Players"):FindFirstChild(spawnattarg) and game:GetService("Players"):FindFirstChild(spawnattarg).Character ~= nil and game:GetService("Players"):FindFirstChild(spawnattarg).Character:FindFirstChild("HumanoidRootPart") then
+for i = 1, lensamount do
+game.ReplicatedStorage.Remotes.GiantCombat:FireServer("LensheliSpawnAction", game:GetService("Players"):FindFirstChild(spawnattarg).Character.HumanoidRootPart.CFrame, game:GetService("Players"):FindFirstChild(spawnattarg).Character.HumanoidRootPart.CFrame, false)
+end
+end
+end)
 
 bathroomtospawn = "Bathroom"
 bathroomamount = 1
@@ -544,33 +570,9 @@ game.ReplicatedStorage.Remotes.GiantCombat:FireServer("PARAWAVE", randombathroom
 end
 end)
 
-ai:Box("Lens Spawn", function(text, focuslost)
-if focuslost then
-if UserFromBox(text) ~= nil then
-game:GetService("CoreGui").TurtleUiLib:GetChildren()[3].Header.Window.TextBox.Text = tostring(UserFromBox(text))
-spawnattarg = tostring(UserFromBox(text))
-end
-end
-end)
-spawnattarg = game.Players.LocalPlayer.Name
-game:GetService("CoreGui").TurtleUiLib:GetChildren()[3].Header.Window.TextBox.Text = game.Players.LocalPlayer.Name
-
-lensamount = 1
-ai:Slider("Lens Amount",1,10,1, function(value)
-lensamount = value
-end)
-
-ai:Button("Summon Lensman", function()
-if game:GetService("Players"):FindFirstChild(spawnattarg) and game:GetService("Players"):FindFirstChild(spawnattarg).Character ~= nil and game:GetService("Players"):FindFirstChild(spawnattarg).Character:FindFirstChild("HumanoidRootPart") then
-for i = 1, lensamount do
-game.ReplicatedStorage.Remotes.GiantCombat:FireServer("LensheliSpawnAction", game:GetService("Players"):FindFirstChild(spawnattarg).Character.HumanoidRootPart.CFrame, game:GetService("Players"):FindFirstChild(spawnattarg).Character.HumanoidRootPart.CFrame, false)
-end
-end
-end)
-
 ai:Label("Play Sound", Color3.fromRGB(135, 206, 235))
 
-local sfxtoplay = ai:Dropdown("Play Sound", {"Boss Spawn", "Boss Approach", "Boss Phase", "Holy Ray", "Kill SFX"}, function(name)
+local sfxtoplay = ai:Dropdown("Enable Sound", {"Boss Spawn", "Boss Approach", "Boss Phase", "Holy Ray", "Kill SFX"}, function(name)
 if game.Players.LocalPlayer.Character ~= nil then
 if name == "Boss Spawn" then
 game.ReplicatedStorage.Remotes.sfxname:FireServer("bossSpawn", game:GetService("Players").LocalPlayer.Character)
@@ -592,9 +594,23 @@ game.ReplicatedStorage.CombatRemotes:FindFirstChild("MiscWhatever"):FireServer(g
 end
 end)
 
-ai:Label("Optimizing", Color3.fromRGB(135, 206, 235))
+ai:Label("Optimization", Color3.fromRGB(135, 206, 235))
 
-ai:Button("Clean Trash", function()
+ai:Button("Clean Trash (CLIENT)", function()
+local trash = 0
+for i,v in pairs(workspace:GetChildren()) do
+if v:IsA("Part") and v.Name == "qweqw" then
+trash = trash + 1
+v:Destroy()
+end
+end
+Notify({
+Description = "Just Cleaned "..trash.." Client Trash.";
+Duration = 3;
+});
+end)
+
+ai:Button("Clean Trash (SERVER)", function()
 local trash = 0
 for i,v in pairs(workspace.Debris:GetChildren()) do
 if v:IsA("Part") or v:IsA("MeshPart") or v:IsA("Model") then
@@ -615,12 +631,12 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
 end
 end
 Notify({
-Description = "Just Cleaned "..trash.." Trash";
+Description = "Just Cleaned "..trash.." Server Trash.";
 Duration = 3;
 });
 end)
 
-bindas:Label("Local Player Character", Color3.fromRGB(135, 206, 235))
+bindas:Label("Character", Color3.fromRGB(135, 206, 235))
 
 gren = false
 bindas:Toggle("Grenade [B]", false, function(bool)
@@ -679,7 +695,7 @@ end
 end)
 
 applyball = "MechaBalls"
-local plballs = bindas:Dropdown("Old PBall Type", {"Lens", "Bathroom"}, function(balltype)
+local plballs = bindas:Dropdown("Plasma Ball Type", {"Lens", "Bathroom"}, function(balltype)
 if balltype == "Lens" then
 applyball = "MechaBalls"
 elseif balltype == "Bathroom" then
@@ -688,7 +704,7 @@ end
 end)
 
 mechab = false
-bindas:Toggle("Old PBalls (UTCM) [P]", false, function(bool)
+bindas:Toggle("UTCM Plasma Ball [P]", false, function(bool)
 mechab = bool
 end)
 
