@@ -414,12 +414,20 @@ end
 if game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("AstroTeam") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.AstroTeam)
 end
+Notify({
+Description = "Target has God Mode now";
+Duration = 3;
+});
 end
 end)
 
 oth:Button("Add Lens Team Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game:GetService("Players"):FindFirstChild(targ).Character)
+Notify({
+Description = "Added Lens Team to Target";
+Duration = 3;
+});
 end
 end)
 
@@ -427,6 +435,10 @@ oth:Button("Invisible Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):FindFirstChild(targ).Character, 1)
 game.ReplicatedStorage.CombatRemotes.EnableParticle:FireServer(game:GetService("Players"):FindFirstChild(targ).Character, false)
+Notify({
+Description = "Target is now Invisible";
+Duration = 3;
+});
 end
 end)
 
@@ -505,6 +517,10 @@ if game.Players.LocalPlayer.Character.Name ~= "Paristic" and game.Players.LocalP
 game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.MorphShow:FindFirstChild("Paristic"), false)
 end
 game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
+Notify({
+Description = "Infecting";
+Duration = 3;
+});
 end
 end)
 
