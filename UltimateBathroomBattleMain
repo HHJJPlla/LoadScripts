@@ -422,7 +422,7 @@ end
 end)
 
 oth:Button("Add Lens Team Target", function()
-if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("LensmenTeam") then
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and not game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game:GetService("Players"):FindFirstChild(targ).Character)
 Notify({
 Description = "Added Lens Team to Target";
