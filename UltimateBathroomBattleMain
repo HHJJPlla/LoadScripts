@@ -34,10 +34,10 @@ print("[SCRIPT] Highlight Loaded")
 
 function GetNearestPlayer()
     local nearestPlayer = nil
-    local shortestDistance = math.huge
+    local shortestDistance = 5000
     for _, v in pairs(game.Players:GetPlayers()) do
-        if v.Name ~= game.Players.LocalPlayer.Name and v.Team.Name == "The Union" or v.Name ~= game.Players.LocalPlayer.Name and v.Team.Name == "Astro Bathrooms" then
-            if v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+        if v.Name ~= game.Players.LocalPlayer.Name then
+            if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("LensmenTeam") then
                 local distance = (workspace.GManBathroom2.HumanoidRootPart.Position - v.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
                 if distance < shortestDistance then
                     nearestPlayer = v
