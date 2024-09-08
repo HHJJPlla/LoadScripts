@@ -493,6 +493,18 @@ end)
 
 oth:Label("Game Special", Color3.fromRGB(135, 206, 235))
 
+oth:Button("Buff Target", function()
+if game:GetService("Players"):FindFirstChild(targ) and not game:GetService("Players"):FindFirstChild(targ):FindFirstChild("STARMANBUFF") and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.SupermanBuff:FireServer(game:GetService("Players"):FindFirstChild(targ), true)
+end
+end)
+
+oth:Button("No Buff Target", function()
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ):FindFirstChild("STARMANBUFF") and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
+game.ReplicatedStorage.CombatRemotes.SupermanBuff:FireServer(game:GetService("Players"):FindFirstChild(targ), false)
+end
+end)
+
 oth:Button("Blind Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
