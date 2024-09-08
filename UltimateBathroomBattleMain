@@ -742,6 +742,39 @@ bindas:Toggle("TCM Core Emit [P]", false, function(bool)
 tcmemit = bool
 end)
 
+mobexplode = false
+bindas:Toggle("MOB Explode Damage", false, function(bool)
+mobexplode = bool
+if mobexplode == true then
+ondierunexplode = game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+if mobexplode == true and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "MissileOverloadBathroom" then
+local explodearea = Instance.new("Part", workspace)
+explodearea.Name = "SCRIPT_Missile_Self-Explode_Area"
+explodearea.Anchored = true
+explodearea.CanCollide = false
+explodearea.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 20, 0)
+explodearea.Size = Vector3.new(1, 1, 1)
+explodearea.Transparency = 1
+task.wait(2.2)
+if game.Players.LocalPlayer.Character.Name == "MissileOverloadBathroom" then
+explodearea.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 20, 0)
+for i, v in pairs(game.Players:GetPlayers()) do
+    if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and (workspace["SCRIPT_Missile_Self-Explode_Area"].Position-v.Character.HumanoidRootPart.Position).Magnitude <= 300 then
+        if v.Character:FindFirstChild("BathroomTeam") or v.Character:FindFirstChild("AstroTeam") then
+            game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 4700, false)
+        game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(v.Character)
+        end
+    end
+end
+end
+explodearea:Destroy()
+end
+end)
+else
+ondierunexplode:Disconnect()
+end
+end)
+
 bindas:Label("Building", Color3.fromRGB(135, 206, 235))
 
 applytransa = 2
