@@ -762,7 +762,8 @@ for i, v in pairs(game.Players:GetPlayers()) do
     if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and (workspace["SCRIPT_Missile_Self-Explode_Area"].Position-v.Character.HumanoidRootPart.Position).Magnitude <= 350 then
         if v.Character:FindFirstChild("BathroomTeam") or v.Character:FindFirstChild("AstroTeam") then
             game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 5700, false)
-        game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(v.Character)
+            game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(v.Character)
+            print("[SCRIPT] Missile Overloaded Just exploded "..v.Name)
         end
     end
 end
