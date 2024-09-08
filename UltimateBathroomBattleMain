@@ -760,7 +760,7 @@ if game.Players.LocalPlayer.Character.Name == "MissileOverloadBathroom" then
 explodearea.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 20, 0)
 for i, v in pairs(game.Players:GetPlayers()) do
     if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and (workspace["SCRIPT_Missile_Self-Explode_Area"].Position-v.Character.HumanoidRootPart.Position).Magnitude <= 350 then
-        if v.Character:FindFirstChild("BathroomTeam") or v.Character:FindFirstChild("AstroTeam") then
+        if v.Character:FindFirstChild("LensmenTeam") or v.Character:FindFirstChild("AstroTeam") then
             game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 5700, false)
             game.ReplicatedStorage.CombatRemotes.BlindKnife:FireServer(v.Character)
         end
