@@ -894,6 +894,7 @@ end
 end)
 
 bosscd = false
+bossbulletscd = false
 fakecontrols = false
 fakeb:Toggle("Control [T,Y,U,R]", false, function(bool)
     fakecontrols = bool
@@ -1136,9 +1137,10 @@ end
 end
 
 if input.KeyCode == Enum.KeyCode.R then
-if fakecontrols == true and bosscd == false then
+if fakecontrols == true and bosscd == false and bossbulletscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+bossbulletscd = true
 local gemen = v
 function runfirstbullet()
 game.ReplicatedStorage.CombatRemotes.ProjectileSpawn:InvokeServer(game.ReplicatedStorage.PlasmaBall2)
@@ -1220,6 +1222,7 @@ coroutine.wrap(function()
 end)()
 task.wait(0.25)
 end
+bossbulletscd = false
 end
 end
 end
