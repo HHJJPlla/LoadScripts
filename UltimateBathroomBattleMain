@@ -895,7 +895,7 @@ end)
 
 bosscd = false
 fakecontrols = false
-fakeb:Toggle("Control [T,Y,U]", false, function(bool)
+fakeb:Toggle("Control [T,Y,U,R]", false, function(bool)
     fakecontrols = bool
 end)
 
@@ -1129,6 +1129,96 @@ if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 local nearestPlayer = GetNearestPlayer()
 if nearestPlayer then
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, CFrame.lookAt(v.HumanoidRootPart.Position, nearestPlayer.Character.HumanoidRootPart.Position))
+end
+end
+end
+end
+end
+
+if input.KeyCode == Enum.KeyCode.R then
+if fakecontrols == true and bosscd == false then
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+local gemen = v
+function runfirstbullet()
+game.ReplicatedStorage.CombatRemotes.ProjectileSpawn:InvokeServer(game.ReplicatedStorage.PlasmaBall2)
+repeat task.wait() until workspace.Debris:FindFirstChild("PlasmaBall2")
+local theshootball = workspace.Debris:FindFirstChild("PlasmaBall2")
+theshootball.Name = "PlasmaScriptRun"
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(theshootball, true)
+local args = {
+    [1] = "cf",
+    [2] = theshootball,
+    [3] = gemen["gun_r.smd.001"].CFrame * CFrame.new(20, -1, -15)
+}
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(gemen.Thing0, "LaserCannon")
+game:GetService("ReplicatedStorage").CombatRemotes.SupermanBuff:FireServer(theshootball, true)
+repeat task.wait() until theshootball:FindFirstChild("STARMANBUFF")
+local movingball = 0
+for i = 1, 50 do
+movingball = movingball - 2.3
+local args = {
+    [1] = "cf",
+    [2] = theshootball,
+    [3] = theshootball.CFrame * CFrame.new(0, 0, movingball)
+}
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
+task.wait(0.01)
+end
+local args = {
+    [1] = game.ReplicatedStorage.Assets.Specialized.ASTRO.astrotroopexplo,
+    [2] = theshootball.CFrame,
+    [3] = "233"
+}
+game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(unpack(args))
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(theshootball)
+end
+
+function runsecondbullet()
+game.ReplicatedStorage.CombatRemotes.ProjectileSpawn:InvokeServer(game.ReplicatedStorage.PlasmaBall2)
+repeat task.wait() until workspace.Debris:FindFirstChild("PlasmaBall2")
+local theshootball = workspace.Debris:FindFirstChild("PlasmaBall2")
+theshootball.Name = "PlasmaScriptRun"
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(theshootball, true)
+local args = {
+    [1] = "cf",
+    [2] = theshootball,
+    [3] = gemen["gun_r.smd.001"].CFrame * CFrame.new(-20, -1, -15)
+}
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
+game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(gemen.Thing1, "LaserCannon")
+game:GetService("ReplicatedStorage").CombatRemotes.SupermanBuff:FireServer(theshootball, true)
+repeat task.wait() until theshootball:FindFirstChild("STARMANBUFF")
+local movingball = 0
+for i = 1, 50 do
+movingball = movingball - 2.3
+local args = {
+    [1] = "cf",
+    [2] = theshootball,
+    [3] = theshootball.CFrame * CFrame.new(0, 0, movingball)
+}
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
+task.wait(0.01)
+end
+local args = {
+    [1] = game.ReplicatedStorage.Assets.Specialized.ASTRO.astrotroopexplo,
+    [2] = theshootball.CFrame,
+    [3] = "233"
+}
+game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(unpack(args))
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(theshootball)
+end
+
+for i = 1, 5 do
+coroutine.wrap(function()
+    runfirstbullet()
+end)()
+task.wait(0.25)
+coroutine.wrap(function()
+    runsecondbullet()
+end)()
+task.wait(0.25)
 end
 end
 end
