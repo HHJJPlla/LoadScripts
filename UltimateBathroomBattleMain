@@ -9,6 +9,9 @@ game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantSoundMan"):Destroy
 game.ReplicatedStorage.MorphShow:FindFirstChild("ClockGiant"):Destroy()
 end
 
+if _G.scriptallinputs then
+_G.scriptallinputs:Disconnect()
+end
 local AkaliNotif = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/Dynissimo/main/Scripts/AkaliNotif.lua"))();
 local Notify = AkaliNotif.Notify;
 local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/miroeramaa/TurtleLib/main/TurtleUiLib.lua"))()
@@ -24,6 +27,10 @@ for i, v in pairs(workspace:GetDescendants()) do
 end
 end
 
+if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SCRIPT_BossControls") then
+game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SCRIPT_BossControls"):Destroy()
+end
+
 local localgod = Instance.new("Highlight", game.ReplicatedFirst)
 localgod.Name = "UBB_SCRIPT_Highlight"
 localgod.FillColor = Color3.fromRGB(255, 255, 255)
@@ -34,7 +41,7 @@ print("[SCRIPT] Highlight Loaded")
 
 function GetNearestPlayer()
     local nearestPlayer = nil
-    local shortestDistance = 5000
+    local shortestDistance = 8000
     for _, v in pairs(game.Players:GetPlayers()) do
         if v.Name ~= game.Players.LocalPlayer.Name then
             if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("LensmenTeam") then
@@ -846,6 +853,9 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v:FindFirstChi
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v:FindFirstChild("CreatorTag59"))
 end
 end
+if fakecontrols == true then
+SCRIPT_BossControls.Enabled = true
+end
 end
 end)
 
@@ -880,31 +890,229 @@ fakeb:Toggle("Boss Defeat Sound", false, function(bool)
 endbosswithsound = bool
 end)
 
-fakeb:Toggle("View Boss", false, function(bool)
-if bool then
+-- Instances of Boss Controls:
+
+local SCRIPT_BossControls = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local dashforward = Instance.new("ImageLabel")
+local UICorner_2 = Instance.new("UICorner")
+local dfbind = Instance.new("TextLabel")
+local dashup = Instance.new("ImageLabel")
+local UICorner_3 = Instance.new("UICorner")
+local dubind = Instance.new("TextLabel")
+local rotateattarget = Instance.new("ImageLabel")
+local UICorner_4 = Instance.new("UICorner")
+local ratbind = Instance.new("TextLabel")
+local attacktype = Instance.new("ImageLabel")
+local UICorner_5 = Instance.new("UICorner")
+local atbind = Instance.new("TextLabel")
+local phasetype = Instance.new("ImageButton")
+local UICorner_6 = Instance.new("UICorner")
+
+-- Properties:
+
+SCRIPT_BossControls.Name = "SCRIPT_BossControls"
+SCRIPT_BossControls.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+SCRIPT_BossControls.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+SCRIPT_BossControls.Enabled = false
+SCRIPT_BossControls.ResetOnSpawn = false
+
+Frame.Parent = SCRIPT_BossControls
+Frame.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+Frame.BackgroundTransparency = 0.500
+Frame.Position = UDim2.new(0.0159337167, 0, 0.805970132, 0)
+Frame.Size = UDim2.new(0, 304, 0, 51)
+
+UICorner.Parent = Frame
+
+dashforward.Name = "dashforward"
+dashforward.Parent = Frame
+dashforward.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+dashforward.Position = UDim2.new(0.0500000007, 0, 0, 0)
+dashforward.Size = UDim2.new(0, 51, 0, 51)
+dashforward.Image = "http://www.roblox.com/asset/?id=12338394619"
+local dashforwardstroke = Instance.new("UIStroke", dashforward)
+dashforwardstroke.Thickness = 3
+dashforwardstroke.Color = Color3.fromRGB(0, 150, 0)
+
+UICorner_2.Parent = dashforward
+
+dfbind.Name = "dfbind"
+dfbind.Parent = dashforward
+dfbind.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+dfbind.BackgroundTransparency = 1.000
+dfbind.Position = UDim2.new(0, 0, 0.449999988, 0)
+dfbind.Size = UDim2.new(0, 25, 0, 25)
+dfbind.Font = Enum.Font.SourceSans
+dfbind.Text = "T"
+dfbind.TextColor3 = Color3.fromRGB(255, 255, 255)
+dfbind.TextSize = 48.000
+local dfbindstroke = Instance.new("UIStroke", dfbind)
+dfbindstroke.Thickness = 2
+dfbindstroke.Color = Color3.fromRGB(0, 100, 0)
+
+dashup.Name = "dashup"
+dashup.Parent = Frame
+dashup.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+dashup.Position = UDim2.new(0.25, 0, 0, 0)
+dashup.Size = UDim2.new(0, 51, 0, 51)
+dashup.Image = "http://www.roblox.com/asset/?id=12338397019"
+local dashupstroke = Instance.new("UIStroke", dashup)
+dashupstroke.Thickness = 3
+dashupstroke.Color = Color3.fromRGB(0, 150, 0)
+
+UICorner_3.Parent = dashup
+
+dubind.Name = "dubind"
+dubind.Parent = dashup
+dubind.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+dubind.BackgroundTransparency = 1.000
+dubind.Position = UDim2.new(0, 0, 0.449999988, 0)
+dubind.Size = UDim2.new(0, 25, 0, 25)
+dubind.Font = Enum.Font.SourceSans
+dubind.Text = "Y"
+dubind.TextColor3 = Color3.fromRGB(255, 255, 255)
+dubind.TextSize = 48.000
+local dubindstroke = Instance.new("UIStroke", dubind)
+dubindstroke.Thickness = 2
+dubindstroke.Color = Color3.fromRGB(0, 100, 0)
+
+rotateattarget.Name = "rotateattarget"
+rotateattarget.Parent = Frame
+rotateattarget.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+rotateattarget.Position = UDim2.new(0.449999988, 0, 0, 0)
+rotateattarget.Size = UDim2.new(0, 51, 0, 51)
+rotateattarget.Image = "http://www.roblox.com/asset/?id=6523858394"
+local rotateattargetstroke = Instance.new("UIStroke", rotateattarget)
+rotateattargetstroke.Thickness = 3
+rotateattargetstroke.Color = Color3.fromRGB(0, 150, 0)
+
+UICorner_4.Parent = rotateattarget
+
+ratbind.Name = "ratbind"
+ratbind.Parent = rotateattarget
+ratbind.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ratbind.BackgroundTransparency = 1.000
+ratbind.Position = UDim2.new(0, 0, 0.449999988, 0)
+ratbind.Size = UDim2.new(0, 25, 0, 25)
+ratbind.Font = Enum.Font.SourceSans
+ratbind.Text = "U"
+ratbind.TextColor3 = Color3.fromRGB(255, 255, 255)
+ratbind.TextSize = 48.000
+local ratbindstroke = Instance.new("UIStroke", ratbind)
+ratbindstroke.Thickness = 2
+ratbindstroke.Color = Color3.fromRGB(0, 100, 0)
+
+attacktype.Name = "attacktype"
+attacktype.Parent = Frame
+attacktype.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+attacktype.Position = UDim2.new(0.649999976, 0, 0, 0)
+attacktype.Size = UDim2.new(0, 51, 0, 51)
+attacktype.Image = "http://www.roblox.com/asset/?id=16181366859"
+local attacktypestroke = Instance.new("UIStroke", attacktype)
+attacktypestroke.Thickness = 3
+attacktypestroke.Color = Color3.fromRGB(225, 0, 0)
+
+UICorner_5.Parent = attacktype
+
+atbind.Name = "atbind"
+atbind.Parent = attacktype
+atbind.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+atbind.BackgroundTransparency = 1.000
+atbind.Position = UDim2.new(0, 0, 0.449999988, 0)
+atbind.Size = UDim2.new(0, 25, 0, 25)
+atbind.Font = Enum.Font.SourceSans
+atbind.Text = "R"
+atbind.TextColor3 = Color3.fromRGB(255, 255, 255)
+atbind.TextSize = 48.000
+local atbindstroke = Instance.new("UIStroke", atbind)
+atbindstroke.Thickness = 2
+atbindstroke.Color = Color3.fromRGB(0, 100, 0)
+
+phasetypemoment = false
+phasetype.Name = "phasetype"
+phasetype.Parent = Frame
+phasetype.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+phasetype.Position = UDim2.new(0.850000024, 0, 0.100000001, 0)
+phasetype.Size = UDim2.new(0, 41, 0, 41)
+phasetype.Image = "http://www.roblox.com/asset/?id=10198213112"
+local phasetypestroke = Instance.new("UIStroke", phasetype)
+phasetypestroke.Thickness = 3
+phasetypestroke.Color = Color3.fromRGB(0, 150, 0)
+attacktypestroke.Color = Color3.fromRGB(225, 0, 0)
+
+phasetype.MouseButton1Click:Connect(function()
+if bossbulletscd == false then
+phasetypemoment = not phasetypemoment
+if phasetypemoment then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
-workspace.CurrentCamera.CameraSubject = v
+if endbosswithsound == true then
+game.ReplicatedStorage.Remotes.sfxname:FireServer("bossPhase", game:GetService("Players").LocalPlayer.Character)
+end
+game.ReplicatedStorage.Remotes.GManLaser:FireServer(v, false)
 break
 end
 end
+attacktype.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+attacktypestroke.Color = Color3.fromRGB(0, 150, 0)
+phasetype.BackgroundColor3 = Color3.fromRGB(0, 100, 255)
+phasetypestroke.Color = Color3.fromRGB(0, 70, 225)
+phasetype.Image = "http://www.roblox.com/asset/?id=16156863786"
 else
-workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
+attacktype.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+attacktypestroke.Color = Color3.fromRGB(225, 0, 0)
+phasetype.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+phasetypestroke.Color = Color3.fromRGB(0, 150, 0)
+phasetype.Image = "http://www.roblox.com/asset/?id=10198213112"
+end
 end
 end)
+
+UICorner_6.Parent = phasetype
+
+function fakebossbuttonsactive(bool, activated)
+if bool == true then
+dashforward.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+dashforwardstroke.Color = Color3.fromRGB(0, 150, 0)
+dashup.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+dashupstroke.Color = Color3.fromRGB(0, 150, 0)
+rotateattarget.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+rotateattargetstroke.Color = Color3.fromRGB(0, 150, 0)
+else
+if activated == "Dash Forward" then
+dashforward.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+dashforwardstroke.Color = Color3.fromRGB(225, 225, 0)
+else
+dashforward.BackgroundColor3 = Color3.fromRGB(170, 170, 170)
+dashforwardstroke.Color = Color3.fromRGB(140, 140, 140)
+end
+if activated == "Dash Up" then
+dashup.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+dashupstroke.Color = Color3.fromRGB(225, 225, 0)
+else
+dashup.BackgroundColor3 = Color3.fromRGB(170, 170, 170)
+dashupstroke.Color = Color3.fromRGB(140, 140, 140)
+end
+if activated == "Rotate at Target" then
+rotateattarget.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+rotateattargetstroke.Color = Color3.fromRGB(225, 225, 0)
+else
+rotateattarget.BackgroundColor3 = Color3.fromRGB(170, 170, 170)
+rotateattargetstroke.Color = Color3.fromRGB(140, 140, 140)
+end
+end
+end
 
 bosscd = false
 bossbulletscd = false
 fakecontrols = false
-fakeb:Toggle("Control [T,Y,U,R]", false, function(bool)
-    fakecontrols = bool
-end)
-
-fakeb:Toggle("Boss Lasers", false, function(bool)
+fakeb:Toggle("Boss Controls", false, function(bool)
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
-game.ReplicatedStorage.Remotes.GManLaser:FireServer(v, bool)
-break
+fakecontrols = bool
+SCRIPT_BossControls.Enabled = bool
 end
 end
 end)
@@ -925,13 +1133,21 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v)
 if endbosswithsound == true then
 game.ReplicatedStorage.Remotes.sfxname:FireServer("bossDefeated", workspace)
 end
+fakebossbuttonsactive(true)
+SCRIPT_BossControls.Enabled = false
+attacktype.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+attacktypestroke.Color = Color3.fromRGB(225, 0, 0)
+phasetype.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+phasetypestroke.Color = Color3.fromRGB(0, 150, 0)
+phasetype.Image = "http://www.roblox.com/asset/?id=10198213112"
 workspace.CurrentCamera.CameraSubject = game.Players.LocalPlayer.Character
 break
 end
 end
 end)
 
-game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+bosslasersbind = false
+_G.scriptallinputs = game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
 if input.KeyCode == Enum.KeyCode.B then
 if gren == true then
 game.ReplicatedStorage.Remotes.GiantCombat:FireServer("Granada", Vector3.new(0, 0, 0))
@@ -1067,6 +1283,7 @@ if fakecontrols == true and bosscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 bosscd = true
+fakebossbuttonsactive(false, "Dash Forward")
 local tpto1 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -50)
 local tpto2 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -100)
 local tpto3 = v.HumanoidRootPart.CFrame * CFrame.new(0, 0, -150)
@@ -1091,6 +1308,7 @@ if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") and v.HumanoidRootP
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v.HumanoidRootPart.chain)
 end
 end
+fakebossbuttonsactive(true)
 bosscd = false
 end
 end
@@ -1102,6 +1320,7 @@ if fakecontrols == true and bosscd == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 bosscd = true
+fakebossbuttonsactive(false, "Dash Up")
 local tpto1 = v.HumanoidRootPart.CFrame + Vector3.new(0, 40, 0)
 local tpto2 = v.HumanoidRootPart.CFrame + Vector3.new(0, 80, 0)
 local tpto3 = v.HumanoidRootPart.CFrame + Vector3.new(0, 120, 0)
@@ -1117,6 +1336,7 @@ game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRo
 task.wait(0.05)
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, tpto5)
 task.wait(0.05)
+fakebossbuttonsactive(true)
 bosscd = false
 end
 end
@@ -1137,23 +1357,35 @@ end
 end
 
 if input.KeyCode == Enum.KeyCode.R then
-if fakecontrols == true and bosscd == false and bossbulletscd == false then
+if fakecontrols == true and phasetypemoment == false then
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+bosslasersbind = not bosslasersbind
+if bosslasersbind == true then
+game.ReplicatedStorage.Remotes.GManLaser:FireServer(v, true)
+attacktype.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+attacktypestroke.Color = Color3.fromRGB(0, 150, 0)
+else
+game.ReplicatedStorage.Remotes.GManLaser:FireServer(v, false)
+attacktype.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+attacktypestroke.Color = Color3.fromRGB(225, 0, 0)
+end
+end
+end
+end
+if fakecontrols == true and bosscd == false and bossbulletscd == false and phasetypemoment == true then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 bossbulletscd = true
+attacktype.BackgroundColor3 = Color3.fromRGB(170, 170, 170)
+attacktypestroke.Color = Color3.fromRGB(140, 140, 140)
 local gemen = v
 function runfirstbullet()
-game.ReplicatedStorage.CombatRemotes.ProjectileSpawn:InvokeServer(game.ReplicatedStorage.PlasmaBall2)
+game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(game.ReplicatedStorage.PlasmaBall2, gemen["gun_r.smd.001"].CFrame * CFrame.new(20, -1, -15))
 repeat task.wait() until workspace.Debris:FindFirstChild("PlasmaBall2")
 local theshootball = workspace.Debris:FindFirstChild("PlasmaBall2")
 theshootball.Name = "PlasmaScriptRun"
-game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(theshootball, true)
-local args = {
-    [1] = "cf",
-    [2] = theshootball,
-    [3] = gemen["gun_r.smd.001"].CFrame * CFrame.new(20, -1, -15)
-}
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
+game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", theshootball, 0)
 game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(gemen.Thing0, "LaserCannon")
 game:GetService("ReplicatedStorage").CombatRemotes.SupermanBuff:FireServer(theshootball, true)
 repeat task.wait() until theshootball:FindFirstChild("STARMANBUFF")
@@ -1178,17 +1410,11 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(theshootball)
 end
 
 function runsecondbullet()
-game.ReplicatedStorage.CombatRemotes.ProjectileSpawn:InvokeServer(game.ReplicatedStorage.PlasmaBall2)
+game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(game.ReplicatedStorage.PlasmaBall2, gemen["gun_r.smd.001"].CFrame * CFrame.new(-20, -1, -15))
 repeat task.wait() until workspace.Debris:FindFirstChild("PlasmaBall2")
 local theshootball = workspace.Debris:FindFirstChild("PlasmaBall2")
 theshootball.Name = "PlasmaScriptRun"
-game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(theshootball, true)
-local args = {
-    [1] = "cf",
-    [2] = theshootball,
-    [3] = gemen["gun_r.smd.001"].CFrame * CFrame.new(-20, -1, -15)
-}
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
+game.ReplicatedStorage.CombatRemotes.DrillCombat:FireServer("DrillTransparent", theshootball, 0)
 game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(gemen.Thing1, "LaserCannon")
 game:GetService("ReplicatedStorage").CombatRemotes.SupermanBuff:FireServer(theshootball, true)
 repeat task.wait() until theshootball:FindFirstChild("STARMANBUFF")
@@ -1216,12 +1442,14 @@ for i = 1, 5 do
 coroutine.wrap(function()
     runfirstbullet()
 end)()
-task.wait(0.25)
+task.wait(0.15)
 coroutine.wrap(function()
     runsecondbullet()
 end)()
-task.wait(0.25)
+task.wait(0.15)
 end
+attacktype.BackgroundColor3 = Color3.fromRGB(0, 180, 0)
+attacktypestroke.Color = Color3.fromRGB(0, 150, 0)
 bossbulletscd = false
 end
 end
