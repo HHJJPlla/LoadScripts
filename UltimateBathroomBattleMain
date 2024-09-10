@@ -853,6 +853,7 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v:FindFirstChi
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(v:FindFirstChild("CreatorTag59"))
 end
 end
+phasetypemoment = false
 if fakecontrols == true then
 SCRIPT_BossControls.Enabled = true
 end
