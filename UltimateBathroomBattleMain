@@ -44,7 +44,7 @@ function GetNearestPlayer()
     local shortestDistance = 8000
     for _, v in pairs(game.Players:GetPlayers()) do
         if v.Name ~= game.Players.LocalPlayer.Name then
-            if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("LensmenTeam") then
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("LensmenTeam") then
                 local distance = (workspace.GManBathroom2.HumanoidRootPart.Position - v.Character:FindFirstChild("HumanoidRootPart").Position).Magnitude
                 if distance < shortestDistance then
                     nearestPlayer = v
@@ -1402,8 +1402,10 @@ game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
 task.wait(0.01)
 end
 for i, v in pairs(game.Players:GetPlayers()) do
-if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("LensmenTeam") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and (theshootball.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 35 then
+if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and (theshootball.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 35 then
+if v.Character:FindFirstChild("LensmenTeam") or v.Character:FindFirstChild("AstroTeam") then
 game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 50, false)
+end
 end
 end
 local args = {
@@ -1436,8 +1438,10 @@ game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
 task.wait(0.01)
 end
 for i, v in pairs(game.Players:GetPlayers()) do
-if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("LensmenTeam") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and (theshootball.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 35 then
+if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and (theshootball.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 50 then
+if v.Character:FindFirstChild("LensmenTeam") or v.Character:FindFirstChild("AstroTeam") then
 game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 50, false)
+end
 end
 end
 local args = {
