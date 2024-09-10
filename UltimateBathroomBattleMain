@@ -1401,7 +1401,7 @@ game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
 task.wait(0.01)
 end
 for i, v in pairs(game.Players:GetPlayers()) do
-if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and (theshootball.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 35 then
+if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("LensmenTeam") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and (theshootball.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 35 then
 game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 50, false)
 end
 end
@@ -1435,7 +1435,7 @@ game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer(unpack(args))
 task.wait(0.01)
 end
 for i, v in pairs(game.Players:GetPlayers()) do
-if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and (theshootball.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 35 then
+if v.Character ~= nil and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("LensmenTeam") and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health > 0 and (theshootball.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 35 then
 game.ReplicatedStorage.Remotes.raydamage:FireServer(v.Character.Humanoid, 50, false)
 end
 end
