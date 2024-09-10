@@ -842,7 +842,7 @@ task.wait(0.1)
 end
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
-game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, CFrame.new(1500, 400, -5300) * CFrame.fromEulerAngles(0, math.rad(180), 0))
 game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(v.HumanoidRootPart, true)
 break
 end
