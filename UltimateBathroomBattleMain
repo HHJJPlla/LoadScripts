@@ -279,7 +279,7 @@ punchie.Name = "PunchDamage"
 if game.Players.LocalPlayer.Character.Name == "GiantLensMan" then
 punchie.Value = 300
 else
-punchie.Value = 70
+punchie.Value = 45
 end
 end
 end)
