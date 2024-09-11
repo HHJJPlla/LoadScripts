@@ -27,6 +27,12 @@ for i, v in pairs(workspace:GetDescendants()) do
 end
 end
 
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") and v:FindFirstChild("SCRIPT_Boss_Light") then
+v:FindFirstChild("SCRIPT_Boss_Light"):Destroy()
+end
+end
+
 if game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SCRIPT_BossControls") then
 game:GetService("Players").LocalPlayer.PlayerGui:FindFirstChild("SCRIPT_BossControls"):Destroy()
 end
@@ -889,6 +895,25 @@ end)
 endbosswithsound = false
 fakeb:Toggle("Boss Defeat Sound", false, function(bool)
 endbosswithsound = bool
+end)
+
+fakeb:Toggle("Boss Highlight", false, function(bool)
+if bool then
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+local bosslight = Instance.new("Highlight", v)
+bosslight.Name = "SCRIPT_Boss_Light"
+bosslight.FillTransparency = 1
+bosslight.OutlineColor = Color3.fromRGB(255, 0, 0)
+end
+end
+else
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") and v:FindFirstChild("SCRIPT_Boss_Light") then
+v:FindFirstChild("SCRIPT_Boss_Light"):Destroy()
+end
+end
+end
 end)
 
 -- Instances of Boss Controls:
