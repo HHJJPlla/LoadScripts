@@ -96,6 +96,8 @@ Duration = 2;
 });
 end)
 
+--[[
+
 plr:Button("Add Candy Canes", function()
 game.ReplicatedStorage.UIRemotes.winterS:FireServer("ChristmasSuitCase", moneyamount * -1, "ChristmasSuitCase")
 Notify({
@@ -103,6 +105,8 @@ Description = "Free Candy Canes added!";
 Duration = 2;
 });
 end)
+
+]]
 
 local freecaser = plr:Dropdown("Unlock Case", {"ChristmasSuitCase", "BathroomCase"}, function(case)
 game.ReplicatedStorage.Modules.SKINMODULE.SpinnerContents.RemoteFunction:InvokeServer(case)
