@@ -916,6 +916,11 @@ end
 end
 end)
 
+bossrotateatmouse = false
+fakeb:Toggle("Boss Rotate at Mouse", false, function(bool)
+bossrotateatmouse = bool
+end)
+
 -- Instances of Boss Controls:
 
 local SCRIPT_BossControls = Instance.new("ScreenGui")
@@ -1371,11 +1376,19 @@ end
 
 if input.KeyCode == Enum.KeyCode.U then
 if fakecontrols == true and bosscd == false then
+if bossrotateatmouse == false then
 for i, v in pairs(workspace:GetChildren()) do
 if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
 local nearestPlayer = GetNearestPlayer()
 if nearestPlayer then
 game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, CFrame.lookAt(v.HumanoidRootPart.Position, nearestPlayer.Character.HumanoidRootPart.Position))
+end
+end
+end
+else
+for i, v in pairs(workspace:GetChildren()) do
+if v.Name == "GManBathroom2" and v:FindFirstChild("Grabbed") then
+game.ReplicatedStorage.CombatRemotes.ClockShuriken:FireServer("cf", v.HumanoidRootPart, CFrame.lookAt(v.HumanoidRootPart.Position, game.Players.LocalPlayer:GetMouse().Hit.Position))
 end
 end
 end
