@@ -817,6 +817,31 @@ ondierunexplode:Disconnect()
 end
 end)
 
+if workspace:FindFirstChild("healeffecto") then
+betterhealeffectalreadyhere = true
+else
+betterhealeffectalreadyhere = false
+end
+
+bindas:Toggle("Better Heal Effect", betterhealeffectalreadyhere, function(bool)
+if bool then
+if not workspace:FindFirstChild("healeffecto") then
+game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(game.StarterPlayer.StarterPlayerScripts.AbilitiesFramework.healeffecto, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
+workspace.Debris:WaitForChild("healeffecto")
+game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(workspace.Debris.healeffecto.Attachment)
+workspace:WaitForChild("healeffecto")
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.healeffecto.Attachment.Flare)
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.healeffecto.Attachment.Smoke)
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.healeffecto.CreatorTag59)
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.healeffecto.Grabbed)
+end
+else
+if workspace:FindFirstChild("healeffecto") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.healeffecto)
+end
+end
+end)
+
 repaireraura = false
 bindas:Toggle("Repairer Healing", false, function(bool)
 repaireraura = bool
@@ -826,9 +851,9 @@ if repaireraura == true then
             for i, v in pairs(game.Players:GetPlayers()) do
                 if repaireraura == true then
                     if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and v.Character.Name ~= "WarheadBathroom" and v.Character.Name ~= "ExplosiveBarrelBathroom" and v.Character.Name ~= "AcidExplosiveBarrelBathroom" and v.Character.Name ~= "SupermanBathroom" and v.Character:FindFirstChild("BathroomTeam") and not v.Character:FindFirstChild("AstroTeam") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid").Health > 0 and v.Character.Humanoid.Health ~= v.Character.Humanoid.MaxHealth and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 175 then
-                        game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", v.Character.Humanoid, v.Character.Humanoid.Health + 250)
-                        game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(game.StarterPlayer.StarterPlayerScripts.AbilitiesFramework.healeffecto, v.Character.HumanoidRootPart.CFrame)
-                        game.ReplicatedStorage.Remotes.sfxname:FireServer("heal", v.Character.HumanoidRootPart)
+                        local oldhp = v.Character.Humanoid.Health
+                        game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", v.Character.Humanoid, oldhp + 250)
+                        game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(workspace.healeffecto, v.Character.HumanoidRootPart.CFrame)
                     end
                 end
             end
