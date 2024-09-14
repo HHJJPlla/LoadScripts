@@ -266,7 +266,7 @@ plr:Button("Add Team (LENS)", function()
 if game.Players.LocalPlayer.Character ~= nil and not game.Players.LocalPlayer.Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game.Players.LocalPlayer.Character)
 Notify({
-Description = "Added Lens Team to You";
+Description = "Added Lens Team to You.";
 Duration = 2;
 });
 end
@@ -432,7 +432,7 @@ if game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("Ast
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Character.AstroTeam)
 end
 Notify({
-Description = "Target has God Mode now";
+Description = "Target has God Mode now.";
 Duration = 3;
 });
 end
@@ -442,7 +442,7 @@ oth:Button("Add Lens Team Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ).Character ~= nil and not game:GetService("Players"):FindFirstChild(targ).Character:FindFirstChild("LensmenTeam") then
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("GIVE:TEAM", game:GetService("Players"):FindFirstChild(targ).Character)
 Notify({
-Description = "Added Lens Team to Target";
+Description = "Added Lens Team to Target.";
 Duration = 3;
 });
 end
@@ -453,7 +453,7 @@ if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"
 game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SHOULDER:VISIBILITY", game:GetService("Players"):FindFirstChild(targ).Character, 1)
 game.ReplicatedStorage.CombatRemotes.EnableParticle:FireServer(game:GetService("Players"):FindFirstChild(targ).Character, false)
 Notify({
-Description = "Target is now Invisible";
+Description = "Target is now Invisible.";
 Duration = 3;
 });
 end
@@ -513,12 +513,20 @@ oth:Label("Game Special", Color3.fromRGB(135, 206, 235))
 oth:Button("Buff Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and not game:GetService("Players"):FindFirstChild(targ):FindFirstChild("STARMANBUFF") and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.SupermanBuff:FireServer(game:GetService("Players"):FindFirstChild(targ), true)
+Notify({
+Description = "Target Buffed.";
+Duration = 3;
+});
 end
 end)
 
 oth:Button("No Buff Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ):FindFirstChild("STARMANBUFF") and game:GetService("Players"):FindFirstChild(targ).Character ~= nil then
 game.ReplicatedStorage.CombatRemotes.SupermanBuff:FireServer(game:GetService("Players"):FindFirstChild(targ), false)
+Notify({
+Description = "Target Debuffed.";
+Duration = 3;
+});
 end
 end)
 
@@ -547,7 +555,7 @@ game.ReplicatedStorage.UIRemotes.Morph:InvokeServer(game.ReplicatedStorage.Morph
 end
 game.ReplicatedStorage.CombatRemotes.ParasiteInfect:FireServer(game:GetService("Players"):FindFirstChild(targ).Character)
 Notify({
-Description = "Infecting";
+Description = "Infecting Target...";
 Duration = 3;
 });
 end
@@ -573,6 +581,10 @@ oth:Label("Annoying Functions", Color3.fromRGB(135, 206, 235))
 oth:Button("Break Lobby Target", function()
 if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ):FindFirstChild("Loaded") then
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Loaded)
+Notify({
+Description = "Target's Lobby is now Broken!";
+Duration = 3;
+});
 end
 end)
 
