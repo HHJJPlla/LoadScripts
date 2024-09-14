@@ -568,6 +568,14 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.L
 end
 end)
 
+oth:Label("Annoying Functions", Color3.fromRGB(135, 206, 235))
+
+oth:Button("Break Lobby Target", function()
+if game:GetService("Players"):FindFirstChild(targ) and game:GetService("Players"):FindFirstChild(targ):FindFirstChild("Loaded") then
+game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game:GetService("Players"):FindFirstChild(targ).Loaded)
+end
+end)
+
 ai:Label("NPC Spawning", Color3.fromRGB(135, 206, 235))
 
 ai:Box("Lens Spawn", function(text, focuslost)
