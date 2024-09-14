@@ -826,12 +826,12 @@ if repaireraura == true then
             for i, v in pairs(game.Players:GetPlayers()) do
                 if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and v.Character.Name ~= "WarheadBathroom" and v.Character.Name ~= "ExplosiveBarrelBathroom" and v.Character.Name ~= "AcidExplosiveBarrelBathroom" and v.Character.Name ~= "SupermanBathroom" and v.Character:FindFirstChild("BathroomTeam") and not v.Character:FindFirstChild("AstroTeam") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid").Health > 0 and v.Character.Humanoid.Health ~= v.Character.Humanoid.MaxHealth and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 125 then
                     game.ReplicatedStorage.Remotes.sfxname:FireServer("heal", v.Character.HumanoidRootPart)
-                    game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", v.Character.Humanoid, v.Character.Humanoid.Health + 150)
+                    game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", v.Character.Humanoid, v.Character.Humanoid.Health + 175)
                     game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(game.StarterPlayer.StarterPlayerScripts.AbilitiesFramework.healeffecto, v.Character.HumanoidRootPart.CFrame)
                 end
             end
         end
-        task.wait(3)
+        task.wait(2.5)
     end
 end
 end)
