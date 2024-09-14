@@ -818,7 +818,7 @@ end
 end)
 
 repaireraura = false
-bindas:Toggle("Repairer Heal [Q]", false, function(bool)
+bindas:Toggle("Repairer Healing", false, function(bool)
 repaireraura = bool
 if repaireraura == true then
     while repaireraura == true do
