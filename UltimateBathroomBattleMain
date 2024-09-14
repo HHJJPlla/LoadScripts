@@ -854,6 +854,7 @@ if repaireraura == true then
                         local oldhp = v.Character.Humanoid.Health
                         game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", v.Character.Humanoid, oldhp + 250)
                         game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(workspace.healeffecto, v.Character.HumanoidRootPart.CFrame)
+                        game.ReplicatedStorage.Remotes.sfxname:FireServer("heal", v.Character.HumanoidRootPart)
                     end
                 end
             end
