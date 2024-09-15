@@ -1,13 +1,5 @@
 if not game:IsLoaded() then game.Loaded:Wait() end
 repeat task.wait() until game.Players.LocalPlayer:FindFirstChild("SkillTree")
-if PlatformType == "Mobile" and game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant") then
-print("[SCRIPT] Your Platform Type is Mobile, Optimizing...")
-game.ReplicatedStorage.MorphShow:FindFirstChild("TriGiant"):Destroy()
-game.ReplicatedStorage.MorphShow:FindFirstChild("SonarGiant"):Destroy()
-game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantLensMan"):Destroy()
-game.ReplicatedStorage.MorphShow:FindFirstChild("UpgradedGiantSoundMan"):Destroy()
-game.ReplicatedStorage.MorphShow:FindFirstChild("ClockGiant"):Destroy()
-end
 
 if _G.scriptallinputs then
 _G.scriptallinputs:Disconnect()
@@ -826,6 +818,7 @@ end
 bindas:Toggle("Better Heal Effect", betterhealeffectalreadyhere, function(bool)
 if bool then
 if not workspace:FindFirstChild("healeffecto") then
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("rigidgrab") then
 game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(game.StarterPlayer.StarterPlayerScripts.AbilitiesFramework.healeffecto, game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame)
 workspace.Debris:WaitForChild("healeffecto")
 game.ReplicatedStorage.CombatRemotes.ThrowCharacter:FireServer(workspace.Debris.healeffecto.Attachment)
@@ -834,6 +827,13 @@ game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.heal
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.healeffecto.Attachment.Smoke)
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.healeffecto.CreatorTag59)
 game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(workspace.healeffecto.Grabbed)
+game.ReplicatedStorage.CombatRemotes.StunLock:FireServer(game.Players.LocalPlayer.Character.HumanoidRootPart, false)
+else
+Notify({
+Description = "No rigidgrab Found.";
+Duration = 3;
+});
+end
 end
 else
 if workspace:FindFirstChild("healeffecto") then
