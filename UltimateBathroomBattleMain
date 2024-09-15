@@ -812,30 +812,7 @@ end)
 repaireraura = false
 bindas:Toggle("Repairer Healing", false, function(bool)
 repaireraura = bool
-if repaireraura == true then
-    while repaireraura == true do
-        if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "RepairerBathroom" and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character:FindFirstChild("Humanoid").Health > 0 then
-            for i, v in pairs(game.Players:GetPlayers()) do
-                if repaireraura == true then
-                    if v.Name ~= game.Players.LocalPlayer.Name and v.Character ~= nil and v.Character.Name ~= "WarheadBathroom" and v.Character.Name ~= "ExplosiveBarrelBathroom" and v.Character.Name ~= "AcidExplosiveBarrelBathroom" and v.Character.Name ~= "SupermanBathroom" and v.Character:FindFirstChild("BathroomTeam") and not v.Character:FindFirstChild("AstroTeam") and v.Character:FindFirstChild("HumanoidRootPart") and v.Character:FindFirstChild("Humanoid").Health > 0 and v.Character.Humanoid.Health ~= v.Character.Humanoid.MaxHealth and (game.Players.LocalPlayer.Character.HumanoidRootPart.Position-v.Character.HumanoidRootPart.Position).Magnitude <= 175 then
-                        local oldhp = v.Character.Humanoid.Health
-                        local healingvalue = {250, 325, 350, 500}
-                        game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", v.Character.Humanoid, oldhp + healingvalue[math.random(1, 4)])
-                        game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(game:GetService("StarterPlayer").StarterPlayerScripts.AbilitiesFramework.healeffecto, v.Character.HumanoidRootPart.CFrame)
-                        game.ReplicatedStorage.Remotes.sfxname:FireServer("heal", v.Character.HumanoidRootPart)
-                    end
-                end
-            end
-        end
-        task.wait(3)
-    end
-end
-end)
-
-repaireraura2 = false
-bindas:Toggle("Repairer Healing 2", false, function(bool)
-repaireraura2 = bool
-if repaireraura2 == true and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character.Name == "RepairerBathroom" and not game.Players.LocalPlayer.Character:FindFirstChild("SCRIPT_Healing_Around") then
+if repaireraura == true and game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character.Name == "RepairerBathroom" and not game.Players.LocalPlayer.Character:FindFirstChild("SCRIPT_Healing_Around") then
 local healingpart = Instance.new("Part", game.Players.LocalPlayer.Character)
 healingpart.Name = "SCRIPT_Healing_Around"
 healingpart.CanCollide = false
@@ -847,8 +824,8 @@ local weldofheal = Instance.new("WeldConstraint", healingpart)
 weldofheal.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
 weldofheal.Part1 = healingpart
 _G.funnytouch = healingpart.Touched:Connect(function(hit)
-	if game.Players:GetPlayerFromCharacter(hit.Parent) ~= nil then
-        local player = game.Players:GetPlayerFromCharacter(hit.Parent)
+	if game:GetService("Players"):GetPlayerFromCharacter(hit.Parent) ~= nil and hit.Parent:FindFirstChild("Humanoid") then
+        local player = game:GetService("Players"):GetPlayerFromCharacter(hit.Parent)
         if not player.Character:FindFirstChild("SCRIPT_Was_Healed") and player.Character:FindFirstChild("BathroomTeam") and player.Character.Name ~= "WarheadBathroom" and player.Character.Name ~= "ExplosiveBarrelBathroom" and player.Character.Name ~= "AcidExplosiveBarrelBathroom" and player.Character.Name ~= "SupermanBathroom" and player.Character:FindFirstChild("Humanoid").Health > 0 and player.Character.Humanoid.Health and player.Character.Humanoid.Health ~= player.Character.Humanoid.MaxHealth then
             local washeal = Instance.new("BoolValue", player.Character)
             washeal.Name = "SCRIPT_Was_Healed"
@@ -864,8 +841,59 @@ _G.funnytouch = healingpart.Touched:Connect(function(hit)
         end
 	end
 end)
-else
+ondieremovehealerpart = game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+if healingpart then
 _G.funnytouch:Disconnect()
+healingpart:Destroy()
+end
+end)
+onchraddhealerpart = game.Players.LocalPlayer.CharacterAdded:Connect(function()
+game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") and game.Players.LocalPlayer.Character.Name == "RepairerBathroom" and not game.Players.LocalPlayer.Character:FindFirstChild("SCRIPT_Healing_Around") then
+local healingpart = Instance.new("Part", game.Players.LocalPlayer.Character)
+healingpart.Name = "SCRIPT_Healing_Around"
+healingpart.CanCollide = false
+healingpart.Transparency = 0.9
+healingpart.Massless = true
+healingpart.Size = Vector3.new(110, 75, 110)
+healingpart.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+local weldofheal = Instance.new("WeldConstraint", healingpart)
+weldofheal.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
+weldofheal.Part1 = healingpart
+_G.funnytouch = healingpart.Touched:Connect(function(hit)
+	if game:GetService("Players"):GetPlayerFromCharacter(hit.Parent) ~= nil and hit.Parent:FindFirstChild("Humanoid") then
+        local player = game:GetService("Players"):GetPlayerFromCharacter(hit.Parent)
+        if not player.Character:FindFirstChild("SCRIPT_Was_Healed") and player.Character:FindFirstChild("BathroomTeam") and player.Character.Name ~= "WarheadBathroom" and player.Character.Name ~= "ExplosiveBarrelBathroom" and player.Character.Name ~= "AcidExplosiveBarrelBathroom" and player.Character.Name ~= "SupermanBathroom" and player.Character:FindFirstChild("Humanoid").Health > 0 and player.Character.Humanoid.Health and player.Character.Humanoid.Health ~= player.Character.Humanoid.MaxHealth then
+            local washeal = Instance.new("BoolValue", player.Character)
+            washeal.Name = "SCRIPT_Was_Healed"
+            local oldhp = player.Character.Humanoid.Health
+            local healingvalue = {250, 325, 350, 500}
+            game.ReplicatedStorage.CombatRemotes.UTTMCombat:FireServer("SET:ZE:OLD:HP", player.Character.Humanoid, oldhp + healingvalue[math.random(1, 4)])
+            game.ReplicatedStorage.CombatRemotes.ParticleSpawn:FireServer(game:GetService("StarterPlayer").StarterPlayerScripts.AbilitiesFramework.healeffecto, player.Character.HumanoidRootPart.CFrame)
+            game.ReplicatedStorage.Remotes.sfxname:FireServer("heal", player.Character.HumanoidRootPart)
+            task.wait(3)
+            if player.Character ~= nil and player.Character:FindFirstChild("SCRIPT_Was_Healed") then
+                player.Character:FindFirstChild("SCRIPT_Was_Healed"):Destroy()
+            end
+        end
+	end
+end)
+ondieremovehealerpart = game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+if healingpart then
+_G.funnytouch:Disconnect()
+healingpart:Destroy()
+end
+end)
+end
+end)
+else
+if ondieremovehealerpart then
+ondieremovehealerpart:Disconnect()
+onchraddhealerpart:Disconnect()
+end
+if _G.funnytouch then
+_G.funnytouch:Disconnect()
+end
 if game.Players.LocalPlayer.Character:FindFirstChild("SCRIPT_Healing_Around") then
 game.Players.LocalPlayer.Character:FindFirstChild("SCRIPT_Healing_Around"):Destroy()
 end
