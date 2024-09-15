@@ -963,6 +963,11 @@ end
 end
 end)
 
+bossorbdist = 2
+bindas:Slider("Boss Orbs Distance",50,200,50, function(value)
+bossorbdist = value
+end)
+
 endbosswithsound = false
 fakeb:Toggle("Boss Defeat Sound", false, function(bool)
 endbosswithsound = bool
@@ -1500,7 +1505,7 @@ game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(gemen.Thing0, 
 game:GetService("ReplicatedStorage").CombatRemotes.SupermanBuff:FireServer(theshootball, true)
 repeat task.wait() until theshootball:FindFirstChild("STARMANBUFF")
 local movingball = 0
-for i = 1, 50 do
+for i = 1, bossorbdist do
 movingball = movingball - 2.3
 local args = {
     [1] = "cf",
@@ -1536,7 +1541,7 @@ game:GetService("ReplicatedStorage").Remotes.PlaySound:FireServer(gemen.Thing1, 
 game:GetService("ReplicatedStorage").CombatRemotes.SupermanBuff:FireServer(theshootball, true)
 repeat task.wait() until theshootball:FindFirstChild("STARMANBUFF")
 local movingball = 0
-for i = 1, 50 do
+for i = 1, bossorbdist do
 movingball = movingball - 2.3
 local args = {
     [1] = "cf",
