@@ -964,7 +964,7 @@ end
 end)
 
 bossorbdist = 2
-bindas:Slider("Boss Orbs Distance",50,200,50, function(value)
+fakeb:Slider("Boss Orbs Distance",50,200,50, function(value)
 bossorbdist = value
 end)
 
