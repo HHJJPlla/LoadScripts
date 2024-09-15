@@ -847,7 +847,7 @@ local weldofheal = Instance.new("WeldConstraint", healingpart)
 weldofheal.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
 weldofheal.Part1 = healingpart
 _G.funnytouch = healingpart.Touched:Connect(function(hit)
-	if game.Players:GetPlayerFromCharacter(hit.Parent) then
+	if game.Players:GetPlayerFromCharacter(hit.Parent) ~= nil then
         local player = game.Players:GetPlayerFromCharacter(hit.Parent)
         if not player.Character:FindFirstChild("SCRIPT_Was_Healed") and player.Character:FindFirstChild("BathroomTeam") and player.Character.Name ~= "WarheadBathroom" and player.Character.Name ~= "ExplosiveBarrelBathroom" and player.Character.Name ~= "AcidExplosiveBarrelBathroom" and player.Character.Name ~= "SupermanBathroom" and player.Character:FindFirstChild("Humanoid").Health > 0 and player.Character.Humanoid.Health and player.Character.Humanoid.Health ~= player.Character.Humanoid.MaxHealth then
             local washeal = Instance.new("BoolValue", player.Character)
