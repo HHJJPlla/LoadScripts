@@ -2,7 +2,6 @@ if not game:IsLoaded() then game.Loaded:Wait() end
 game.Players.LocalPlayer:WaitForChild("SkillTree")
 game.Players.LocalPlayer.SkillTree:WaitForChild("UsedDatastore")
 
-
 if _G.scriptallinputs then
 _G.scriptallinputs:Disconnect()
 end
@@ -251,20 +250,7 @@ end
 end)
 
 plr:Toggle("Free Paid Morphs", false, function(bool)
---local allpaids = {Giant Soundman, Sonar Giant, Giant Lensman, Giant Screenman, Glitch Bathroom, Mega Laser Tank, Mafia Bathroom 2.0, Upgraded Vacuum Bathroom, Flying Buzzsaw Bathroom, Missile Overload Bathroom, Cinemaman Giant, Infected Giant Soundman, GMan Bathroom 2.0, Flying Sawblade Bathroom, Glitch Ninja Lensman, Upgraded Giant Lensman, Lensman Mech, Upgraded Infected Giant Soundman, GMan Bathroom 3.0, Upgraded Giant Soundman, Upgraded Professor Bathroom, Sound Woman, Clock Pack, GMan Bathroom 4.0}
-if bool then
-for i = 1, #allpaids do
-if not game.Players.LocalPlayer.SkillTree:FindFirstChild(allpaids[i]) then
-game.ReplicatedStorage.UIRemotes:FindFirstChild("_statChange_"):FireServer("Coins", 0, "Deduct", "skillTree", allpaids[i])
-end
-end
-else
-for i = 1, #allpaids do
-if game.Players.LocalPlayer.SkillTree:FindFirstChild(allpaids[i]) then
-game.ReplicatedStorage.CombatRemotes.ProjectileDestroy:FireServer(game.Players.LocalPlayer.SkillTree:FindFirstChild(allpaids[i]))
-end
-end
-end
+-- WIP
 end)
 
 plr:Label("Character", Color3.fromRGB(135, 206, 235))
