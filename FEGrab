@@ -1,0 +1,836 @@
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'),true))()
+local RunS = game:GetService("RunService")
+local trueREPfocus = game.Players.LocalPlayer.ReplicationFocus
+local Parts = {}
+local FrozenParts = {}
+local hasAnyFreezes = false
+local G2L = {};
+G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui"));
+G2L["1"]["Name"] = [[GRABTOOL]];
+G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
+G2L["1"]["ResetOnSpawn"] = false;
+G2L["1"]["Enabled"] = false;
+
+G2L["2"] = Instance.new("Frame", G2L["1"]);
+G2L["2"]["BorderSizePixel"] = 0;
+G2L["2"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2"]["Size"] = UDim2.new(0, 100, 0, 125);
+G2L["2"]["Position"] = UDim2.new(0.025, 0, 0.85, 0);
+G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["2"]["BackgroundTransparency"] = 0.8;
+G2L["3"] = Instance.new("UICorner", G2L["2"]);
+
+local equip = Instance.new("Sound", G2L["3"])
+equip.Name = "EQUIP"
+equip.SoundId = "rbxassetid://78707018652403"
+equip.Volume = 1
+local click = Instance.new("Sound", G2L["3"])
+click.Name = "CLICK"
+click.SoundId = "rbxassetid://18755588842"
+click.Volume = 1
+local freeze = Instance.new("Sound", G2L["3"])
+freeze.Name = "FREEZE"
+freeze.SoundId = "rbxassetid://85552523738558"
+freeze.Volume = 1
+local thaw = Instance.new("Sound", G2L["3"])
+thaw.Name = "THAWALL"
+thaw.SoundId = "rbxassetid://8717291893"
+thaw.Volume = 0.2
+local distance = Instance.new("StringValue", G2L["3"])
+distance.Name = "distance"
+distance.Value = "1"
+distance:GetPropertyChangedSignal("Value"):Connect(function()
+	click:Play()
+	if workspace:FindFirstChild("fdsdffsdsdf") and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+		game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy()
+		workspace.fdsdffsdsdf.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7*tonumber(distance.Value))
+		local weld = Instance.new("WeldConstraint", game.Players.LocalPlayer.Character.HumanoidRootPart)
+		weld.Name = "Specccc"
+		weld.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
+		weld.Part1 = workspace.fdsdffsdsdf
+	end
+	if distance.Value == "1" then
+		G2L["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+		G2L["5"]["BorderColor3"] = Color3.fromRGB(225, 225, 225);
+		G2L["6"]["BackgroundColor3"] = Color3.fromRGB(80, 80, 80);
+		G2L["6"]["BorderColor3"] = Color3.fromRGB(50, 50, 50);
+		G2L["7"]["BackgroundColor3"] = Color3.fromRGB(80, 80, 80);
+		G2L["7"]["BorderColor3"] = Color3.fromRGB(50, 50, 50);
+	elseif distance.Value == "2" then
+		G2L["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+		G2L["5"]["BorderColor3"] = Color3.fromRGB(225, 225, 225);
+		G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+		G2L["6"]["BorderColor3"] = Color3.fromRGB(225, 225, 225);
+		G2L["7"]["BackgroundColor3"] = Color3.fromRGB(80, 80, 80);
+		G2L["7"]["BorderColor3"] = Color3.fromRGB(50, 50, 50);
+	elseif distance.Value == "3" then
+		G2L["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+		G2L["5"]["BorderColor3"] = Color3.fromRGB(225, 225, 225);
+		G2L["6"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+		G2L["6"]["BorderColor3"] = Color3.fromRGB(225, 225, 225);
+		G2L["7"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+		G2L["7"]["BorderColor3"] = Color3.fromRGB(225, 225, 225);
+	end
+end)
+
+G2L["4"] = Instance.new("TextLabel", G2L["2"]);
+G2L["4"]["BorderSizePixel"] = 0;
+G2L["4"]["TextSize"] = 18;
+G2L["4"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["4"]["FontFace"] = Font.new([[rbxasset://fonts/families/Zekton.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["4"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["4"]["BackgroundTransparency"] = 1;
+G2L["4"]["Size"] = UDim2.new(0, 100, 0, 25);
+G2L["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["4"]["Text"] = [[Distance]];
+G2L["4"]["Name"] = [[disttext]];
+
+G2L["5"] = Instance.new("TextButton", G2L["2"]);
+G2L["5"]["BorderSizePixel"] = 3;
+G2L["5"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["5"]["TextSize"] = 14;
+G2L["5"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["5"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["5"]["Size"] = UDim2.new(0, 14, 0, 14);
+G2L["5"]["Name"] = [[F1]];
+G2L["5"]["BorderColor3"] = Color3.fromRGB(225, 225, 225);
+G2L["5"]["Text"] = [[]];
+G2L["5"]["Position"] = UDim2.new(0.125, 0, 0.275, 0);
+
+G2L["5"].MouseButton1Click:Connect(function()
+	distance.Value = "1"
+end)
+
+G2L["6"] = Instance.new("TextButton", G2L["2"]);
+G2L["6"]["BorderSizePixel"] = 3;
+G2L["6"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["6"]["TextSize"] = 14;
+G2L["6"]["BackgroundColor3"] = Color3.fromRGB(80, 80, 80);
+G2L["6"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["6"]["Size"] = UDim2.new(0, 14, 0, 14);
+G2L["6"]["Name"] = [[F2]];
+G2L["6"]["BorderColor3"] = Color3.fromRGB(50, 50, 50);
+G2L["6"]["Text"] = [[]];
+G2L["6"]["Position"] = UDim2.new(0.425, 0, 0.275, 0);
+
+G2L["6"].MouseButton1Click:Connect(function()
+	distance.Value = "2"
+end)
+
+G2L["7"] = Instance.new("TextButton", G2L["2"]);
+G2L["7"]["BorderSizePixel"] = 3;
+G2L["7"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["7"]["TextSize"] = 14;
+G2L["7"]["BackgroundColor3"] = Color3.fromRGB(80, 80, 80);
+G2L["7"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["7"]["Size"] = UDim2.new(0, 14, 0, 14);
+G2L["7"]["Name"] = [[F3]];
+G2L["7"]["BorderColor3"] = Color3.fromRGB(50, 50, 50);
+G2L["7"]["Text"] = [[]];
+G2L["7"]["Position"] = UDim2.new(0.725, 0, 0.275, 0);
+
+G2L["7"].MouseButton1Click:Connect(function()
+	distance.Value = "3"
+end)
+
+G2L["8"] = Instance.new("TextLabel", G2L["2"]);
+G2L["8"]["BorderSizePixel"] = 0;
+G2L["8"]["TextSize"] = 18;
+G2L["8"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["8"]["FontFace"] = Font.new([[rbxasset://fonts/families/Zekton.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["8"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
+G2L["8"]["BackgroundTransparency"] = 1;
+G2L["8"]["Size"] = UDim2.new(0, 100, 0, 25);
+G2L["8"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["8"]["Text"] = [[Rotation]];
+G2L["8"]["Name"] = [[rotatext]];
+G2L["8"]["Position"] = UDim2.new(-0.01, 0, 0.41, 0);
+
+G2L["9"] = Instance.new("TextButton", G2L["2"]);
+G2L["9"]["BorderSizePixel"] = 3;
+G2L["9"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["9"]["TextSize"] = 14;
+G2L["9"]["BackgroundColor3"] = Color3.fromRGB(0, 255, 0);
+G2L["9"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["9"]["Size"] = UDim2.new(0, 14, 0, 14);
+G2L["9"]["Name"] = [[RY]];
+G2L["9"]["BorderColor3"] = Color3.fromRGB(0, 226, 0);
+G2L["9"]["Text"] = [[]];
+G2L["9"]["Position"] = UDim2.new(0.425, 0, 0.635, 0);
+
+G2L["9"].MouseButton1Click:Connect(function()
+	for i, v in pairs(Parts) do
+		if v ~= nil and v:FindFirstChild("SPECIALgrab") and v:FindFirstChild("ROTATEControl") then
+			v.ROTATEControl.CFrame = v.CFrame * CFrame.Angles(0, math.rad(45), 0)
+		end
+	end
+end)
+
+G2L["a"] = Instance.new("TextButton", G2L["2"]);
+G2L["a"]["BorderSizePixel"] = 3;
+G2L["a"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["a"]["TextSize"] = 14;
+G2L["a"]["BackgroundColor3"] = Color3.fromRGB(255, 0, 0);
+G2L["a"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["a"]["Size"] = UDim2.new(0, 14, 0, 14);
+G2L["a"]["Name"] = [[RX]];
+G2L["a"]["BorderColor3"] = Color3.fromRGB(226, 0, 0);
+G2L["a"]["Text"] = [[]];
+G2L["a"]["Position"] = UDim2.new(0.125, 0, 0.81, 0);
+
+G2L["a"].MouseButton1Click:Connect(function()
+	for i, v in pairs(Parts) do
+		if v ~= nil and v:FindFirstChild("SPECIALgrab") and v:FindFirstChild("ROTATEControl") then
+			v.ROTATEControl.CFrame = v.CFrame * CFrame.Angles(math.rad(45), 0, 0)
+		end
+	end
+end)
+
+G2L["b"] = Instance.new("TextButton", G2L["2"]);
+G2L["b"]["BorderSizePixel"] = 3;
+G2L["b"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["b"]["TextSize"] = 14;
+G2L["b"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 255);
+G2L["b"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["b"]["Size"] = UDim2.new(0, 14, 0, 14);
+G2L["b"]["Name"] = [[RZ]];
+G2L["b"]["BorderColor3"] = Color3.fromRGB(0, 0, 226);
+G2L["b"]["Text"] = [[]];
+G2L["b"]["Position"] = UDim2.new(0.725, 0, 0.81, 0);
+
+G2L["b"].MouseButton1Click:Connect(function()
+	for i, v in pairs(Parts) do
+		if v ~= nil and v:FindFirstChild("SPECIALgrab") and v:FindFirstChild("ROTATEControl") then
+			v.ROTATEControl.CFrame = v.CFrame * CFrame.Angles(0, 0, math.rad(45))
+		end
+	end
+end)
+
+G2L["c"] = Instance.new("TextButton", G2L["2"]);
+G2L["c"]["BorderSizePixel"] = 3;
+G2L["c"]["TextColor3"] = Color3.fromRGB(0, 0, 0);
+G2L["c"]["TextSize"] = 14;
+G2L["c"]["BackgroundColor3"] = Color3.fromRGB(191, 191, 191);
+G2L["c"]["FontFace"] = Font.new([[rbxasset://fonts/families/SourceSansPro.json]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
+G2L["c"]["Size"] = UDim2.new(0, 14, 0, 14);
+G2L["c"]["Name"] = [[RDEF]];
+G2L["c"]["BorderColor3"] = Color3.fromRGB(161, 161, 161);
+G2L["c"]["Text"] = [[]];
+G2L["c"]["Position"] = UDim2.new(0.425, 0, 0.81, 0);
+
+G2L["c"].MouseButton1Click:Connect(function()
+	for i, v in pairs(Parts) do
+		if v ~= nil and v:FindFirstChild("SPECIALgrab") and v:FindFirstChild("ROTATEControl") then
+            v.ROTATEControl.Enabled = false
+            v.ROTATEControl.CFrame = CFrame.fromEulerAnglesXYZ(0, 0, 0)
+            v.ROTATEControl.Enabled = true
+		end
+	end
+end)
+
+local grab = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+grab.Name = "Grab"
+grab.CanBeDropped = false
+grab.RequiresHandle = false
+grab.Activated:Connect(function()
+	local part = game.Players.LocalPlayer:GetMouse().Target
+	if not grab:FindFirstChild("POSTss") then
+		if part ~= nil and not part:FindFirstChild("FROZENPARTS") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+			game.Players.LocalPlayer.ReplicationFocus = workspace
+			table.insert(Parts, part)
+			equip:Play()
+			Instance.new("BoolValue", grab).Name = "POSTss"
+			part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+			if part.CanCollide == true then
+				Instance.new("BoolValue", part).Name = "CouldCollide"
+			end
+			part.CanCollide = false
+			local fe = Instance.new("Part", workspace)
+			fe.Name = "fdsdffsdsdf"
+			fe.CanCollide = false
+			fe.Size = Vector3.new(0.1, 0.1, 0.1)
+			fe.Massless = true
+			fe.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7*tonumber(distance.Value))
+			local weld = Instance.new("WeldConstraint", game.Players.LocalPlayer.Character.HumanoidRootPart)
+			weld.Name = "Specccc"
+			weld.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
+			weld.Part1 = fe
+			local as1 = Instance.new("Attachment", fe)
+			local as2 = Instance.new("Attachment", part)
+			as1.Name = "POSTA"
+			as2.Name = "POSTB"
+			local ali = Instance.new("AlignPosition", part)
+			ali.Name = "SPECIALgrab"
+			ali.MaxForce = 9999999999999999
+			ali.MaxVelocity = math.huge
+			ali.Responsiveness = 200
+			ali.Attachment0 = as2
+			ali.Attachment1 = as1
+			local rotatestop = Instance.new("AlignOrientation", part)
+			rotatestop.Name = "ROTATEControl"
+			rotatestop.Mode = Enum.OrientationAlignmentMode.OneAttachment
+			rotatestop.Attachment0 = as2
+			rotatestop.CFrame = part.CFrame
+			rotatestop.MaxAngularVelocity = math.huge
+			rotatestop.MaxTorque = math.huge
+			rotatestop.Responsiveness = 200
+		end
+	else
+		grab.POSTss:Destroy()
+		game.Players.LocalPlayer.ReplicationFocus = trueREPfocus
+		for i, v in pairs(Parts) do
+			if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+				v.SPECIALgrab:Destroy()
+				v.ROTATEControl:Destroy()
+				v.POSTB:Destroy()
+				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+				v.CustomPhysicalProperties = nil
+				if v:FindFirstChild("CouldCollide") then
+					v.CouldCollide:Destroy()
+					v.CanCollide = true
+				end
+				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+				v.Velocity = Vector3.new(0, 0, 0)
+			else
+				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+			end
+		end
+		table.clear(Parts)
+	end
+end)
+grab.Equipped:Connect(function()
+	G2L["1"]["Enabled"] = true;
+end)
+grab.Unequipped:Connect(function()
+	G2L["1"]["Enabled"] = false;
+	if grab:FindFirstChild("POSTss") then
+		grab.POSTss:Destroy()
+		game.Players.LocalPlayer.ReplicationFocus = trueREPfocus
+		for i, v in pairs(Parts) do
+			if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+				v.SPECIALgrab:Destroy()
+				v.ROTATEControl:Destroy()
+				v.POSTB:Destroy()
+				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+				v.CustomPhysicalProperties = nil
+				if v:FindFirstChild("CouldCollide") then
+					v.CouldCollide:Destroy()
+					v.CanCollide = true
+				end
+				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+				v.Velocity = Vector3.new(0, 0, 0)
+			else
+				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+			end
+		end
+		table.clear(Parts)
+	end
+end)
+local unfreezeallt = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+unfreezeallt.Name = "Unfreeze All"
+unfreezeallt.CanBeDropped = false
+unfreezeallt.RequiresHandle = false
+unfreezeallt.Activated:Connect(function()
+	for i, v in pairs(FrozenParts) do
+		if v ~= nil and v:FindFirstChild("FROZENPARTS") then
+			thaw:Play()
+			hasAnyFreezes = false
+			v.CustomPhysicalProperties = nil
+			v.FROZENPARTS:Destroy()
+			v:FindFirstChild("FREEZEHOLDER"):Destroy()
+			v:FindFirstChild("SPECIALHOLDER"):Destroy()
+			v:FindFirstChild("ROTATEHOLDER"):Destroy()
+			v:FindFirstChild("ATTACH"):Destroy()
+		end
+	end
+	table.clear(FrozenParts)
+end)
+local antifallt = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+antifallt.Name = "No fall: OFF"
+antifallt.CanBeDropped = false
+antifallt.RequiresHandle = false
+antifallt.Activated:Connect(function()
+	if antifallt.Name == "No fall: OFF" then
+		antifallt.Name = "No fall: ON"
+		equip:Play()
+		_G.AntiFall = game:GetService("RunService").Heartbeat:Connect(function()
+			if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+				local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity
+				game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+				game:GetService("RunService").RenderStepped:Wait()
+				game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = hrp
+			end
+		end)
+	else
+		antifallt.Name = "No fall: OFF"
+		equip:Play()
+		if _G.AntiFall then _G.AntiFall:Disconnect() end
+	end
+end)
+local movert = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+movert.Name = "Move Frozen"
+movert.CanBeDropped = false
+movert.RequiresHandle = false
+local MoivPA = false
+movert.Activated:Connect(function()
+	local part = game.Players.LocalPlayer:GetMouse().Target
+    if not movert:FindFirstChild("MOVING") then
+	    if part ~= nil and part:FindFirstChild("FROZENPARTS") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+            Instance.new("BoolValue", movert).Name = "MOVING"
+            MoivPA = true
+            while MoivPA == true do
+                if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
+                    part.FREEZEHOLDER.Position = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, part.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
+                else
+                    MoivPA = false
+                    MoverConnection:Disconnect()
+                end
+                game:GetService("RunService").Heartbeat:Wait()
+            end
+        end
+    else
+        MoivPA = false
+        movert.MOVING:Destroy()
+    end
+end)
+movert.Unequipped:Connect(function()
+    MoivPA = false
+    if movert:FindFirstChild("MOVING") then movert.MOVING:Destroy() end
+end)
+if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:WaitForChild("Humanoid", 5) then
+	game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+		if grab:FindFirstChild("POSTss") then
+			grab.POSTss:Destroy()
+			game.Players.LocalPlayer.ReplicationFocus = trueREPfocus
+			for i, v in pairs(Parts) do
+				if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+					v.SPECIALgrab:Destroy()
+					v.ROTATEControl:Destroy()
+					v.POSTB:Destroy()
+					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+					v.CustomPhysicalProperties = nil
+					if v:FindFirstChild("CouldCollide") then
+						v.CouldCollide:Destroy()
+						v.CanCollide = true
+					end
+					if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+					v.Velocity = Vector3.new(0, 0, 0)
+				else
+					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+					if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+				end
+			end
+			table.clear(Parts)
+		end
+		for i, v in pairs(FrozenParts) do
+			if v ~= nil and v:FindFirstChild("FROZENPARTS") then
+				thaw:Play()
+				hasAnyFreezes = false
+				v.CustomPhysicalProperties = nil
+				v.FROZENPARTS:Destroy()
+				v:FindFirstChild("FREEZEHOLDER"):Destroy()
+				v:FindFirstChild("SPECIALHOLDER"):Destroy()
+				v:FindFirstChild("ROTATEHOLDER"):Destroy()
+				v:FindFirstChild("ATTACH"):Destroy()
+			end
+		end
+		table.clear(FrozenParts)
+		grab:Destroy()
+        movert:Destroy()
+		unfreezeallt:Destroy()
+		antifallt:Destroy()
+		if _G.AntiFall then _G.AntiFall:Disconnect() end
+	end)
+end
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+	local grab = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+	grab.Name = "Grab"
+	grab.CanBeDropped = false
+	grab.RequiresHandle = false
+	grab.Activated:Connect(function()
+		local part = game.Players.LocalPlayer:GetMouse().Target
+		if not grab:FindFirstChild("POSTss") then
+			if part ~= nil and not part:FindFirstChild("FROZENPARTS") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+				game.Players.LocalPlayer.ReplicationFocus = workspace
+				table.insert(Parts, part)
+				equip:Play()
+				Instance.new("BoolValue", grab).Name = "POSTss"
+				part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+				if part.CanCollide == true then
+					Instance.new("BoolValue", part).Name = "CouldCollide"
+				end
+				part.CanCollide = false
+				local fe = Instance.new("Part", workspace)
+				fe.Name = "fdsdffsdsdf"
+				fe.CanCollide = false
+				fe.Size = Vector3.new(0.1, 0.1, 0.1)
+				fe.Massless = true
+				fe.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7*tonumber(distance.Value))
+				local weld = Instance.new("WeldConstraint", game.Players.LocalPlayer.Character.HumanoidRootPart)
+				weld.Name = "Specccc"
+				weld.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
+				weld.Part1 = fe
+				local as1 = Instance.new("Attachment", fe)
+				local as2 = Instance.new("Attachment", part)
+				as1.Name = "POSTA"
+				as2.Name = "POSTB"
+				local ali = Instance.new("AlignPosition", part)
+				ali.Name = "SPECIALgrab"
+				ali.MaxForce = 9999999999999999
+				ali.MaxVelocity = math.huge
+				ali.Responsiveness = 200
+				ali.Attachment0 = as2
+				ali.Attachment1 = as1
+				local rotatestop = Instance.new("AlignOrientation", part)
+				rotatestop.Name = "ROTATEControl"
+				rotatestop.Mode = Enum.OrientationAlignmentMode.OneAttachment
+				rotatestop.Attachment0 = as2
+				rotatestop.CFrame = part.CFrame
+				rotatestop.MaxAngularVelocity = math.huge
+				rotatestop.MaxTorque = math.huge
+				rotatestop.Responsiveness = 200
+			end
+		else
+			grab.POSTss:Destroy()
+			game.Players.LocalPlayer.ReplicationFocus = trueREPfocus
+			for i, v in pairs(Parts) do
+				if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+					v.SPECIALgrab:Destroy()
+					v.ROTATEControl:Destroy()
+					v.POSTB:Destroy()
+					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+					v.CustomPhysicalProperties = nil
+					if v:FindFirstChild("CouldCollide") then
+						v.CouldCollide:Destroy()
+						v.CanCollide = true
+					end
+					if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+					v.Velocity = Vector3.new(0, 0, 0)
+				else
+					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+					if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+				end
+			end
+			table.clear(Parts)
+		end
+	end)
+	grab.Equipped:Connect(function()
+		G2L["1"]["Enabled"] = true;
+	end)
+	grab.Unequipped:Connect(function()
+		G2L["1"]["Enabled"] = false;
+		if grab:FindFirstChild("POSTss") then
+			grab.POSTss:Destroy()
+			game.Players.LocalPlayer.ReplicationFocus = trueREPfocus
+			for i, v in pairs(Parts) do
+				if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+					v.SPECIALgrab:Destroy()
+					v.ROTATEControl:Destroy()
+					v.POSTB:Destroy()
+					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+					v.CustomPhysicalProperties = nil
+					if v:FindFirstChild("CouldCollide") then
+						v.CouldCollide:Destroy()
+						v.CanCollide = true
+					end
+					if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+					v.Velocity = Vector3.new(0, 0, 0)
+				else
+					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+					if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+				end
+			end
+			table.clear(Parts)
+		end
+	end)
+	local unfreezeallt = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+	unfreezeallt.Name = "Unfreeze All"
+	unfreezeallt.CanBeDropped = false
+	unfreezeallt.RequiresHandle = false
+	unfreezeallt.Activated:Connect(function()
+		for i, v in pairs(FrozenParts) do
+			if v ~= nil and v:FindFirstChild("FROZENPARTS") then
+				thaw:Play()
+				hasAnyFreezes = false
+				v.CustomPhysicalProperties = nil
+				v.FROZENPARTS:Destroy()
+				v:FindFirstChild("FREEZEHOLDER"):Destroy()
+				v:FindFirstChild("SPECIALHOLDER"):Destroy()
+				v:FindFirstChild("ROTATEHOLDER"):Destroy()
+				v:FindFirstChild("ATTACH"):Destroy()
+			end
+		end
+		table.clear(FrozenParts)
+	end)
+	local antifallt = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+	antifallt.Name = "No fall: OFF"
+	antifallt.CanBeDropped = false
+	antifallt.RequiresHandle = false
+	antifallt.Activated:Connect(function()
+		if antifallt.Name == "No fall: OFF" then
+			antifallt.Name = "No fall: ON"
+			equip:Play()
+			_G.AntiFall = game:GetService("RunService").Heartbeat:Connect(function()
+				if game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") then
+					local hrp = game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity
+					game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = Vector3.zero
+					game:GetService("RunService").RenderStepped:Wait()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.AssemblyLinearVelocity = hrp
+				end
+			end)
+		else
+			antifallt.Name = "No fall: OFF"
+			equip:Play()
+			if _G.AntiFall then _G.AntiFall:Disconnect() end
+		end
+	end)
+    local movert = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+    movert.Name = "Move Frozen"
+    movert.CanBeDropped = false
+    movert.RequiresHandle = false
+    local MoivPA = false
+    movert.Activated:Connect(function()
+	    local part = game.Players.LocalPlayer:GetMouse().Target
+        if not movert:FindFirstChild("MOVING") then
+	        if part ~= nil and part:FindFirstChild("FROZENPARTS") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+                Instance.new("BoolValue", movert).Name = "MOVING"
+                MoivPA = true
+                while MoivPA == true do
+                    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
+                        part.FREEZEHOLDER.Position = Vector3.new(game.Players.LocalPlayer.Character.HumanoidRootPart.Position.X, part.Position.Y, game.Players.LocalPlayer.Character.HumanoidRootPart.Position.Z)
+                    else
+                        MoivPA = false
+                        MoverConnection:Disconnect()
+                    end
+                    game:GetService("RunService").Heartbeat:Wait()
+                end
+            end
+        else
+            MoivPA = false
+            movert.MOVING:Destroy()
+        end
+    end)
+    movert.Unequipped:Connect(function()
+        MoivPA = false
+        if movert:FindFirstChild("MOVING") then movert.MOVING:Destroy() end
+    end)
+	if game.Players.LocalPlayer.Character:WaitForChild("Humanoid", 5) then
+		game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+			if grab:FindFirstChild("POSTss") then
+				grab.POSTss:Destroy()
+				game.Players.LocalPlayer.ReplicationFocus = trueREPfocus
+				for i, v in pairs(Parts) do
+					if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+						v.SPECIALgrab:Destroy()
+						v.ROTATEControl:Destroy()
+						v.POSTB:Destroy()
+						if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+						v.CustomPhysicalProperties = nil
+						if v:FindFirstChild("CouldCollide") then
+							v.CouldCollide:Destroy()
+							v.CanCollide = true
+						end
+						if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+						v.Velocity = Vector3.new(0, 0, 0)
+					else
+						if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+						if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+					end
+				end
+				table.clear(Parts)
+			end
+			for i, v in pairs(FrozenParts) do
+				if v ~= nil and v:FindFirstChild("FROZENPARTS") then
+					thaw:Play()
+					hasAnyFreezes = false
+					v.CustomPhysicalProperties = nil
+					v.FROZENPARTS:Destroy()
+					v:FindFirstChild("FREEZEHOLDER"):Destroy()
+					v:FindFirstChild("SPECIALHOLDER"):Destroy()
+					v:FindFirstChild("ROTATEHOLDER"):Destroy()
+					v:FindFirstChild("ATTACH"):Destroy()
+				end
+			end
+			table.clear(FrozenParts)
+			grab:Destroy()
+            movert:Destroy()
+			unfreezeallt:Destroy()
+			antifallt:Destroy()
+			if _G.AntiFall then _G.AntiFall:Disconnect() end
+		end)
+	end
+end)
+
+local MovingPartUp = false
+local MovingPartDown = false
+_G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
+	if input.KeyCode == Enum.KeyCode.B and gameProcessed == false and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Grab") and game.Players.LocalPlayer.Character.Grab:FindFirstChild("POSTss") then
+		for i, v in pairs(Parts) do
+			if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+                if not v:FindFirstChild("withFling") then
+				hasAnyFreezes = true
+				table.insert(FrozenParts, v)
+				Instance.new("BoolValue", v).Name = "FROZENPARTS"
+				table.remove(Parts, 0)
+				freeze:Play()
+				v.SPECIALgrab:Destroy()
+				v.ROTATEControl:Destroy()
+				v.POSTB:Destroy()
+				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+				v.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+				if v:FindFirstChild("CouldCollide") then
+					v.CouldCollide:Destroy()
+					v.CanCollide = true
+				end
+				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+				local Holder = Instance.new("Part", v)
+				Holder.Name = "FREEZEHOLDER"
+                Holder.Size = Vector3.new(0)
+				Holder.Anchored = true
+				Holder.CanCollide = false
+				Holder.Transparency = 1
+				Holder.Position = v.Position
+				local Connector1 = Instance.new("Attachment", Holder)
+				local Connector2 = Instance.new("Attachment", v)
+				Connector2.Name = "ATTACH"
+				local ali = Instance.new("AlignPosition", v)
+				ali.Name = "SPECIALHOLDER"
+				ali.MaxForce = 9999999999999999
+				ali.MaxVelocity = math.huge
+				ali.Responsiveness = 200
+				ali.Attachment0 = Connector2
+				ali.Attachment1 = Connector1
+				local rotatestop = Instance.new("AlignOrientation", v)
+				rotatestop.Name = "ROTATEHOLDER"
+				rotatestop.Mode = Enum.OrientationAlignmentMode.OneAttachment
+				rotatestop.Attachment0 = Connector2
+				rotatestop.CFrame = v.CFrame
+				rotatestop.MaxAngularVelocity = math.huge
+				rotatestop.MaxTorque = math.huge
+				rotatestop.Responsiveness = 200
+                end
+			else
+				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+			end
+		end
+	end
+    if input.KeyCode == Enum.KeyCode.KeypadTwo and gameProcessed == false and MovingPartUp == false then
+        local part = game.Players.LocalPlayer:GetMouse().Target
+	    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+            MovingPartDown = true
+            while MovingPartDown == true do
+                if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
+                    part.FREEZEHOLDER.Position = part.FREEZEHOLDER.Position - Vector3.new(0, 0.6, 0)
+                else
+                    MovingPartDown = false
+                end
+                task.wait(0.02)
+            end
+        end
+    end
+    if input.KeyCode == Enum.KeyCode.KeypadFive and gameProcessed == false and MovingPartDown == false then
+        local part = game.Players.LocalPlayer:GetMouse().Target
+	    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+            MovingPartUp = true
+            while MovingPartUp == true do
+                if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
+                    part.FREEZEHOLDER.Position = part.FREEZEHOLDER.Position + Vector3.new(0, 0.6, 0)
+                else
+                    MovingPartUp = false
+                end
+                task.wait(0.02)
+            end
+        end
+    end
+    if input.KeyCode == Enum.KeyCode.KeypadThree and gameProcessed == false and MovingPartDown == false and MovingPartUp == false and game.Players.LocalPlayer.Character:FindFirstChild("Move Frozen") then
+        local part = game.Players.LocalPlayer:GetMouse().Target
+	    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+            part.FREEZEHOLDER.Position = Vector3.new(-120, 58, 43)
+        end
+    end
+    if input.KeyCode == Enum.KeyCode.KeypadFour and gameProcessed == false and MovingPartDown == false and MovingPartUp == false then
+        if game.Players.LocalPlayer.Character:FindFirstChild("Move Frozen") then
+            local part = game.Players.LocalPlayer:GetMouse().Target
+	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+                local pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7*tonumber(distance.Value))
+                part.FREEZEHOLDER.Position = pos.Position
+            end
+        elseif game.Players.LocalPlayer.Character:FindFirstChild("Grab") then
+            for i, v in pairs(Parts) do
+		        if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+                    if not v:FindFirstChild("withFling") then
+			            v.ROTATEControl.Enabled = false
+                        local fling = Instance.new("Torque", v)
+                        fling.Name = "withFling"
+                        fling.Attachment0 = v.POSTB
+                        fling.Torque = Vector3.new(100000, 100000, 100000)
+                    else
+                        v.ROTATEControl.Enabled = true
+                        v.withFling:Destroy()
+                    end
+		        end
+	        end
+        end
+    end
+end)
+
+game:GetService("UserInputService").InputEnded:Connect(function(input, gameProcessed)
+	if input.KeyCode == Enum.KeyCode.KeypadTwo and gameProcessed == false and MovingPartDown == true then
+        MovingPartDown = false
+    end
+    if input.KeyCode == Enum.KeyCode.KeypadFive and gameProcessed == false and MovingPartUp == true then
+        MovingPartUp = false
+    end
+end)
+
+local SuperStepper = Instance.new("BindableEvent", game.Players.LocalPlayer)
+SuperStepper.Name = "NetOwned"
+for _, event in ipairs({RunS.PreSimulation, RunS.PostSimulation}) do
+	event:Connect(function()
+		SuperStepper:Fire(SuperStepper, tick())
+	end)
+end
+
+if game.Players.LocalPlayer.Character ~= nil then
+    game.Players.LocalPlayer.Character.ChildAdded:Connect(function(child)
+        if child.Name == "SurvivalTag" then
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+	            Title = "Disaster Notifier",
+	            Text = ""..child.Value,
+                Duration = 15
+            })
+            print("Disaster: "..child.Value)
+        end
+    end)
+end
+
+game.Players.LocalPlayer.CharacterAdded:Connect(function(chr)
+    chr.ChildAdded:Connect(function(child)
+        if child.Name == "SurvivalTag" then
+            game:GetService("StarterGui"):SetCore("SendNotification",{
+	            Title = "Disaster Notifier",
+	            Text = ""..child.Value,
+                Duration = 15
+            })
+            print("Disaster: "..child.Value)
+        end
+    end)
+end)
+
+_G.SimRad = SuperStepper.Event:Connect(function()
+	sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
+    for i, v in pairs(Parts) do
+		if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+			task.spawn(function() v.Velocity = Vector3.new(5.46262424, 32.46262424, 5.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0) end)
+		end
+	end
+	for i, v in pairs(FrozenParts) do
+		if v ~= nil and v:FindFirstChild("FROZENPARTS") then
+			task.spawn(function() v.Velocity = Vector3.new(5.46262424, 32.46262424, 5.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0) end)
+		end
+	end
+end)
