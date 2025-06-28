@@ -240,7 +240,7 @@ grab.Activated:Connect(function()
 			table.insert(Parts, part)
 			equip:Play()
 			Instance.new("BoolValue", grab).Name = "POSTss"
-			part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+			part.CustomPhysicalProperties = PhysicalProperties.new(0.0001, 0, 0, 0, 0)
 			if part.CanCollide == true then
 				Instance.new("BoolValue", part).Name = "CouldCollide"
 			end
@@ -250,7 +250,7 @@ grab.Activated:Connect(function()
 			fe.CanCollide = false
 			fe.Size = Vector3.new(0.1, 0.1, 0.1)
 			fe.Massless = true
-			fe.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7*tonumber(distance.Value))
+			fe.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -5*tonumber(distance.Value))
 			local weld = Instance.new("WeldConstraint", game.Players.LocalPlayer.Character.HumanoidRootPart)
 			weld.Name = "Specccc"
 			weld.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
@@ -263,7 +263,7 @@ grab.Activated:Connect(function()
 			ali.Name = "SPECIALgrab"
 			ali.MaxForce = 9999999999999999
 			ali.MaxVelocity = math.huge
-			ali.Responsiveness = 200
+			ali.Responsiveness = 5000
 			ali.Attachment0 = as2
 			ali.Attachment1 = as1
 			local rotatestop = Instance.new("AlignOrientation", part)
@@ -273,7 +273,7 @@ grab.Activated:Connect(function()
 			rotatestop.CFrame = part.CFrame
 			rotatestop.MaxAngularVelocity = math.huge
 			rotatestop.MaxTorque = math.huge
-			rotatestop.Responsiveness = 200
+			rotatestop.Responsiveness = 5000
 		end
 	else
 		grab.POSTss:Destroy()
@@ -399,6 +399,7 @@ movert.Unequipped:Connect(function()
     MoivPA = false
     if movert:FindFirstChild("MOVING") then movert.MOVING:Destroy() end
 end)
+local MoivPA = false
 if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Character:WaitForChild("Humanoid", 5) then
 	game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
 		if grab:FindFirstChild("POSTss") then
@@ -458,7 +459,7 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 				table.insert(Parts, part)
 				equip:Play()
 				Instance.new("BoolValue", grab).Name = "POSTss"
-				part.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
+				part.CustomPhysicalProperties = PhysicalProperties.new(0.0001, 0, 0, 0, 0)
 				if part.CanCollide == true then
 					Instance.new("BoolValue", part).Name = "CouldCollide"
 				end
@@ -468,7 +469,7 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 				fe.CanCollide = false
 				fe.Size = Vector3.new(0.1, 0.1, 0.1)
 				fe.Massless = true
-				fe.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7*tonumber(distance.Value))
+				fe.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -5*tonumber(distance.Value))
 				local weld = Instance.new("WeldConstraint", game.Players.LocalPlayer.Character.HumanoidRootPart)
 				weld.Name = "Specccc"
 				weld.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
@@ -481,7 +482,7 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 				ali.Name = "SPECIALgrab"
 				ali.MaxForce = 9999999999999999
 				ali.MaxVelocity = math.huge
-				ali.Responsiveness = 200
+				ali.Responsiveness = 5000
 				ali.Attachment0 = as2
 				ali.Attachment1 = as1
 				local rotatestop = Instance.new("AlignOrientation", part)
@@ -491,7 +492,7 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 				rotatestop.CFrame = part.CFrame
 				rotatestop.MaxAngularVelocity = math.huge
 				rotatestop.MaxTorque = math.huge
-				rotatestop.Responsiveness = 200
+				rotatestop.Responsiveness = 5000
 			end
 		else
 			grab.POSTss:Destroy()
@@ -667,89 +668,147 @@ end)
 local MovingPartUp = false
 local MovingPartDown = false
 _G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(function(input, gameProcessed)
-	if input.KeyCode == Enum.KeyCode.B and gameProcessed == false and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChild("Grab") and game.Players.LocalPlayer.Character.Grab:FindFirstChild("POSTss") then
-		for i, v in pairs(Parts) do
-			if v ~= nil and v:FindFirstChild("SPECIALgrab") then
-                if not v:FindFirstChild("withFling") then
-				hasAnyFreezes = true
-				table.insert(FrozenParts, v)
-				Instance.new("BoolValue", v).Name = "FROZENPARTS"
-				table.remove(Parts, 0)
-				freeze:Play()
-				v.SPECIALgrab:Destroy()
-				v.ROTATEControl:Destroy()
-				v.POSTB:Destroy()
-				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-				v.CustomPhysicalProperties = PhysicalProperties.new(0, 0, 0, 0, 0)
-				if v:FindFirstChild("CouldCollide") then
-					v.CouldCollide:Destroy()
-					v.CanCollide = true
-				end
-				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
-				local Holder = Instance.new("Part", v)
-				Holder.Name = "FREEZEHOLDER"
-                Holder.Size = Vector3.new(0)
-				Holder.Anchored = true
-				Holder.CanCollide = false
-				Holder.Transparency = 1
-				Holder.Position = v.Position
-				local Connector1 = Instance.new("Attachment", Holder)
-				local Connector2 = Instance.new("Attachment", v)
-				Connector2.Name = "ATTACH"
-				local ali = Instance.new("AlignPosition", v)
-				ali.Name = "SPECIALHOLDER"
-				ali.MaxForce = 9999999999999999
-				ali.MaxVelocity = math.huge
-				ali.Responsiveness = 200
-				ali.Attachment0 = Connector2
-				ali.Attachment1 = Connector1
-				local rotatestop = Instance.new("AlignOrientation", v)
-				rotatestop.Name = "ROTATEHOLDER"
-				rotatestop.Mode = Enum.OrientationAlignmentMode.OneAttachment
-				rotatestop.Attachment0 = Connector2
-				rotatestop.CFrame = v.CFrame
-				rotatestop.MaxAngularVelocity = math.huge
-				rotatestop.MaxTorque = math.huge
-				rotatestop.Responsiveness = 200
+	if input.KeyCode == Enum.KeyCode.B and gameProcessed == false and game.Players.LocalPlayer.Character then
+		if game.Players.LocalPlayer.Character:FindFirstChild("Grab") and game.Players.LocalPlayer.Character.Grab:FindFirstChild("POSTss") then
+            for i, v in pairs(Parts) do
+			    if v ~= nil and v:FindFirstChild("SPECIALgrab") then
+                    if not v:FindFirstChild("withFling") then
+				    hasAnyFreezes = true
+				    table.insert(FrozenParts, v)
+				    Instance.new("BoolValue", v).Name = "FROZENPARTS"
+				    table.remove(Parts, 0)
+				    freeze:Play()
+				    v.SPECIALgrab:Destroy()
+				    v.ROTATEControl:Destroy()
+				    v.POSTB:Destroy()
+				    if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+				    v.CustomPhysicalProperties = PhysicalProperties.new(0.0001, 0, 0, 0, 0)
+				    if v:FindFirstChild("CouldCollide") then
+					    v.CouldCollide:Destroy()
+					    v.CanCollide = true
+				    end
+				    if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+				    local Holder = Instance.new("Part", v)
+				    Holder.Name = "FREEZEHOLDER"
+                    Holder.Size = Vector3.new(0)
+				    Holder.Anchored = true
+                    Holder.Massless = true
+				    Holder.CanCollide = false
+				    Holder.Transparency = 1
+				    Holder.Position = v.Position
+                    local FrozenOnPos = Instance.new("CFrameValue", Holder)
+                    FrozenOnPos.Name = "FrozenPos"
+                    FrozenOnPos.Value = Holder.CFrame
+				    local Connector1 = Instance.new("Attachment", Holder)
+				    local Connector2 = Instance.new("Attachment", v)
+				    Connector2.Name = "ATTACH"
+				    local ali = Instance.new("AlignPosition", v)
+				    ali.Name = "SPECIALHOLDER"
+				    ali.MaxForce = 9999999999999999
+				    ali.MaxVelocity = math.huge
+				    ali.Responsiveness = 5000
+				    ali.Attachment0 = Connector2
+				    ali.Attachment1 = Connector1
+				    local rotatestop = Instance.new("AlignOrientation", v)
+				    rotatestop.Name = "ROTATEHOLDER"
+				    rotatestop.Mode = Enum.OrientationAlignmentMode.OneAttachment
+				    rotatestop.Attachment0 = Connector2
+				    rotatestop.CFrame = v.CFrame
+				    rotatestop.MaxAngularVelocity = math.huge
+				    rotatestop.MaxTorque = math.huge
+				    rotatestop.Responsiveness = 5000
+                    end
+			    else
+				    if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
+				    if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
+			    end
+		    end
+        elseif game.Players.LocalPlayer.Character:FindFirstChild("Move Frozen") and MovingPartDown == false and MovingPartUp == false then
+            local part = game.Players.LocalPlayer:GetMouse().Target
+            if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part.Anchored == false then
+                if not part.FREEZEHOLDER:FindFirstChild("MoveWithPlayer") then
+                    part.FREEZEHOLDER.Anchored = false
+                    if part.CanCollide == true then
+				        Instance.new("BoolValue", part).Name = "CouldCollide"
+                        part.CanCollide = false
+			        end
+                    local partAttach = Instance.new("WeldConstraint", part.FREEZEHOLDER)
+                    partAttach.Name = "MoveWithPlayer"
+                    partAttach.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
+                    partAttach.Part1 = part.FREEZEHOLDER
+                else
+                    part.FREEZEHOLDER.Anchored = true
+                    part.FREEZEHOLDER.MoveWithPlayer:Destroy()
+                    if part:FindFirstChild("CouldCollide") then
+					    part.CouldCollide:Destroy()
+					    part.CanCollide = true
+				    end
                 end
-			else
-				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-				if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
-			end
-		end
+            end
+        end
 	end
     if input.KeyCode == Enum.KeyCode.KeypadTwo and gameProcessed == false and MovingPartUp == false then
-        local part = game.Players.LocalPlayer:GetMouse().Target
-	    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
-            MovingPartDown = true
-            while MovingPartDown == true do
-                if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
-                    part.FREEZEHOLDER.Position = part.FREEZEHOLDER.Position - Vector3.new(0, 0.6, 0)
-                else
-                    MovingPartDown = false
+        if not game.Players.LocalPlayer.Character:FindFirstChild("Teleport Tool") then
+            local part = game.Players.LocalPlayer:GetMouse().Target
+	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+                MovingPartDown = true
+                while MovingPartDown == true do
+                    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
+                        part.FREEZEHOLDER.Position = part.FREEZEHOLDER.Position - Vector3.new(0, 0.65, 0)
+                    else
+                        MovingPartDown = false
+                    end
+                    task.wait(0.02)
                 end
-                task.wait(0.02)
+            end
+        else
+            if not workspace:FindFirstChild("PlatformTPfor") then
+                local platform = Instance.new("Part", workspace)
+                platform.Name = "PlatformTPfor"
+                platform.Anchored = true
+                platform.Size = Vector3.new(6, 0.5, 6)
+                platform.Transparency = 0.5
+                platform.Position = Vector3.new(-102, 47, 150053)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-102, 52, 150053), game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation)
+                task.wait(2)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-219, 194, 343), game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation)
+                platform:Destroy()
             end
         end
     end
     if input.KeyCode == Enum.KeyCode.KeypadFive and gameProcessed == false and MovingPartDown == false then
-        local part = game.Players.LocalPlayer:GetMouse().Target
-	    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
-            MovingPartUp = true
-            while MovingPartUp == true do
-                if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
-                    part.FREEZEHOLDER.Position = part.FREEZEHOLDER.Position + Vector3.new(0, 0.6, 0)
-                else
-                    MovingPartUp = false
+        if not game.Players.LocalPlayer.Character:FindFirstChild("Teleport Tool") then
+            local part = game.Players.LocalPlayer:GetMouse().Target
+	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+                MovingPartUp = true
+                while MovingPartUp == true do
+                    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
+                        part.FREEZEHOLDER.Position = part.FREEZEHOLDER.Position + Vector3.new(0, 0.5, 0)
+                    else
+                        MovingPartUp = false
+                    end
+                    task.wait(0.02)
                 end
-                task.wait(0.02)
+            end
+        else
+            if not workspace:FindFirstChild("PlatformTPfor") then
+                local platform = Instance.new("Part", workspace)
+                platform.Name = "PlatformTPfor"
+                platform.Anchored = true
+                platform.Size = Vector3.new(6, 0.5, 6)
+                platform.Transparency = 0.5
+                platform.Position = Vector3.new(-102, 47, 150053)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(-102, 52, 150053), game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation)
+                task.wait(2)
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(72, 47, -104), game.Players.LocalPlayer.Character.HumanoidRootPart.Orientation)
+                platform:Destroy()
             end
         end
     end
     if input.KeyCode == Enum.KeyCode.KeypadThree and gameProcessed == false and MovingPartDown == false and MovingPartUp == false and game.Players.LocalPlayer.Character:FindFirstChild("Move Frozen") then
         local part = game.Players.LocalPlayer:GetMouse().Target
 	    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
-            part.FREEZEHOLDER.Position = Vector3.new(-120, 58, 43)
+            part.FREEZEHOLDER.Position = Vector3.new(-149, 55, 8)
         end
     end
     if input.KeyCode == Enum.KeyCode.KeypadFour and gameProcessed == false and MovingPartDown == false and MovingPartUp == false then
@@ -776,6 +835,26 @@ _G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(fun
 	        end
         end
     end
+    if input.KeyCode == Enum.KeyCode.KeypadZero and gameProcessed == false and MovingPartDown == false and MovingPartUp == false then
+        if not game.Players.LocalPlayer.Character:FindFirstChild("Grab") then
+            local part = game.Players.LocalPlayer:GetMouse().Target
+	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+                part.FREEZEHOLDER.Position = part.FREEZEHOLDER.FrozenPos.Value.Position
+            end
+        else
+            local flickHome = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+            local TPPos = Instance.new("Part", workspace)
+            TPPos.Name = "TPPos"
+            TPPos.Transparency = 1
+            TPPos.Anchored = true
+            TPPos.CanCollide = false
+            TPPos.Position = game.Players.LocalPlayer:GetMouse().Hit.Position + Vector3.new(0, 5, 0)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = TPPos.CFrame
+            TPPos:Destroy()
+            task.wait(0.8)
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = flickHome
+        end
+    end
 end)
 
 game:GetService("UserInputService").InputEnded:Connect(function(input, gameProcessed)
@@ -795,6 +874,17 @@ for _, event in ipairs({RunS.PreSimulation, RunS.PostSimulation}) do
 	end)
 end
 
+for _, note in pairs(game.Players:GetPlayers()) do
+    if note ~= game.Players.LocalPlayer and note.Character and note.Character:FindFirstChild("SurvivalTag") then
+        game:GetService("StarterGui"):SetCore("SendNotification",{
+	        Title = "Join Disaster Notifier",
+	        Text = ""..note.Character.SurvivalTag.Value,
+            Duration = 15
+        })
+        print("Disaster: "..note.Character.SurvivalTag.Value)
+        break
+    end
+end
 if game.Players.LocalPlayer.Character ~= nil then
     game.Players.LocalPlayer.Character.ChildAdded:Connect(function(child)
         if child.Name == "SurvivalTag" then
@@ -825,12 +915,12 @@ _G.SimRad = SuperStepper.Event:Connect(function()
 	sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
     for i, v in pairs(Parts) do
 		if v ~= nil and v:FindFirstChild("SPECIALgrab") then
-			task.spawn(function() v.Velocity = Vector3.new(5.46262424, 32.46262424, 5.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0) end)
+			v.Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0)
 		end
 	end
 	for i, v in pairs(FrozenParts) do
 		if v ~= nil and v:FindFirstChild("FROZENPARTS") then
-			task.spawn(function() v.Velocity = Vector3.new(5.46262424, 32.46262424, 5.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0) end)
+			v.Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0)
 		end
 	end
 end)
