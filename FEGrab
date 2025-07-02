@@ -5,6 +5,9 @@ local Parts = {}
 local FrozenParts = {}
 local hasAnyFreezes = false
 local G2L = {};
+local Fold = Instance.new("Folder", workspace)
+Fold.Name = "FakeCollide"
+game.Players.LocalPlayer:GetMouse().TargetFilter = Fold
 G2L["1"] = Instance.new("ScreenGui", game:GetService("Players").LocalPlayer:FindFirstChild("PlayerGui"));
 G2L["1"]["Name"] = [[GRABTOOL]];
 G2L["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
@@ -240,7 +243,6 @@ grab.Activated:Connect(function()
 			table.insert(Parts, part)
 			equip:Play()
 			Instance.new("BoolValue", grab).Name = "POSTss"
-			part.CustomPhysicalProperties = PhysicalProperties.new(0.0001, 0, 0, 0, 0)
 			if part.CanCollide == true then
 				Instance.new("BoolValue", part).Name = "CouldCollide"
 			end
@@ -284,7 +286,6 @@ grab.Activated:Connect(function()
 				v.ROTATEControl:Destroy()
 				v.POSTB:Destroy()
 				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-				v.CustomPhysicalProperties = nil
 				if v:FindFirstChild("CouldCollide") then
 					v.CouldCollide:Destroy()
 					v.CanCollide = true
@@ -313,7 +314,6 @@ grab.Unequipped:Connect(function()
 				v.ROTATEControl:Destroy()
 				v.POSTB:Destroy()
 				if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-				v.CustomPhysicalProperties = nil
 				if v:FindFirstChild("CouldCollide") then
 					v.CouldCollide:Destroy()
 					v.CanCollide = true
@@ -337,12 +337,19 @@ unfreezeallt.Activated:Connect(function()
 		if v ~= nil and v:FindFirstChild("FROZENPARTS") then
 			thaw:Play()
 			hasAnyFreezes = false
-			v.CustomPhysicalProperties = nil
 			v.FROZENPARTS:Destroy()
 			v:FindFirstChild("FREEZEHOLDER"):Destroy()
 			v:FindFirstChild("SPECIALHOLDER"):Destroy()
 			v:FindFirstChild("ROTATEHOLDER"):Destroy()
 			v:FindFirstChild("ATTACH"):Destroy()
+			if v:FindFirstChild("CouldCollide") then
+				v.CouldCollide:Destroy()
+				v.CanCollide = true
+			end
+			for i, v in pairs(workspace.FakeCollide:GetChildren()) do v:Destroy() end
+			if v:FindFirstChild("cloneROTATEHOLDER") then v.cloneROTATEHOLDER:Destroy() end
+			if v:FindFirstChild("cloneHolder") then v.cloneHolder:Destroy() end
+			if v:FindFirstChild("Connector1") then v.Connector1:Destroy() end
 		end
 	end
 	table.clear(FrozenParts)
@@ -377,7 +384,7 @@ local MoivPA = false
 movert.Activated:Connect(function()
 	local part = game.Players.LocalPlayer:GetMouse().Target
     if not movert:FindFirstChild("MOVING") then
-	    if part ~= nil and part:FindFirstChild("FROZENPARTS") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+	    if part ~= nil and part:FindFirstChild("FROZENPARTS") and part:IsA("BasePart") and part.Anchored == false then
             Instance.new("BoolValue", movert).Name = "MOVING"
             MoivPA = true
             while MoivPA == true do
@@ -411,7 +418,6 @@ if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Charac
 					v.ROTATEControl:Destroy()
 					v.POSTB:Destroy()
 					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-					v.CustomPhysicalProperties = nil
 					if v:FindFirstChild("CouldCollide") then
 						v.CouldCollide:Destroy()
 						v.CanCollide = true
@@ -429,12 +435,18 @@ if game.Players.LocalPlayer.Character ~= nil and game.Players.LocalPlayer.Charac
 			if v ~= nil and v:FindFirstChild("FROZENPARTS") then
 				thaw:Play()
 				hasAnyFreezes = false
-				v.CustomPhysicalProperties = nil
 				v.FROZENPARTS:Destroy()
 				v:FindFirstChild("FREEZEHOLDER"):Destroy()
 				v:FindFirstChild("SPECIALHOLDER"):Destroy()
 				v:FindFirstChild("ROTATEHOLDER"):Destroy()
 				v:FindFirstChild("ATTACH"):Destroy()
+				if v:FindFirstChild("CouldCollide") then
+					v.CouldCollide:Destroy()
+					v.CanCollide = true
+				end
+				if v:FindFirstChild("cloneROTATEHOLDER") then v.cloneROTATEHOLDER:Destroy() end
+				if v:FindFirstChild("cloneHolder") then v.cloneHolder:Destroy() end
+				if v:FindFirstChild("Connector1") then v.Connector1:Destroy() end
 			end
 		end
 		table.clear(FrozenParts)
@@ -459,7 +471,6 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 				table.insert(Parts, part)
 				equip:Play()
 				Instance.new("BoolValue", grab).Name = "POSTss"
-				part.CustomPhysicalProperties = PhysicalProperties.new(0.0001, 0, 0, 0, 0)
 				if part.CanCollide == true then
 					Instance.new("BoolValue", part).Name = "CouldCollide"
 				end
@@ -503,7 +514,6 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 					v.ROTATEControl:Destroy()
 					v.POSTB:Destroy()
 					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-					v.CustomPhysicalProperties = nil
 					if v:FindFirstChild("CouldCollide") then
 						v.CouldCollide:Destroy()
 						v.CanCollide = true
@@ -532,7 +542,6 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 					v.ROTATEControl:Destroy()
 					v.POSTB:Destroy()
 					if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-					v.CustomPhysicalProperties = nil
 					if v:FindFirstChild("CouldCollide") then
 						v.CouldCollide:Destroy()
 						v.CanCollide = true
@@ -556,12 +565,18 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 			if v ~= nil and v:FindFirstChild("FROZENPARTS") then
 				thaw:Play()
 				hasAnyFreezes = false
-				v.CustomPhysicalProperties = nil
 				v.FROZENPARTS:Destroy()
 				v:FindFirstChild("FREEZEHOLDER"):Destroy()
 				v:FindFirstChild("SPECIALHOLDER"):Destroy()
 				v:FindFirstChild("ROTATEHOLDER"):Destroy()
 				v:FindFirstChild("ATTACH"):Destroy()
+				if v:FindFirstChild("CouldCollide") then
+					v.CouldCollide:Destroy()
+					v.CanCollide = true
+				end
+				if v:FindFirstChild("cloneROTATEHOLDER") then v.cloneROTATEHOLDER:Destroy() end
+				if v:FindFirstChild("cloneHolder") then v.cloneHolder:Destroy() end
+				if v:FindFirstChild("Connector1") then v.Connector1:Destroy() end
 			end
 		end
 		table.clear(FrozenParts)
@@ -596,7 +611,7 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
     movert.Activated:Connect(function()
 	    local part = game.Players.LocalPlayer:GetMouse().Target
         if not movert:FindFirstChild("MOVING") then
-	        if part ~= nil and part:FindFirstChild("FROZENPARTS") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+	        if part ~= nil and part:FindFirstChild("FROZENPARTS") and part:IsA("BasePart") and part.Anchored == false then
                 Instance.new("BoolValue", movert).Name = "MOVING"
                 MoivPA = true
                 while MoivPA == true do
@@ -629,7 +644,6 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 						v.ROTATEControl:Destroy()
 						v.POSTB:Destroy()
 						if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-						v.CustomPhysicalProperties = nil
 						if v:FindFirstChild("CouldCollide") then
 							v.CouldCollide:Destroy()
 							v.CanCollide = true
@@ -647,12 +661,18 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
 				if v ~= nil and v:FindFirstChild("FROZENPARTS") then
 					thaw:Play()
 					hasAnyFreezes = false
-					v.CustomPhysicalProperties = nil
 					v.FROZENPARTS:Destroy()
 					v:FindFirstChild("FREEZEHOLDER"):Destroy()
 					v:FindFirstChild("SPECIALHOLDER"):Destroy()
 					v:FindFirstChild("ROTATEHOLDER"):Destroy()
 					v:FindFirstChild("ATTACH"):Destroy()
+					if v:FindFirstChild("CouldCollide") then
+						v.CouldCollide:Destroy()
+						v.CanCollide = true
+					end
+					if v:FindFirstChild("cloneROTATEHOLDER") then v.cloneROTATEHOLDER:Destroy() end
+					if v:FindFirstChild("cloneHolder") then v.cloneHolder:Destroy() end
+					if v:FindFirstChild("Connector1") then v.Connector1:Destroy() end
 				end
 			end
 			table.clear(FrozenParts)
@@ -682,11 +702,6 @@ _G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(fun
 				    v.ROTATEControl:Destroy()
 				    v.POSTB:Destroy()
 				    if workspace:FindFirstChild("fdsdffsdsdf") then workspace.fdsdffsdsdf:Destroy() end
-				    v.CustomPhysicalProperties = PhysicalProperties.new(0.0001, 0, 0, 0, 0)
-				    if v:FindFirstChild("CouldCollide") then
-					    v.CouldCollide:Destroy()
-					    v.CanCollide = true
-				    end
 				    if game.Players.LocalPlayer.Character.HumanoidRootPart:FindFirstChild("Specccc") then game.Players.LocalPlayer.Character.HumanoidRootPart.Specccc:Destroy() end
 				    local Holder = Instance.new("Part", v)
 				    Holder.Name = "FREEZEHOLDER"
@@ -728,10 +743,6 @@ _G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(fun
             if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part.Anchored == false then
                 if not part.FREEZEHOLDER:FindFirstChild("MoveWithPlayer") then
                     part.FREEZEHOLDER.Anchored = false
-                    if part.CanCollide == true then
-				        Instance.new("BoolValue", part).Name = "CouldCollide"
-                        part.CanCollide = false
-			        end
                     local partAttach = Instance.new("WeldConstraint", part.FREEZEHOLDER)
                     partAttach.Name = "MoveWithPlayer"
                     partAttach.Part0 = game.Players.LocalPlayer.Character.HumanoidRootPart
@@ -739,18 +750,58 @@ _G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(fun
                 else
                     part.FREEZEHOLDER.Anchored = true
                     part.FREEZEHOLDER.MoveWithPlayer:Destroy()
-                    if part:FindFirstChild("CouldCollide") then
-					    part.CouldCollide:Destroy()
-					    part.CanCollide = true
-				    end
                 end
             end
         end
 	end
+	if input.KeyCode == Enum.KeyCode.K and gameProcessed == false then
+		for i, v in pairs(FrozenParts) do
+			if v ~= nil and v:FindFirstChild("FROZENPARTS") and not v:FindFirstChild("cloneHolder") then
+				local cloneStand = Instance.new("Part", workspace.FakeCollide)
+				cloneStand.Name = "cloneStand"
+				cloneStand.Size = v.Size
+				cloneStand.CFrame = v.CFrame
+				cloneStand.CustomPhysicalProperties = PhysicalProperties.new(0.001, 0, 0, 0, 0)
+				cloneStand.Transparency = 1
+				local Connector1 = Instance.new("Attachment", v)
+				Connector1.Name = "Connector1"
+				local Connector2 = Instance.new("Attachment", cloneStand)
+				Connector2.Name = "Connector2"
+				local ali = Instance.new("AlignPosition", v)
+				ali.Name = "cloneHolder"
+				ali.MaxForce = 9999999999999999
+				ali.MaxVelocity = math.huge
+				ali.Responsiveness = 5000
+				ali.Attachment0 = Connector2
+				ali.Attachment1 = Connector1
+				local rotatestop = Instance.new("AlignOrientation", v)
+				rotatestop.Name = "cloneROTATEHOLDER"
+				rotatestop.Mode = Enum.OrientationAlignmentMode.OneAttachment
+				rotatestop.Attachment0 = Connector2
+				rotatestop.CFrame = v.CFrame
+				rotatestop.MaxAngularVelocity = math.huge
+				rotatestop.MaxTorque = math.huge
+				rotatestop.Responsiveness = 5000
+				local Object = Instance.new("ObjectValue", v)
+				Object.Name = "Original"
+				Object.Value = v
+			end
+		end
+	end
+	if input.KeyCode == Enum.KeyCode.L and gameProcessed == false then
+		for i, v in pairs(workspace.FakeCollide:GetChildren()) do v:Destroy() end
+		for i, v in pairs(FrozenParts) do
+			if v ~= nil and v:FindFirstChild("FROZENPARTS") and v:FindFirstChild("cloneHolder") then
+				v.cloneROTATEHOLDER:Destroy()
+				v.cloneHolder:Destroy()
+				v.Connector1:Destroy()
+			end
+		end
+	end
     if input.KeyCode == Enum.KeyCode.KeypadTwo and gameProcessed == false and MovingPartUp == false then
         if not game.Players.LocalPlayer.Character:FindFirstChild("Teleport Tool") then
             local part = game.Players.LocalPlayer:GetMouse().Target
-	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part.Anchored == false then
                 MovingPartDown = true
                 while MovingPartDown == true do
                     if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
@@ -779,7 +830,7 @@ _G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(fun
     if input.KeyCode == Enum.KeyCode.KeypadFive and gameProcessed == false and MovingPartDown == false then
         if not game.Players.LocalPlayer.Character:FindFirstChild("Teleport Tool") then
             local part = game.Players.LocalPlayer:GetMouse().Target
-	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part.Anchored == false then
                 MovingPartUp = true
                 while MovingPartUp == true do
                     if part ~= nil and part:FindFirstChild("FREEZEHOLDER") then
@@ -807,14 +858,14 @@ _G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(fun
     end
     if input.KeyCode == Enum.KeyCode.KeypadThree and gameProcessed == false and MovingPartDown == false and MovingPartUp == false and game.Players.LocalPlayer.Character:FindFirstChild("Move Frozen") then
         local part = game.Players.LocalPlayer:GetMouse().Target
-	    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
-            part.FREEZEHOLDER.Position = Vector3.new(-149, 55, 8)
+	    if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part.Anchored == false then
+            part.FREEZEHOLDER.Position = Vector3.new(-132, 55, 4)
         end
     end
     if input.KeyCode == Enum.KeyCode.KeypadFour and gameProcessed == false and MovingPartDown == false and MovingPartUp == false then
         if game.Players.LocalPlayer.Character:FindFirstChild("Move Frozen") then
             local part = game.Players.LocalPlayer:GetMouse().Target
-	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part.Anchored == false then
                 local pos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, -7*tonumber(distance.Value))
                 part.FREEZEHOLDER.Position = pos.Position
             end
@@ -838,7 +889,7 @@ _G.scripttoolInputs = game:GetService("UserInputService").InputBegan:Connect(fun
     if input.KeyCode == Enum.KeyCode.KeypadZero and gameProcessed == false and MovingPartDown == false and MovingPartUp == false then
         if not game.Players.LocalPlayer.Character:FindFirstChild("Grab") then
             local part = game.Players.LocalPlayer:GetMouse().Target
-	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part:FindFirstAncestorWhichIsA("Folder") and part:FindFirstAncestorWhichIsA("Folder").Name == "Structure" and part.Anchored == false then
+	        if part ~= nil and part:FindFirstChild("FREEZEHOLDER") and part:IsA("BasePart") and part.Anchored == false then
                 part.FREEZEHOLDER.Position = part.FREEZEHOLDER.FrozenPos.Value.Position
             end
         else
@@ -868,7 +919,7 @@ end)
 
 local SuperStepper = Instance.new("BindableEvent", game.Players.LocalPlayer)
 SuperStepper.Name = "NetOwned"
-for _, event in ipairs({RunS.PreSimulation, RunS.PostSimulation}) do
+for _, event in ipairs({RunS.PostSimulation}) do
 	event:Connect(function()
 		SuperStepper:Fire(SuperStepper, tick())
 	end)
@@ -915,12 +966,12 @@ _G.SimRad = SuperStepper.Event:Connect(function()
 	sethiddenproperty(game.Players.LocalPlayer, "SimulationRadius", math.huge)
     for i, v in pairs(Parts) do
 		if v ~= nil and v:FindFirstChild("SPECIALgrab") then
-			v.Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0)
+			v.Velocity = Vector3.new(3.46262424, 36.46262424, 3.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0)
 		end
 	end
 	for i, v in pairs(FrozenParts) do
 		if v ~= nil and v:FindFirstChild("FROZENPARTS") then
-			v.Velocity = Vector3.new(14.46262424, 14.46262424, 14.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0)
+			v.Velocity = Vector3.new(3.46262424, 36.46262424, 3.46262424) + Vector3.new(0, math.cos(tick() * 10) / 100, 0)
 		end
 	end
 end)
